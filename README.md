@@ -5,7 +5,7 @@ Andere Ideen, Formeln usw. die man durch eigene Recherche oder durch Bearbeitung
 Unter '%%Todo:' am Anfang koennen noch fehlende Definitionen usw. notiert werden.
 
 
-Git Routine (bei jeder Aenderung durchfuehren
+Git Routine (bei jeder Aenderung durchfuehren)
 
 1) git pull (um das Repository zu updaten)
 
