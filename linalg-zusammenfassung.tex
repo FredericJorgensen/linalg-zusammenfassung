@@ -109,11 +109,11 @@ $F \in End(V)$ heisst \bt{nilpotent}, wenn $F^k = 0$ f\uee r ein $k \geq 1$.
 \begin{theorem}
 Ist $F \in End(V)$ und $n = dim(V)$. Dann sind folgende Aussagen \aee quivalent:
 \begin{itemize}
-\item[(i)] $F$ ist nilpotent.s
+\item[(i)] $F$ ist nilpotent.
 \item[(ii)] $F^d = 0$ f\uee r ein d mit $1 \leq d \leq n$.
 \item[(iii)] $P_F = \pm t^n$.
 \item[(iv)] Es gibt eine Basis $\mathcal{B}$ von $V$, so dass 
-\\ \centerline{$M_\mathcal{B} (F) = $
+\\ \centerline{
 $M_{\mathcal{B}}(F)=\left(\begin{array}{ccc}
 {0} & {} & {*} \\ {} & {\ddots} & {} 
 \\ {0} & {} & {0}\end{array}\right)$.
@@ -123,18 +123,18 @@ $M_{\mathcal{B}}(F)=\left(\begin{array}{ccc}
 
 \subsection{Die Jordansche Normalform}
 \begin{definition}
-Sei $F \in End(V)$, so dass $P_F$ in Linearfaktoren zerf\aee llt. Wenn $dim(Eig(F; \lambda_i)) < \mu (P_F; \lambda_ii) =: r_i$, kann man die Dimension des Eigenraums vergr\oee ssern: 
+Sei $F \in End(V)$, so dass $P_F$ in Linearfaktoren zerf\aee llt. Wenn $dim(Eig(F; \lambda_i)) < \mu (P_F; \lambda_i) =: r_i$, kann man die Dimension des Eigenraums vergr\oee ssern: 
 \\ \centerline{$Eig(F; \lambda_i) \subset Ker(F - \lambda_i id_v)^{r_i} = Hau(F; \lambda_i)$. }
 $Hau(F; \lambda_i)$ nennt man den \bt{Hauptraum} von $F$ zum Eigenwert $\lambda_i$.
 \end{definition}
 \begin{theorem} \bt{(Satz \uee ber die Hauptraumzerlegung)}
-Sei $F \in End_K(V)$, so dass $P_F$ in Linearfaktoren zerf\aee llt. Es sei $V_i := Hau(F, \lambda_i)$ f\uee r alle paarweise verschiedenen Eigenwerte $\lambda_1, ... , \lambda_n \in K$ von $F$. Sei $k := Rg(F)$. Dann gilt
+Sei $F \in End_K(V)$, so dass $P_F$ in Linearfaktoren zerf\aee llt. Es sei $V_i := Hau(F, \lambda_i)$ f\uee r alle paarweise verschiedenen Eigenwerte $\lambda_1, ... , \lambda_n \in K$ von $F$. Sei $k := Rg(F)$. Dann gilt:
 \begin{enumerate}
-\item $F(V_i) \subset V_I$ und $dim(V_i) = \mu (P_F, \lambda_i)$ f\uee r $i = 1, ..., k$. 
+\item $F(V_i) \subset V_i$ und $dim(V_i) = \mu (P_F, \lambda_i)$ f\uee r $i = 1, ..., k$. 
 \item $V =\bigoplus\limits_{i \in I} V_i$ mit $I=1, ..., k$.
-\item $F$ hat eine Zerlegung $F = F_D + F+N$ mit
+\item $F$ hat eine Zerlegung $F = F_D + F_N$ mit
 \begin{enumerate}
-\item $F_D $ist diagonalisierbar
+\item $F_D$ ist diagonalisierbar
 \item$ F_N$ ist nilpotent
 \item $F_N$ und $F_D$ kommutieren
 \item $F_N$ und $F_D$ lassen sich als Polynome von $F$ schreiben und kommutieren insbesondere mit $F$
@@ -158,21 +158,22 @@ wobei f\uee r $i = 1, ... k$
 \left(\begin{array}{ccc}
 {\lambda_{i}} & {} & {*} 
 \\ {} & {\ddots} & {} 
-\\ {0} & {} & {\lambda_{i}}\end{array}\right) $.}
+\\ {0} & {} & {\lambda_{i}}\end{array}\right) \in M(r_i \times r_i; K)$.}
+mit nilpotenten $N_i$. Insbesondere ist $\tilde{A} = D + N$, wobei $D$ eine Diagonalmatrix und $N$ nilpotent ist und $N$ und $D$ kommutieren.
 %%%
 \end{corollary}
 
 \begin{lemma}
 \bt{(Lemma von Fitting)} Zu einem $G \in End_K(V) $ betrachte
-\\ \centerline{$d := min \{ l \in \N : Ker (G^l) =Ker(G^{l + 1} \}$ und $r := \mu (P_G ; 0)$.}
+\\ \centerline{$d := min \{ l \in \N : Ker (G^l) =Ker(G^{l + 1}) \}$ und $r := \mu (P_G ; 0)$.}
 \\wobei $G^0 := id_V$. Dann gilt:
 \begin{enumerate}
-\item $d =min \{l : Im G^l = IM G^{l + 1} \}.$
-\item $Ker G^{d + i} = Ker G, Im G^{d + i} = Im G^d \forall i \in \N$.
-\item Die R\aee ume $U := Ker G^d$ und $W := Im G^d$ sind $G$-invariant.
+\item $d =min \{l : Im(G^l) = Im(G^{l + 1}) \}.$
+\item $Ker (G^{d + i}) = Ker (G), \ Im (G^{d + i}) = Im (G^d)\ \forall i \in \N$.
+\item Die R\aee ume $U := Ker (G^d)$ und $W := Im (G^d)$ sind $G$-invariant.
 \item $(G|U)^d = 0$ und $G|W: W \rightarrow W$ ist ein Isomorphismus.
 \item F\uee r das Minimalpolynom von $G|U$ gilt $M_{G|U} = t^d$.
-\item $V = U \oplus W$, $dimd(U) = r \geq d$, $dim(w) = n - r$.
+\item $V = U \oplus W$, $dim(U) = r \geq d$, $dim(W) = n - r$.
 \\ Insbesondere gibt es eine Basis $\mathcal{B}$ von $V$, so dass
 \\ \centerline{$M_\mathcal{B}(G) =
 \left(\begin{array}{ll}{N} & {0} 
