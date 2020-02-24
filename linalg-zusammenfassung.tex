@@ -4,127 +4,185 @@
 
 %%% SETUP %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Analysis
+
+
+\usepackage{mathtools}
+\usepackage{amsfonts} 
+\usepackage{fancybox}
+\usepackage{textcomp }
+\usepackage{bbold}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage[english,ngerman]{babel}
+
+\title{Lineare Algebra II}
+\author{Frederic Jørgensen}
+\date{Erstellt: 01. Februar 2020, Zuletzt ge\aee ndert: \today \\                           % deutsche Ausgabe
+	 \selectlanguage{ngerman}}
+\pagestyle{headings}
+\setlength{\parindent}{0pt}
+
+
+\newcommand{\sectionbreak}{\clearpage} %Seite bei jedem Abschnitt wechs^{•}eln
+
+
 \input{setup/MAIN.tex}
 
 %%% DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%Todo:
+% Definition Integritaetsring
+
+
 \begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\begin{abstract}
+	%enterlater
+	\centerline{\bt{Stand zum ersten Semester}, Template von Johann Birnick}
+\end{abstract}
+\section{Eigenwerte}
+\subsection{Trigonalisierung}
+\begin{definition}
+Sei $F : V\ \rightarrow V$ ein Endomorphismus und $W \subset V$ ein Untervektorraum. $W$ heisst $F$-invariant, wenn $F(W) \subset W$.
+\end{definition}
+\begin{remark}
+Ist $W \subset V$ ein $F$-invarianter Unterraum, so ist $P_{F|W}$ ein Teiler von $P_F$.
+\end{remark}
 
-\section{Introduction}
-
-This is a \LaTeX{} Template for free usage. It is designed to be simple, straight-forward and easy to edit.
-Basically everything you can see here you can also adjust to yourself. Just have a look into the \texttt{SETTINGS...} files. Enjoy!
-
-\section{Packages}
-
-I was careful to keep everything as clean as possible. This means that there are no complications between the packages and only well developed and as few packages as possible are used. Of course you can add your own favorites. But with the existing ones most of the usual things should work.
-
-The following packages are included by default and therefore can be used out of the box:
-
-#das ist ein Test ^ 2
-
-
-\begin{itemize}[noitemsep]
-  \item \texttt{geometry} (for paper layout, margins)
-  \item \texttt{babel} (you can choose your language)
-  \item \texttt{setspace} (for line spacing)
-  \item \texttt{titlesec} (for title spacing, title formatting)
-  \item \texttt{fancyhdr} (for header, footer)
-  \item \texttt{xcolor} (for coloring)
-  \item \texttt{tikz} (for graphics)
-  \item \texttt{mdframed} (for frames)
-  \item \texttt{nameref}, \texttt{hyperref}, \texttt{cleveref} (for referencing)
-  \item \texttt{amsmath}, \texttt{amssymb}, \texttt{amsthm}, \texttt{mathtools} (for math stuff)
-  \item \texttt{enumitem} (for better enumerations)
-  \item \texttt{lastpage} (to get the number of the last page)
-\end{itemize}
-
-\textsl{(if you do not like one of these you can also remove it, of course)}
-
-\section{Math}
-
-\subsection{Environments}
-
-The following environments are included in this template. You can easily edit colors, spacing, fonts, rounded edges, numbering.
-I do not show off everything you can do with the template here. Especially I do not show any kind of linking/labeling.
-
-\begin{definition}[Group]
-  Let $G$ be a set, $e \in G$ and $\circ \cl G \times G \to G$ a binary operation on $G$. We call $(G, \circ, e)$ a \df{group} if:
-
-  \begin{enumerate}[(G1)]
-  \item dsadas...
-  \item dads...
-  \item dsa...
-  \end{enumerate}
+\begin{definition}
+Eine \bt{Fahne} $(V_r)$ in einem $n$-dimensionalem $V$ ist eine Kette 
+\\ \centerline{ $\{0\} = V_0 \subset V_1 \subset ... \subset V_n = V$}
+von Untervektorr\aee umen mit $dim V_r = r$. Ist $F \in End(V)$, so heisst die Fahne $F$-invariant, wenn 
+\\ \centerline{$F(V_r) \subset V_r$ f\uee r alle $r \in \{0, ... n\}$.}
 \end{definition}
 
-\begin{proposition}
-  This is a proposition ...
-\end{proposition}
+\begin{remark}
+F\uee r $F \in End(V)$ sind folgende Bedingungen \aee quivalent:
+\begin{enumerate}
+\item[(i)] Es gibt eine $F$-invariante Fahne in $V$.
+\item[(ii)] Es gibt eine Basis $\mathcal{B}$ von V, so dass $M_\mathcal{B}  (F)$ eine obere Dreiecksmatrix ist.
+\end{enumerate}
+\end{remark}
 
-\begin{theorem}[Cayley's Theorem]
-  This is a theorem ...
-  You can change the color to that it's different from the proposition. You can do that with all these Environments. Just have a look into the settings files. Also notice that you can add a name for the theorem (or for the definition; see above), but you don't have to.
+
+\begin{theorem} \textbf{(Trigonalisierungssatz)} F\uee r einen Endomorphismus $F$ eines $n$-dimensionalen $K$-Vektorraumes sind folgende Bedingungen \aee quivalent:
+\begin{enumerate}
+\item[(i)] $F$ ist trigonalisierbar.
+\item[(ii)] Das charakteristische Polynom $P_F$ zerf\aee llt in Linearfaktoren.
+\end{enumerate}
 \end{theorem}
 
-\begin{proof}
-  Here we proof a Proposition, Theorem, Lemma or Corollary.
-
-  You can also switch that q.e.d.-symbol downright.
-\end{proof}
-
-\begin{lemma}
-  This is a lemma ...
-  It goes with the same numbering as Propositions, Theorems and Corollarys. You can change that too. You can also turn off the numbering for single boxes.
-\end{lemma}
-
-\begin{corollary}
-  This \footnote{By default, footnotes are placed at the bottom of the frame. You can change this to the position directly below the frame.} is a corollary ...
-  I will use it to show off the footnotes. \footnote{By default, the symbols differ from those of footnotes in the text. You can change this, of course.}
+\begin{corollary} Jeder Endomorphismus eines endlich-dimensionalen komplexen Vektorraumes ist trigonalisierbar.
 \end{corollary}
 
-\begin{remark}
-  This is a remark. I will write some more text here so that you can see the background color.
+\begin{remark} \bt{Rechenverfahren zur Trigonalisierung eines Endomorphismus} von $A \in M(n \times n; K)$
+\begin{enumerate}
+\item Pr\uee fe, dass $P_A$ in Linearfaktoren zerf\aee llt, aber A nicht diagonalisierbar ist. 
+\\
+Bestimme einen Eigenvektor $v_1 \in Eig(A, \lambda_1 )$ und erg\aee nze diesen zu einer Basis $\mathcal{B} := (v_1, e_i, ..., e_j)$ des $K^n$. 
+\\Betrachte $S^{-1}_1 := T^{\mathcal{B}_1}_{\mathcal{K}}$ und berechne $A_2 = S_1 \cdot A \cdot S_1^{-1} = $
+$\left(\begin{array}{ccccc}{
+\lambda_{1}} & {*} & {\cdots} & {\cdots} & {*} 
+\\ {0} & {\lambda_{2}} & {*} & {\cdots} & {*} 
+\\ {\vdots} & {0} & {} & {} 
+\\ {\vdots} & {\vdots} & {} & {A_{2}^{\prime}} 
+\\ {0} & {0} & {} & {} & {}\end{array}\right)$
+\item Bestimme einen Eigenvektor $v_2^{\prime} \in Eig(A_{2}^{\prime}, \lambda_2) $ f\uee r einen Eigenwert $\lambda_2$ von $A_{2}^{\prime}$, erg\aee nze $v_1, v_2$ zu einer Basis $\mathcal{B}_2$ des $K^n$, wobei $v_2$ wie  $v_2^{\prime}$ ist, aber zus\aee tzlich eine 0 als ersten Eintrag hat. Betrachte $S^{-1}_2 := T^{\mathcal{B}_2}_{\mathcal{K}}$ und berechne $A_3 = S_2 \cdot A \cdot S_2^{-1} = $
+$\left(\begin{array}{ccccc}{
+\lambda_{1}} & {*} & {\cdots} & {\cdots} & {*} 
+\\ {0} & {\lambda_{2}} & {*} & {\cdots} & {*} 
+\\ {\vdots} & {0} & {} & {} 
+\\ {\vdots} & {\vdots} & {} & {A_{3}^{\prime}} 
+\\ {0} & {0} & {} & {} & {}\end{array}\right)$
 
-  Of course you can change the colors and also the frame around here too.
-
-  Some more text...
+\item Das macht so oft, bis $ D := A_n =S_{n-1} \cdot A \cdot S_{n-1}^{-1}$ eine obere Dreiecksmatrix ist.
+\end{enumerate}
 \end{remark}
+\subsection{Potenzen eines Endomorphismus}
+%Anderes aus Linalg I ergaenzen?
+\begin{definition}
+$F \in End(V)$ heisst \bt{nilpotent}, wenn $F^k = 0$ f\uee r ein $k \geq 1$.
+\end{definition}
+\begin{theorem}
+Ist $F \in End(V)$ und $n = dim(V)$. Dann sind folgende Aussagen \aee quivalent:
+\begin{itemize}
+\item[(i)] $F$ ist nilpotent.s
+\item[(ii)] $F^d = 0$ f\uee r ein d mit $1 \leq d \leq n$.
+\item[(iii)] $P_F = \pm t^n$.
+\item[(iv)] Es gibt eine Basis $\mathcal{B}$ von $V$, so dass 
+\\ \centerline{$M_\mathcal{B} (F) = $
+$M_{\mathcal{B}}(F)=\left(\begin{array}{ccc}
+{0} & {} & {*} \\ {} & {\ddots} & {} 
+\\ {0} & {} & {0}\end{array}\right)$.
+}
+\end{itemize}
+\end{theorem}
 
-\begin{remark}[to remarks]
-  I want to remark that you can also add special notes, i.e. labels, to remarks, just as you may already know from your documents.
-\end{remark}
+\subsection{Die Jordansche Normalform}
+\begin{definition}
+Sei $F \in End(V)$, so dass $P_F$ in Linearfaktoren zerf\aee llt. Wenn $dim(Eig(F; \lambda_i)) < \mu (P_F; \lambda_ii) =: r_i$, kann man die Dimension des Eigenraums vergr\oee ssern: 
+\\ \centerline{$Eig(F; \lambda_i) \subset Ker(F - \lambda_i id_v)^{r_i} = Hau(F; \lambda_i)$. }
+$Hau(F; \lambda_i)$ nennt man den \bt{Hauptraum} von $F$ zum Eigenwert $\lambda_i$.
+\end{definition}
+\begin{theorem} \bt{(Satz \uee ber die Hauptraumzerlegung)}
+Sei $F \in End_K(V)$, so dass $P_F$ in Linearfaktoren zerf\aee llt. Es sei $V_i := Hau(F, \lambda_i)$ f\uee r alle paarweise verschiedenen Eigenwerte $\lambda_1, ... , \lambda_n \in K$ von $F$. Sei $k := Rg(F)$. Dann gilt
+\begin{enumerate}
+\item $F(V_i) \subset V_I$ und $dim(V_i) = \mu (P_F, \lambda_i)$ f\uee r $i = 1, ..., k$. 
+\item $V =\bigoplus\limits_{i \in I} V_i$ mit $I=1, ..., k$.
+\item $F$ hat eine Zerlegung $F = F_D + F+N$ mit
+\begin{enumerate}
+\item $F_D $ist diagonalisierbar
+\item$ F_N$ ist nilpotent
+\item $F_N$ und $F_D$ kommutieren
+\item $F_N$ und $F_D$ lassen sich als Polynome von $F$ schreiben und kommutieren insbesondere mit $F$
+\item Wenn man (a), (b) und (c) verlangt, ist diese Zerlegung eindeutig
+\end{enumerate}
+\end{enumerate}
+\end{theorem}
 
-\begin{enumremark}
-  \item People often use remarks to note some general properties whose proofs are very short.
-  \item Therefore we created the \verb|enumremark| environment.
-  \item Basically it's just an \verb|enumitem| environment inside an \verb|remark| environment.
-\end{enumremark}
+\begin{corollary}
+Sei $A \in M(n \times n; K)$, so dass $P_A$ in Linearfaktoren zerf\aee llt. Dann $\exists S \in GL(n)$: 
+$$
+S A S^{-1}=\left(\begin{array}{cccc}{} & {} & {} & {} 
+\\ {\lambda_{1} E_{r_{1}}+N_{1}} & {} & {} & {0} 
+\\ {} & {} & {\ddots} & {} 
+\\ {0} & {} & {} & {\lambda_{1} E_{r_{1}}+N_{1}} 
+\end{array}\right)
+$$
+wobei f\uee r $i = 1, ... k$
+\\ \centerline{$
+\lambda_{1} E_{r_{1}}+N_{1} = 
+\left(\begin{array}{ccc}
+{\lambda_{i}} & {} & {*} 
+\\ {} & {\ddots} & {} 
+\\ {0} & {} & {\lambda_{i}}\end{array}\right) $.}
+%%%
+\end{corollary}
 
-\begin{example}
-  This is an example! Examples are essential to learn something.
-\end{example}
+\begin{lemma}
+\bt{(Lemma von Fitting)} Zu einem $G \in End_K(V) $ betrachte
+\\ \centerline{$d := min \{ l \in \N : Ker (G^l) =Ker(G^{l + 1} \}$ und $r := \mu (P_G ; 0)$.}
+\\wobei $G^0 := id_V$. Dann gilt:
+\begin{enumerate}
+\item $d =min \{l : Im G^l = IM G^{l + 1} \}.$
+\item $Ker G^{d + i} = Ker G, Im G^{d + i} = Im G^d \forall i \in \N$.
+\item Die R\aee ume $U := Ker G^d$ und $W := Im G^d$ sind $G$-invariant.
+\item $(G|U)^d = 0$ und $G|W: W \rightarrow W$ ist ein Isomorphismus.
+\item F\uee r das Minimalpolynom von $G|U$ gilt $M_{G|U} = t^d$.
+\item $V = U \oplus W$, $dimd(U) = r \geq d$, $dim(w) = n - r$.
+\\ Insbesondere gibt es eine Basis $\mathcal{B}$ von $V$, so dass
+\\ \centerline{$M_\mathcal{B}(G) =
+\left(\begin{array}{ll}{N} & {0} 
+\\ {0} & {C}\end{array}\right) 
+$
+mit  $N^d = 0$ und $C \in GL (n-r; K)$.}
+\end{enumerate}
+\end{lemma}
+%to be continued
+%Satz seite 256 nochmal aufschreiben
 
-\subsection{Commands in text mode}
-
-Commands include symbol shortcuts as well as templates for frequently-used symbol strings. You can edit them and/or add your own.
-
-I will list some selected templates here:
-
-\paragraph{Map Definition}
-
-If you want to define a map in a clear layout, you can use:
-\begin{center}\verb|\mapdefinition{map name}{from}{to}{variable name}{where variable is mapped to}|\end{center}
-For example \verb|\mapdefinition{L_A}{K^n}{K^m}{v}{A \cdot v}| gives you:
-\mapdefinition{L_A}{K^n}{K^m}{v}{A \cdot v}
-
-\subsection{Commands in math mode}
-
-\paragraph{Set Definition}
-
-If you want to define a set, you can use:
-\begin{center}\verb|\setdefinition{variable}{constraint}|\end{center}
-For example \verb|$$ S = \setdefinition{x \in \Q}{x^2 < 5} $$| gives you:
-$$ S = \setdefinition{x \in \Q}{x^2 < 5} $$
-
+\section{N\uee tzliche Formeln und Hinweise}
 \end{document}
