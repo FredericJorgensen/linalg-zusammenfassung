@@ -192,8 +192,23 @@ Die \bt{Jordanmatrix} ist definiert als $J_{k}:=\left(\begin{array}{cccc}{0} & {
 Sei $G$ ein nilpotenter Endomorphismus eines K-Vektorraums $V$ und $d := min \{l | G^l = 0 \}$. Dann gibt es eindeutig bestimmte Zahlen $s_1, ..., s_d \in \mathbb{N}$ mit 
 \\ \centerline{$d \cdot s_d +(d - 1)s_{d-1} + ... + s_l = r = dim V$}
 \\und eine Basis $\mathcal{B}$ von $V,$, so dass 
-(einf\uee gen von S. 265)...
+$M_\mathcal{B}(G) =
+\left( \begin{array}{cccccccccc}
+{J_{d}} & {} & {} & {} & {} & {} & {} & {} & {} & {}
+\\ {} & {\ddots} & {} & {} & {} & {} & {} & {} & {0} & {}
+\\ {} & {} & {J_{d}} & {} & {} & {} & {} & {} & {} & {}
+\\ {} & {} & {} & {J_{d-1}} & {} & {} & {} & {} & {} & {}
+\\ {} & {} & {} & {} & {}\ddots & {} & {} & {} & {} & {}
+\\ {} & {} & {} & {} & {} & {J_{d-1}} & {} & {} & {} & {}
+\\ {} & {} & {} & {} & {} & {} & {\ddots} & {} & {} & {}
+\\ {} & {} & {} & {} & {} & {} & {} & {J_{l}} & {} & {}
+\\ {} & {0} & {} & {} & {} & {} & {} & {} & {\ddots} & {}
+\\ {} & {} & {} & {} & {} & {} & {} & {} & {} & {J_{l}}
+\end{array} 
+\right)$,
+\\wobei $J_d$ $s_d$-mal, $J_{d-1}$ $s_{d-1}$-mal, ... und $J_l$ $s_1$-mal vorkommt.
 \end{theorem}
+
 
 \section{N\uee tzliche Formeln und Hinweise}
 \end{document}
