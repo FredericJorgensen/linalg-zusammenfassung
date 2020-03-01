@@ -102,6 +102,38 @@ $\left(\begin{array}{ccccc}{
 \end{enumerate}
 \end{remark}
 \subsection{Potenzen eines Endomorphismus}
+\begin{theorem}
+\bt{Satz von Caley-Hamilton} Sei $V$ endlichdimensional und $F \in End(V)$. Dann ist
+\\ \centerline{$P_F(F) = 0 \in End(V)$.}
+\end{theorem}
+\begin{definition}
+Eine Teilmenge $\mathcal{I} \subset R$ eines kommutativen Ringes $R$ heisst \bt{Ideal}, wenn gilt:
+\begin{enumerate}
+\item[I 1] $P, Q \in \mathcal{I} \implies P - Q \in \mathcal{I}$ (Untergruppenkriterium)
+\item[I 2] $P \in \mathcal{I}, Q \in R \implies Q \cdot P \in \mathcal{I}$
+\end{enumerate}
+\end{definition}
+\begin{example}
+Sei F ein Endomorphismus. Das \bt{Ideal von F} ist definiert als
+\\ \centerline{$\mathcal{I}_F := \{ P(t) \in K[t] : P(F) = 0  \} \subset K[t]$.}
+\end{example}
+
+\begin{theorem}
+Zu jedem Ideal $\mathcal{I} \subset K[t]$ mit $\mathcal{I} \neq \{0\}$ gibt es ein eindeutiges \bt{Minimalpolynom} $M$ mit:
+\begin{enumerate}
+\item $M$ ist normiert
+\item F\uee r jedes $P \in \mathcal{I}$ gibt es ein $Q \in K[t]$ mit $P = Q \cdot M$.
+\end{enumerate}
+Man nennt das Minimalpolynom von $\mathcal{I}_F$ auch das \bt{Minimalpolynom von F}$M_F$.
+\end{theorem}
+
+\begin{theorem}
+Sei $n = dim (V)$ und $F \in End(V)$. Dann gilt:
+\begin{enumerate}
+\item $M_F | P_F$
+\item $P_F | M_F^n$
+\end{enumerate}
+\end{theorem}
 %Anderes aus Linalg I ergaenzen?
 \begin{definition}
 $F \in End(V)$ heisst \bt{nilpotent}, wenn $F^k = 0$ f\uee r ein $k \geq 1$.
@@ -208,6 +240,75 @@ $M_\mathcal{B}(G) =
 \right)$,
 \\wobei $J_d$ $s_d$-mal, $J_{d-1}$ $s_{d-1}$-mal, ... und $J_l$ $s_1$-mal vorkommt.
 \end{theorem}
+
+\begin{theorem}
+\bt{(Michael-Jordan Normalform)}
+Sei $F \in End(V$, wobei das charakteristische Polynom von $F$ in Linearfaktoren zerf\aee llt mit
+\\ \centerline{$P_F = \pm (t - \lambda_1)^{r_1} \cdot ... \cdot (t - \lambda_k)^{r_k}$.}
+Dann gibt es eine Basis $\mathcal{B}$ von $V$ mit 
+$M_\mathcal{B}(F) = 
+\left(\begin{array}{ccc}
+\lambda_{1} E_{r_{1}}+N_{1} & & 0 
+\\ & \ddots &  
+\\ 0 & & \lambda_{k} E_{r_{k}}+N_{k}
+\end{array}\right).$
+\\ $\lambda_i E_{r_i} + N_i = \left(\begin{array}{ccc}
+B_{1, d_1} & & 0 
+\\ & \ddots &  
+\\ 0 & & B{1, d_2}
+\end{array}\right)$
+ besteht dabei aus Jordanbl\oee cken, welche diese Form haben:
+\\ \centerline{$B_{i, d} = \left(\begin{array}{cccc}\lambda_{i} & 1 & & 
+\\ & \ddots & \ddots & 
+\\ & & \ddots & 1 
+\\ & & & \lambda_{i}\end{array}\right).$}
+
+Ein Jordanblock hat die Gr\oee sse $d$, wenn er d Eintr\aee ge mit $\lambda_i$ und $d - 1$ Einsen oberhalb der Diagonale hat.
+Es gilt $1 \leq d_i \leq \mu (M_F, \lambda_i)$ f\uee r $\forall i$.  Der gr\oee sste Jordanblock hat dabei genau die Gr\oee sse $\mu (M_F, \lambda_i)$.
+
+Die Summe der Anzahl der Jordanbl\oee cke multipliziert mit ihrer Gr\oee sse ergibt die algebraische Vielfachheit des Eigenwerts $\lambda_i$.
+
+Man nennt die Elemente $\lambda_i, r_i, d_j$ sowie die Anzahl der Jordanbl\oee cke $s_j^{(i)}$ der Gr\oee sse $d_j$ zum Eigenwert $\lambda_i$ \bt{Invarianten} des Endomorphismus $F$.
+
+Insbesondere ist also die jordansche Normalform ist bis auf die Reihenfolge der Jordanbl\oee cke eindeutig bestimmt.
+\end{theorem}
+
+\begin{corollary}
+$F \in End(V)$ ist genau dann diagonalisierbar, wenn $M_F$ folgende Form hat:
+\\ \centerline{$M_F = (t - \lambda_1) \cdot ... \cdot (t - \lambda_k)$,}
+wobei $\lambda_1, ... , \lambda_k$ die Eigenwerte von $F$ sind.
+\end{corollary}
+
+\begin{remark}
+\bt{Rechenverfahren zur Bestimmung einer Jordan-Normalform} von $A \in M(n \times n; K)$
+\begin{enumerate}
+\item Bestimme die Eigenwerte $\lambda_1, ... \lambda_k$ der Matrix $A$ .
+\item Bestimme die Anzahl und Gr\oee sse der Jordanbl\oee cke:
+
+Sei $U = A - \lambda_i E_n$.
+Sei $q= min\{l \ | \ dim(Ker(U^l)) = dim(Ker(U^{l+1})\}$ und $s_j^{(i)} = dim(Ker(U^j))$ mit $j \leq q$.
+Die Anzahl der Jordanbl\oee cke der Gr\oee sse $j$ zum Eigenwert $\lambda_i$ ist dann gegeben durch 
+\\ \centerline{$s_j^{(i)} - s_{j-1}^{(i)} +s_{j+1}^{(i)}.$}
+\\
+\\
+\\ \textit{Kommentar :} Die Anzahl der Jordanbl\oee cke zu $\lambda_i$ ist gegeben durch die geometrische Vielfachheit von $\lambda_i$.
+\item Eine jordansche Normalform l\aee sst sich anhand dieser Parameter aufstellen.
+\end{enumerate}
+\end{remark}
+
+\begin{remark}
+\bt{Rechenverfahren zur Bestimmung der Basiswechselmatrix einer Jordan-Normalform} von $A \in M(n \times n; K)$
+\begin{enumerate}
+\item Bestimme die Eigenwerte $\lambda_1, ... \lambda_k$ der Matrix $A$. Das folgende Verfahren muss f\uee r jeden Eigenwert durchgef\uee hrt werdemn
+\item Sei $U = A - \lambda_i E_n$.
+
+Bestimme $Ker(U), ..., Ker(U^q)$ wobei $q= min\{l \ | \ Ker(U^l) = Ker(U^{l+1})\}$. 
+\item Bestimme die Gr\oee sse der Jordanbl\oee cke des Eigenwerts $\lambda_i$.
+\item F\uee r einen Jordanblock der Gr\oee sse $j$ bestimme einen Vektor $v_j^{(i)} \in Ker(U^q) / Ker(U^{q-1})$ zum Eigenwert $\lambda_i$. Dann ist $v_{k-1}{(i)} = (A - \lambda_i E_n)(v_k) $ f\uee r all $k = 1, ..., j-1.$
+\item $\mathcal{B} = (v_1^{(1)}, ..., v_j^{(1)}, ..., v_1^{(k)}, ..., v_j^{(k)})$ ist die gesuchte Basis.
+
+\end{enumerate}
+\end{remark}
 
 
 \section{N\uee tzliche Formeln und Hinweise}
