@@ -218,7 +218,11 @@ mit  $N^d = 0$ und $C \in GL (n-r; K)$.}
 %Satz seite 256 nochmal aufschreiben
 \subsection{Die Normalform von nilpotenten Abbildungen}
 \begin{definition}
-Die \bt{Jordanmatrix} ist definiert als $J_{k}:=\left(\begin{array}{cccc}{0} & {1} & {} & {0} \\ {} & {\ddots} & {\ddots} & {} \\ {} & {} & {\ddots} & {1} \\ {0} & {} & {} & {0}\end{array}\right) \in \mathrm{M}(k \times k ; K)$ f\uee r die $J^k = 0$ gilt und $J^{k-1} \neq 0$.
+Die \bt{Jordanmatrix} ist definiert als $J_{k}:=\left(\begin{array}{cccc}
+{0} & {1} & {} & {0} 
+\\ {} & {\ddots} & {\ddots} & {} 
+\\ {} & {} & {\ddots} & {1} 
+\\ {0} & {} & {} & {0}\end{array}\right) \in \mathrm{M}(k \times k ; K)$ f\uee r die $J^k = 0$ gilt und $J^{k-1} \neq 0$.
 \end{definition}
 \begin{theorem}
 Sei $G$ ein nilpotenter Endomorphismus eines K-Vektorraums $V$ und $d := min \{l | G^l = 0 \}$. Dann gibt es eindeutig bestimmte Zahlen $s_1, ..., s_d \in \mathbb{N}$ mit 
@@ -312,6 +316,115 @@ Bestimme $Ker(U), ..., Ker(U^q)$ wobei $q= min\{l \ | \ Ker(U^l) = Ker(U^{l+1})\
 \end{enumerate}
 \end{remark}
 
+\section{Euklidische und unit\aee re Vektorr\aee ume}
+
+\subsection{Das kanonische Skalarprodukt im $\mathbb{R}^n$}
+\begin{definition}
+Das \bt{kanonische Skalarprodukt} ist die Abbildung $\langle\quad, \quad\rangle: \mathbb{R}^{n} \times \mathbb{R}^{n} \rightarrow \mathbb{R}, \quad(x, y) \mapsto\langle x, y\rangle$ mit $\langle x, y\rangle = x^T \cdot y$.
+\\Es hat die folgenden Eigenschaften:
+\begin{enumerate}
+%Bilinearitaet noch nicht komplett abgeschrieben
+\item \bt{Bilinearit\aee t} $\left\langle \alpha x+ \alpha^{\prime} x^{\prime}, y\right\rangle=\alpha \langle x, y\rangle+ \alpha^{\prime}\left\langle x^{\prime}, y\right\rangle $
+\\$\left\langle x, \beta y+ \beta^{\prime} y^{\prime}\right\rangle=\beta \langle x, y\rangle+ \beta^{\prime}\left\langle x, y^{\prime}\right\rangle $
+\item \bt{Symmetrie} $\left\langle x, y \right\rangle = \left\langle y, x \right\rangle$
+\item \bt{Positive Definitheit} $\left\langle x, x \right\rangle \geq 0$ und $\left\langle x, x \right\rangle = 0 \Leftrightarrow x = 0$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Die \bt{euklidische Norm} ist die Abbildung $\|\|: \mathbb{R}^{n} \rightarrow \mathbb{R}_{+}, \quad x \mapsto\|x\|:=\sqrt{\langle x, x\rangle}$, mit dem kanonischen Skalarprodukt.
+\\Dieses erf\uee llt folgende Eigenschaften
+\begin{enumerate}
+\item $\|x\| \geq 0$ und $\|x\| = 0 \Leftrightarrow x= 0$
+\item $ \| \alpha \cdot x \| = \mid\alpha \mid \cdot \|x \| $ 
+\item $\|x+y\| \leq\|x\|+\|y\|$
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Mit Hilfe von $\langle\quad, \quad\rangle$ definiere \bt{Winkel} wie folgt:
+\\Seien $x, y \in \mathbb{R}^n\backslash \{0\} $. Mit der Cauchy-Schwary-Ungleichung folgt: 
+\begin{equation*}
+-1 \leq \frac{\langle x, y\rangle}{\|x\| \cdot\|y\|} \leq+1.
+\end{equation*}
+Der Winkel zwischen $x$ und $y$ ist 
+\begin{equation*}
+\angle(x, y) = \arccos\left(\frac{\langle x, y\rangle}{\|x\| \cdot\|y\|}\right).
+\end{equation*}
+\end{definition}
+
+\subsection{Das kanonische Skalarprodukt im $\mathbb{C}^n$}
+\begin{definition}
+Das \bt{kanonische Skalarprodukt im $\mathbb{C^n}$} analog zum kanonischen Skalarprodukt im $\mathbb{R^n}$ definiert. 
+\\Es hat folgende Eigenschaften:
+\begin{enumerate}
+\item \bt{Sesquilinearit\aee t} $\left\langle \alpha x+ \alpha^{\prime} x^{\prime}, y\right\rangle_c=\alpha \langle x, y\rangle+ \alpha^{\prime}\left\langle x^{\prime}, y\right\rangle_c $
+\\$\left\langle x, \beta y+ \beta^{\prime} y^{\prime}\right\rangle_c=\overline{\beta} \langle x, y\rangle+ \overline{\beta}^{\prime}\left\langle x, y^{\prime}\right\rangle_c $
+\item \bt{Symmetrie} $\left\langle w, z \right\rangle_c = \overline{\left\langle z, w \right\rangle}_c$
+\item \bt{Positive Definitheit} $\left\langle z, z \right\rangle \in \mathbb{R}_+$ und $\left\langle z, z\right\rangle_c = 0 \Leftrightarrow z = 0$
+\end{enumerate}
+\end{definition}
+
+
+\subsection{Bilinearformen und Sesquilinearformen}
+%Multilinearform und Bilinearform
+\begin{definition}
+Seien $V_1, V_2$ Vektor\aee ume und $K$ ein K\oee rper. Eine Abbildung
+\begin{equation*}
+s : V_1 \times V_2 \rightarrow K
+\end{equation*}
+heisst \bt{bilinear} falls
+\begin{enumerate}
+\item[\bt{B1}] $s( \alpha v_1 + \alpha^\prime v_1^\prime, v_2) = \alpha s(v_1, v_2) + \alpha^\prime s(v_1^\prime, v_2)$ und
+\item[\bt{B2}] $s(v_1, \beta v_2 + \beta^\prime v_2^\prime) = \beta s(v_1, v_2) + \beta^\prime s(v_1, v_2^\prime)$.
+\end{enumerate}
+Man nennt einen bilineare Abbildung zus\aee tzlich \bt{symmetrisch}, wenn
+\begin{enumerate}
+\item[\bt{S}] $s(v, w) = s (w, v)$
+\end{enumerate}
+und \bt{alternierend}, falls
+\begin{enumerate}
+\item[\bt{A}] $s(w, v) = - s(v, w)$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Eine \bt{Multilinearform} 
+\begin{equation*}
+s : V_1 \times V_2 \times ... \times V_n \rightarrow K
+\end{equation*}
+ist analog zur Bilinearform definiert, die Bilinearform also ein Spezialfall der Multilinearform.
+\\Es gilt also f\uee r alle Koordinaten
+\begin{enumerate}
+\item[\bt{B1}] $s(v_1, ...,  \alpha v_k + \alpha^\prime v_k^\prime, ...,  v_n) = \alpha s(v_1, ..., v_k, ..., v_n) + \alpha^\prime s(v_1, ..., v_k^\prime, ..., v_n)$.
+\end{enumerate}
+\end{definition}
+
+\begin{remark} Sei $V$ ein endlich dimensionaler Vektorraum, $s : V \times V \rightarrow K$ eine Bilinearform auf $V$ und $\mathcal{B} = (v_1, ..., v_n)$ eine geordnete Basis von $V$. Seien $v, w \in V$ und $x = \phi^{-1}_\mathcal{B}(v)$, $y = \phi^{-1}_\mathcal{B}(y)$, wobei $\phi^{-1}_B : \mathbb{K}^n \rightarrow V$ das Koordinatensystem von $\mathbb{B}$ ist. Dann ist
+\begin{equation*}
+s(v, w)= x^T A y=\left(x_{1}, \ldots, x_{n}\right)\left(\begin{array}{ccc}a_{11} & \cdots & a_{1 n} \\ \vdots & & \vdots \\ a_{n 1} & \cdots & a_{n n}\end{array}\right)\left(\begin{array}{c}y_{1} \\ \vdots \\ y_{n}\end{array}\right).
+\end{equation*}
+Es ist also $(a_{ij}) = s(v_i, v_j)$, wobei $i, j \in \{1, ..., n\}$.
+\end{remark}
+
+\begin{theorem}
+Sei $V$ ein $ndimensionaler$ endlicher Vektorraum und $\mathcal{B}$ eine Basis von $V$. Dann ist  die Abbildung
+\begin{equation*}
+s \mapsto M_{\mathcal{B}}(s)
+\end{equation*}
+von den Bilinearformen auf $M(n \times n; K)$ bijektiv und $s$ genau dann symmetrisch, wenn $M_{\mathcal{B}}(s)$ symmetrisch. 
+\end{theorem}
+
+%eigentlich nicht wichtig da klar
+\begin{lemma}
+Seien $A, B \in M(n \ times n; K)$ mit 
+\begin{equation*}
+x_TAy = x_TBy = 
+\end{equation*}
+f\uee r alle $x, y \in K^n$. Dann ist $A = B$. 
+\end{lemma}
+
 
 \section{N\uee tzliche Formeln und Hinweise}
+
 \end{document}
