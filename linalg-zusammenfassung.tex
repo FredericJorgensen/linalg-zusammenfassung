@@ -15,6 +15,7 @@
 \usepackage{amssymb}
 \usepackage{titlesec}
 \usepackage[english,ngerman]{babel}
+\usepackage{mathabx} 
 
 \title{Lineare Algebra II}
 \author{Frederic Jørgensen}
@@ -423,6 +424,139 @@ x_TAy = x_TBy =
 \end{equation*}
 f\uee r alle $x, y \in K^n$. Dann ist $A = B$. 
 \end{lemma}
+
+%11032020
+\begin{theorem}\bt{(Transformationformel)}
+Sei $V$ eine endlichdimensionaler Vektorraum mit Basen $\mathcal{A}$ und $ \mathcal{B}$. F"ur jede Bilinearform $s$ auf $V$ gilt dann
+\begin{equation*}
+M_\mathcal{B}(s) =( T^\mathcal{B}_\mathcal{A})^T \cdot M_\mathcal{A}(s) \cdot T^\mathcal{B}_\mathcal{A}.
+\end{equation*}
+Der entscheidende Unterschied ist also $( T^\mathcal{B}_\mathcal{A})^T$ statt $( T^\mathcal{B}_\mathcal{A})^{-1}$.
+\end{theorem}
+
+\begin{definition}
+Sei $s: V \times V \rightarrow K$ eine symmetrische Bilinearform. Die zu $s$ geh"orige quadratische Form ist die Abbildung
+\begin{equation*}
+q : V \rightarrow K, v \mapsto s(v, v).
+\end{equation*}
+Es gilt dann $g(\lambda v) = \lambda^2 q(v)$ f"ur  $\forall v \in V, \lambda \in K$.
+Ist $V = K^n$ und $s$ durch die symmetrische Matrix $A = (a_ij)$ gegebene, gilt
+\begin{equation*}
+q(x_1, ..., x_n) = \sum\limits_{i, j = 1}^n a_{ij} x_i x_j = \sum\limits_{j = 1}^n a_ii x_i^2 + 2 \cdot \sum\limits_{1 \leq i < j \leq n} a_{ij}x_ix_j,
+\end{equation*}
+was eine homogenes quadratisches Polynom in den Unbestimmten $x_1, ..., x_n$ ist.
+\end{definition}
+
+\begin{theorem} \bt{(Polarisierung)}
+Ist $\textrm{char}(K) \neq 2$, so gitl f"ur jede symmetrische Bilinearform $s$ und die zugeh"orige quadratische Form $q$:
+\begin{equation*}
+s(v, w) = \frac{1}{2}(q(v+w)-q(v)-q(w)) \text{ f"ur } \forall v, w \in V.
+\end{equation*}
+$s$ ist also aus $q$ konstruierbar.
+\end{theorem}
+
+%In Bermerkung und Definition aufteilen?
+\begin{definition}
+Eine Abbildung $F \in End(V)$ heisst \bt{semilinear}, falls 
+\begin{equation*}
+F(v + \lambda w) = F(v ) + \overline{\lambda} F(w) \text{ f"ur } \forall v, w \in V, \lambda \in \mathbb{C}.
+\end{equation*}
+Man nennt eine Abbildung $s: V \times V \rightarrow \mathcal{C}$ \bt{sesquilinear}, wenn $s$ im ersten Argument linear und im zweiten Element semilinear ist.
+
+Ist $\mathcal{A}$ eine Basis von $V$, so ist die Matrix der Sesquilinearform $s : V \times V \rightarrow \mathbb{C}$
+\begin{equation*}
+A = M_\mathcal{A}(s) = (s(v_i, v_j)).
+\end{equation*}
+Ist $v = \phi_\mathcal{A}(x), w = \phi_\mathcal{A} (y)$ so ist 
+\begin{equation*}
+s(v, w) = x^T A \overline{y},
+\end{equation*}
+wobei $\overline{y}$ die komponentenweise Konjugation ist.
+\\
+\\
+
+
+Ist \(\mathcal{B}\) eine weitere Basis, \(B=M_{\mathcal{B}}(s)\) und \(T=T_{\mathcal{A}}^{\mathcal{B}},\) so hat man die \bt{Transformationsformel}
+\begin{equation*}
+B= T^T A \overline{T}.
+\end{equation*}
+
+Man hat im Komplexen für Sesquilinearformen eine \bt{Polarisierung}
+\begin{equation*}
+s(v, w)=\frac{1}{4}(q(v+w)-q(v-w)+\mathrm{i} q(v+\mathrm{i} w)-\mathrm{i} q(v-\mathrm{i} w)).
+\end{equation*}
+\end{definition}
+
+\begin{definition}
+$s : V \times V \rightarrow K$ heisst ausserdem \bt{hermitesch}, wenn gilt
+\begin{equation*}
+s(v, w) = \overline{s(w, v)}.
+\end{equation*}
+$s$ ist hermetisch also genau dann, wenn f"ur eine Basis $\mathcal{A}$ gilt
+\begin{equation*}
+M_\mathcal{A}(s) = \overline{M_\mathcal{A}(s)}.
+\end{equation*}
+\end{definition}
+
+%richtiges Zeichen ? zwischen UVR und Komplement unterscheiden.
+\begin{definition}
+Sei $K = \mathbb{R}, \mathbb{C}$ und $V$ eine K-Vektorraum mit einer symmetrischen Bilinearform / hermiteschen Sesquilinearform $s : V \times V \rightarrow K$. 
+\\ Dann heisst $s$ \bt{positiv definit}, falls $s(v, v) > 0 \ \forall v \in V/\{0\}$.
+Eine solche Bilinearform / Sesquilinearform nennt man auch \bt{Skalarprodukt auf $V$}.
+\\$V$ zusammenn mit einem Skalarprodukt nennt man einen \bt{euklidischen Vektorraum} ($K = \mathbb{R})$) bzw. \bt{unit"aren Vektorraum} ($K = \mathbb{C}$).
+\\Die \bt{Norm} auf einem euklidischen / unit"aren Vektorraum ist gegeben durch
+\begin{equation*}
+\\
+\| v\| = \sqrt{\left\langle v , v \right\rangle}.
+\end{equation*}
+\end{definition}
+
+\begin{remark}
+Eines symmetrische (bzw. hermitesche) \bt{Matrix} $A \in M( n \times n; K)$ heisst \bt{positiv definit}, falls die zugeh"orige Bilinearform / Sesquilinearform positiv definit ist. 
+\end{remark}
+
+\begin{theorem} \bt{(Ungleichung von Cauchy-Schwarz)} Ist $V$ ein euklidischer Vektorraum, gilt f"ur alle $v, w \in V$
+\begin{equation*}
+|\langle v, w\rangle| \leq\|v\| \cdot\|w\|
+\end{equation*}
+und Gleichheit genau dann, wenn $v$ und $w$ linear abh"angig sind.
+\end{theorem}
+
+\begin{definition}
+Definition. Sei \(V\) ein euklidischer bzw. unitärer Vektorraum.
+\begin{enumerate}
+\item Zwei Vektoren \(v, w \in V\) heißen orthogonal ($v \perp w$), wenn
+\begin{equation*}
+\langle v, w\rangle= 0.
+\end{equation*}
+\item Zwei Untervektorräume \(U, W \subset V\) heißen orthogonal ($U \perp W$), wenn
+\begin{equation*}
+u \perp w \text { für alle } u \in U \text { und alle } w \in W \text {. }
+\end{equation*}
+\item Ist \(U \subset V\) ein Untervektorraum, so definiert man sein orthogonales Komplement
+\begin{equation*}
+U^{\perp}:=\{v \in V: v \perp u \text { für alle } u \in U\}
+\end{equation*}
+Das ist wieder ein Untervektorraum.
+\item Eine Familie \(\left(v_{1}, \ldots, v_{n}\right)\) in \(V\) heißt orthogonal, wenn
+\begin{equation*}
+v_{i} \perp v_{j} \quad \text { für alle } i \neq j.
+\end{equation*}
+Sie heißt orthonormal, falls zusätzlich
+\begin{equation*}
+\|v_i\| = 1 \text{ f"ur alle } i.
+\end{equation*}
+Sie heisst Orthonormalbasis, falls sie auch eine Basis ist, d.h. eine Basis mit
+\begin{equation*}
+\left\langle v_{i}, v_{j}\right\rangle=\delta_{i j} \ \forall i, j.
+\end{equation*}
+%orthogonal zeichen statt oplus
+\item Ist \(V=V_{1} \oplus \ldots \oplus V_{k},\) so heißt die direkte Summe orthogonal ($V=V_{1} \obot \ldots \obot V_{k}$), falls
+\begin{equation*}
+\text { falls } V_{i} \perp V_{j} \quad \text { für alle } i \neq j.
+\end{equation*}
+\end{enumerate}
+\end{definition}
 
 
 \section{N\uee tzliche Formeln und Hinweise}
