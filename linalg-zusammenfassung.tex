@@ -401,6 +401,8 @@ ist analog zur Bilinearform definiert, die Bilinearform also ein Spezialfall der
 \end{enumerate}
 \end{definition}
 
+
+
 \begin{remark} Sei $V$ ein endlich dimensionaler Vektorraum, $s : V \times V \rightarrow K$ eine Bilinearform auf $V$ und $\mathcal{B} = (v_1, ..., v_n)$ eine geordnete Basis von $V$. Seien $v, w \in V$ und $x = \phi^{-1}_\mathcal{B}(v)$, $y = \phi^{-1}_\mathcal{B}(y)$, wobei $\phi^{-1}_B : \mathbb{K}^n \rightarrow V$ das Koordinatensystem von $\mathbb{B}$ ist. Dann ist
 \begin{equation*}
 s(v, w)= x^T A y=\left(x_{1}, \ldots, x_{n}\right)\left(\begin{array}{ccc}a_{11} & \cdots & a_{1 n} \\ \vdots & & \vdots \\ a_{n 1} & \cdots & a_{n n}\end{array}\right)\left(\begin{array}{c}y_{1} \\ \vdots \\ y_{n}\end{array}\right).
@@ -557,6 +559,96 @@ Sie heisst Orthonormalbasis, falls sie auch eine Basis ist, d.h. eine Basis mit
 \end{equation*}
 \end{enumerate}
 \end{definition}
+
+\begin{remark}
+Sei $(v_1, ..., v_n)$ eine orthogonale Familie in $V$ mit $v_i \neq 0$ $\forall i$. Dann gilt:
+\begin{enumerate}
+\item Dann ist 
+$$
+\left(\frac{1}{\|v_1\|} v_1, \frac{1}{\|v_2\|} v_2, ..., \frac{1}{\|v_n\|} v_n \right)
+$$
+orthonormal.
+\item $(v_1, ..., v_n)$ ist linear unabh"angig.
+\end{enumerate}
+\end{remark}
+
+\begin{remark}
+Sei $(v_1, ..., v_n)$ eine Orthonormalbasis von $V$ und $v \in V$ beliebig. Dann gilt:
+$$
+v = \left\langle v, v_1 \right\rangle v_1 + ... + \left\langle v, v_n \right\rangle v_n.
+$$
+\end{remark}
+
+\begin{remark}
+Sei $(v_1, ..., v_n)$ eine Orthonormalbasis von $V$ und $v = \lambda_1 v_1 + ... + \lambda_n v_n, \ w =  \mu v_1 + ... + \mu v_n \  \in V$. Dann gilt:
+$$
+\left\langle v, w \right\rangle = \left\langle \lambda_1 v_1 + ... + \lambda_n v_n, \mu_1 v_1 + ... + \mu_n v_n \right\rangle = \sum\limits_{i = 1}^n \lambda_i \overline{\mu_j} = \left(\begin{array}{ccc}\lambda_1 & \hdots & \lambda_n \end{array} \right) \overline{\left(\begin{array}{c}\mu_1  \\ \vdots \\ \mu_n \end{array} \right)}.
+$$
+\end{remark}
+
+\subsection{Gram-Schmidtsches Orthogonalisierungsverfahren}
+\begin{theorem} \bt{(Orthonormalisierungssatz)}
+Sei $V$ ein endlichdimensionaler, euklidischer bzw. unit"arer Vektorraum und $W \subset V$ ein Untervektorraum mit der Orthonormalbasis $(w_1, ..., w_m)$. Dann gibt es eine Erg"anzung zu einer Orthonormalbasis von $V$ $(w_1, ..., w_n, w_{m+1}, ..., w_n)$.
+\end{theorem}
+
+\begin{corollary}
+Jeder endlichdimensionale Vektorraum hat eine Orthonormalbasis.
+\end{corollary}
+
+\begin{corollary}
+Sei $W \subset V$ ein Untervektorraum des endlich dimensionalen euklidischen bzw. unit"aren Vektorraumes $V$. Dann gilt
+$$
+V = W \obot W^\perp \text{ und } dim V = dim W + dim W^\perp.
+$$
+\end{corollary}
+
+\begin{remark}\bt{(Gram-Schmidtsches Orthogonalisierungsverfahren)}
+\begin{enumerate}
+\item Erg"anze $(w_1, ..., w_n)$ zu einer Basis $(w_1, ..., w_m, v_{m+1}, ..., v_n)$ von $V$
+\item Orthogonalisiere die Basis durch $\tilde{v_i} := v_i - \left( \scp{v_i}{w_1}  w_1 +  ...  + \scp{v_i}{w_m} w_m  \right)$ 
+\item Normiere die erhaltenen Vektoren  durch $v_i' = \frac{\tilde{v_i}}{\|\tilde{v_i}\|}.$
+\end{enumerate}
+\end{remark}
+
+\begin{remark} \bt{(QR-Zerlegung)}
+Sei $V = K^n$ und $A \in M(n \times n, K)$. Dann existiert eine Orthogonalmatrix  $Q$ und eine obere Dreiecksmatrix $R$, so dass $$
+A = Q \cdot R.$$
+\end{remark}
+
+\subsection{Gramsche Determinante und Volumenmessung}
+
+\begin{definition}
+Seien $V$ ein euklidischer Vektorraum und $v_1, ..., v_m \in V$, wobei $m \leq n = dim V$.
+Dann nennt man 
+$$
+G\left(v_{1}, \ldots, v_{m}\right):=\operatorname{det}\left(\begin{array}{ccc}\left\langle v_{1}, v_{1}\right\rangle & \cdots & \left\langle v_{1}, v_{m}\right\rangle \\ \vdots & & \vdots \\ \left\langle v_{m}, v_{1}\right\rangle & \cdots & \left\langle v_{m}, v_{m}\right\rangle\end{array}\right) \in \mathbb{R}
+$$
+die Gramsche Determinante.
+\end{definition}
+
+\begin{remark}
+Es ist $G\left(v_{1}, \ldots, v_{m}\right) \geq 0$ und es gilt
+$$
+G\left(v_{1}, \ldots, v_{m}\right) > 0 \Leftrightarrow v_1, ..., v_m \text{ sind linear unabh"angig.}
+$$
+\end{remark}
+
+\begin{definition}
+Das Volumen des von  $v_1, ..., v_m$ aufgespannten Spates ist definiert als 
+$$
+Vol(v_1, ..., v_m) := \sqrt{G\left(v_{1}, \ldots, v_{m}\right)}.
+$$
+\end{definition}
+
+\begin{theorem}\bt{Ungleichung von Hadamard}
+Seien $v_1, ..., v_m \in V$ und $V$ ein euklidischer Vektorraum, wobei $m \leq dim V$. Dann gilt
+$$
+Vol(v_1, ..., v_m) \leq \|v_1\| \cdot ... \cdot \|v_m\|.
+$$
+Es besteht Gleichheit genau dann, wenn $v_i \perp v_j$ f"ur $\forall i \neq j$.
+
+
+\end{theorem}
 
 
 \section{N\uee tzliche Formeln und Hinweise}
