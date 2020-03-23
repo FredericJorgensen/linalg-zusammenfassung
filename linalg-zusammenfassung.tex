@@ -321,7 +321,7 @@ Bestimme $Ker(U), ..., Ker(U^q)$ wobei $q= min\{l \ | \ Ker(U^l) = Ker(U^{l+1})\
 
 \subsection{Das kanonische Skalarprodukt im $\mathbb{R}^n$}
 \begin{definition}
-Das \bt{kanonische Skalarprodukt} ist die Abbildung $\langle\quad, \quad\rangle: \mathbb{R}^{n} \times \mathbb{R}^{n} \rightarrow \mathbb{R}, \quad(x, y) \mapsto\langle x, y\rangle$ mit $\langle x, y\rangle = x^T \cdot y$.
+Das \bt{kanonische Skalarprodukt im $\mathbb{R}^n$} ist die Abbildung $\langle\quad, \quad\rangle: \mathbb{R}^{n} \times \mathbb{R}^{n} \rightarrow \mathbb{R}, \quad(x, y) \mapsto\langle x, y\rangle$ mit $\langle x, y\rangle = x^T \cdot y$.
 \\Es hat die folgenden Eigenschaften:
 \begin{enumerate}
 %Bilinearitaet noch nicht komplett abgeschrieben
@@ -333,7 +333,18 @@ Das \bt{kanonische Skalarprodukt} ist die Abbildung $\langle\quad, \quad\rangle:
 \end{definition}
 
 \begin{definition}
-Die \bt{euklidische Norm} ist die Abbildung $\|\|: \mathbb{R}^{n} \rightarrow \mathbb{R}_{+}, \quad x \mapsto\|x\|:=\sqrt{\langle x, x\rangle}$, mit dem kanonischen Skalarprodukt.
+Das \bt{kanonische Skalarprodukt im $\mathbb{C^n}$} ist analog zum kanonischen Skalarprodukt im $\mathbb{R^n}$ definiert. 
+\\Es hat folgende Eigenschaften:
+\begin{enumerate}
+\item \bt{Sesquilinearit\aee t} $\left\langle \alpha x+ \alpha^{\prime} x^{\prime}, y\right\rangle_c=\alpha \langle x, y\rangle+ \alpha^{\prime}\left\langle x^{\prime}, y\right\rangle_c $
+\\$\left\langle x, \beta y+ \beta^{\prime} y^{\prime}\right\rangle_c=\overline{\beta} \langle x, y\rangle+ \overline{\beta}^{\prime}\left\langle x, y^{\prime}\right\rangle_c $
+\item \bt{Symmetrie} $\left\langle w, z \right\rangle_c = \overline{\left\langle z, w \right\rangle}_c$
+\item \bt{Positive Definitheit} $\left\langle z, z \right\rangle \in \mathbb{R}_+$ und $\left\langle z, z\right\rangle_c = 0 \Leftrightarrow z = 0$
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+Sei $K = \mathbb{R}$ oder $K = \mathbb{C}$. Die \bt{euklidische Norm} ist die Abbildung $\|\cdot\|: K^{n} \rightarrow \mathbb{R}_{+}, \quad x \mapsto\|x\|:=\sqrt{\langle x, x\rangle}$, mit dem kanonischen Skalarprodukt.
 \\Dieses erf\uee llt folgende Eigenschaften
 \begin{enumerate}
 \item $\|x\| \geq 0$ und $\|x\| = 0 \Leftrightarrow x= 0$
@@ -344,28 +355,12 @@ Die \bt{euklidische Norm} ist die Abbildung $\|\|: \mathbb{R}^{n} \rightarrow \m
 
 \begin{definition}
 Mit Hilfe von $\langle\quad, \quad\rangle$ definiere \bt{Winkel} wie folgt:
-\\Seien $x, y \in \mathbb{R}^n\backslash \{0\} $. Mit der Cauchy-Schwary-Ungleichung folgt: 
-\begin{equation*}
--1 \leq \frac{\langle x, y\rangle}{\|x\| \cdot\|y\|} \leq+1.
-\end{equation*}
+\\Seien $x, y \in \mathbb{R}^n\backslash \{0\} $.
 Der Winkel zwischen $x$ und $y$ ist 
 \begin{equation*}
 \angle(x, y) = \arccos\left(\frac{\langle x, y\rangle}{\|x\| \cdot\|y\|}\right).
 \end{equation*}
 \end{definition}
-
-\subsection{Das kanonische Skalarprodukt im $\mathbb{C}^n$}
-\begin{definition}
-Das \bt{kanonische Skalarprodukt im $\mathbb{C^n}$} analog zum kanonischen Skalarprodukt im $\mathbb{R^n}$ definiert. 
-\\Es hat folgende Eigenschaften:
-\begin{enumerate}
-\item \bt{Sesquilinearit\aee t} $\left\langle \alpha x+ \alpha^{\prime} x^{\prime}, y\right\rangle_c=\alpha \langle x, y\rangle+ \alpha^{\prime}\left\langle x^{\prime}, y\right\rangle_c $
-\\$\left\langle x, \beta y+ \beta^{\prime} y^{\prime}\right\rangle_c=\overline{\beta} \langle x, y\rangle+ \overline{\beta}^{\prime}\left\langle x, y^{\prime}\right\rangle_c $
-\item \bt{Symmetrie} $\left\langle w, z \right\rangle_c = \overline{\left\langle z, w \right\rangle}_c$
-\item \bt{Positive Definitheit} $\left\langle z, z \right\rangle \in \mathbb{R}_+$ und $\left\langle z, z\right\rangle_c = 0 \Leftrightarrow z = 0$
-\end{enumerate}
-\end{definition}
-
 
 \subsection{Bilinearformen und Sesquilinearformen}
 %Multilinearform und Bilinearform
@@ -401,7 +396,17 @@ ist analog zur Bilinearform definiert, die Bilinearform also ein Spezialfall der
 \end{enumerate}
 \end{definition}
 
-
+\begin{definition}
+Eine Abbildung $F \in End(V)$ heisst \bt{semilinear}, falls 
+\begin{equation*}
+F(v + \lambda w) = F(v ) + \overline{\lambda} F(w) \text{ f"ur } \forall v, w \in V, \lambda \in \mathbb{C}.
+\end{equation*}
+Man nennt eine Abbildung $s: V \times V \rightarrow \mathcal{C}$ \bt{sesquilinear}, wenn $s$ im ersten Argument linear und im zweiten Element semilinear ist.
+$s : V \times V \rightarrow \mathcal{C}$ heisst ausserdem \bt{hermitesch}, wenn gilt
+\begin{equation*}
+s(v, w) = \overline{s(w, v)}.
+\end{equation*}
+\end{definition}
 
 \begin{remark} Sei $V$ ein endlich dimensionaler Vektorraum, $s : V \times V \rightarrow K$ eine Bilinearform auf $V$ und $\mathcal{B} = (v_1, ..., v_n)$ eine geordnete Basis von $V$. Seien $v, w \in V$ und $x = \phi^{-1}_\mathcal{B}(v)$, $y = \phi^{-1}_\mathcal{B}(y)$, wobei $\phi^{-1}_B : \mathbb{K}^n \rightarrow V$ das Koordinatensystem von $\mathbb{B}$ ist. Dann ist
 \begin{equation*}
@@ -411,60 +416,14 @@ Es ist also $(a_{ij}) = s(v_i, v_j)$, wobei $i, j \in \{1, ..., n\}$.
 \end{remark}
 
 \begin{theorem}
-Sei $V$ ein $ndimensionaler$ endlicher Vektorraum und $\mathcal{B}$ eine Basis von $V$. Dann ist  die Abbildung
+Sei $V$ ein $n$-dimensionaler endlicher Vektorraum und $\mathcal{B}$ eine Basis von $V$. Dann ist  die Abbildung
 \begin{equation*}
 s \mapsto M_{\mathcal{B}}(s)
 \end{equation*}
-von den Bilinearformen auf $M(n \times n; K)$ bijektiv und $s$ genau dann symmetrisch, wenn $M_{\mathcal{B}}(s)$ symmetrisch. 
+von den Bilinearformen auf $M(n \times n; K)$ bijektiv und $s$ genau dann symmetrisch, wenn $M_{\mathcal{B}}(s)$ symmetrisch ist. 
 \end{theorem}
 
-%eigentlich nicht wichtig da klar
-\begin{lemma}
-Seien $A, B \in M(n \ times n; K)$ mit 
-\begin{equation*}
-x_TAy = x_TBy = 
-\end{equation*}
-f\uee r alle $x, y \in K^n$. Dann ist $A = B$. 
-\end{lemma}
-
-%11032020
-\begin{theorem}\bt{(Transformationformel)}
-Sei $V$ eine endlichdimensionaler Vektorraum mit Basen $\mathcal{A}$ und $ \mathcal{B}$. F"ur jede Bilinearform $s$ auf $V$ gilt dann
-\begin{equation*}
-M_\mathcal{B}(s) =( T^\mathcal{B}_\mathcal{A})^T \cdot M_\mathcal{A}(s) \cdot T^\mathcal{B}_\mathcal{A}.
-\end{equation*}
-Der entscheidende Unterschied ist also $( T^\mathcal{B}_\mathcal{A})^T$ statt $( T^\mathcal{B}_\mathcal{A})^{-1}$.
-\end{theorem}
-
-\begin{definition}
-Sei $s: V \times V \rightarrow K$ eine symmetrische Bilinearform. Die zu $s$ geh"orige quadratische Form ist die Abbildung
-\begin{equation*}
-q : V \rightarrow K, v \mapsto s(v, v).
-\end{equation*}
-Es gilt dann $g(\lambda v) = \lambda^2 q(v)$ f"ur  $\forall v \in V, \lambda \in K$.
-Ist $V = K^n$ und $s$ durch die symmetrische Matrix $A = (a_ij)$ gegebene, gilt
-\begin{equation*}
-q(x_1, ..., x_n) = \sum\limits_{i, j = 1}^n a_{ij} x_i x_j = \sum\limits_{j = 1}^n a_ii x_i^2 + 2 \cdot \sum\limits_{1 \leq i < j \leq n} a_{ij}x_ix_j,
-\end{equation*}
-was eine homogenes quadratisches Polynom in den Unbestimmten $x_1, ..., x_n$ ist.
-\end{definition}
-
-\begin{theorem} \bt{(Polarisierung)}
-Ist $\textrm{char}(K) \neq 2$, so gitl f"ur jede symmetrische Bilinearform $s$ und die zugeh"orige quadratische Form $q$:
-\begin{equation*}
-s(v, w) = \frac{1}{2}(q(v+w)-q(v)-q(w)) \text{ f"ur } \forall v, w \in V.
-\end{equation*}
-$s$ ist also aus $q$ konstruierbar.
-\end{theorem}
-
-%In Bermerkung und Definition aufteilen?
-\begin{definition}
-Eine Abbildung $F \in End(V)$ heisst \bt{semilinear}, falls 
-\begin{equation*}
-F(v + \lambda w) = F(v ) + \overline{\lambda} F(w) \text{ f"ur } \forall v, w \in V, \lambda \in \mathbb{C}.
-\end{equation*}
-Man nennt eine Abbildung $s: V \times V \rightarrow \mathcal{C}$ \bt{sesquilinear}, wenn $s$ im ersten Argument linear und im zweiten Element semilinear ist.
-
+\begin{remark}
 Ist $\mathcal{A}$ eine Basis von $V$, so ist die Matrix der Sesquilinearform $s : V \times V \rightarrow \mathbb{C}$
 \begin{equation*}
 A = M_\mathcal{A}(s) = (s(v_i, v_j)).
@@ -474,31 +433,62 @@ Ist $v = \phi_\mathcal{A}(x), w = \phi_\mathcal{A} (y)$ so ist
 s(v, w) = x^T A \overline{y},
 \end{equation*}
 wobei $\overline{y}$ die komponentenweise Konjugation ist.
-\\
-\\
+$s$ ist hermetisch genau dann, wenn 
+$A= \overline{A}$.
+\end{remark}
 
-
-Ist \(\mathcal{B}\) eine weitere Basis, \(B=M_{\mathcal{B}}(s)\) und \(T=T_{\mathcal{A}}^{\mathcal{B}},\) so hat man die \bt{Transformationsformel}
+%eigentlich nicht wichtig da klar
+\begin{lemma}
+Seien $A, B \in M(n \times n; K)$ mit 
 \begin{equation*}
-B= T^T A \overline{T}.
+x_TAy = x_TBy = 
 \end{equation*}
+f\uee r alle $x, y \in K^n$. Dann ist $A = B$. 
+\end{lemma}
 
+%11032020
+\begin{theorem}\bt{(Transformationformel f"ur Bilinearformen)}
+Sei $V$ eine endlichdimensionaler Vektorraum mit Basen $\mathcal{A}$ und $ \mathcal{B}$. F"ur jede Bilinearform $s$ auf $V$ gilt dann
+\begin{equation*}
+M_\mathcal{B}(s) =( T^\mathcal{B}_\mathcal{A})^T \cdot M_\mathcal{A}(s) \cdot T^\mathcal{B}_\mathcal{A}.
+\end{equation*}
+Der entscheidende Unterschied ist also $( T^\mathcal{B}_\mathcal{A})^T$ statt $( T^\mathcal{B}_\mathcal{A})^{-1}$.
+\end{theorem}
+
+\begin{theorem} \bt{(Transformationsformel f"ur Sesquilinearformen)}
+Sei $s : V \times V \rightarrow \mathbb{C}$ eine Sesquilinearform und $\mathcal{A}$ und  $\mathcal{B}$ Basen von $V$. Dann ist
+\begin{equation*}
+M_\mathcal{B}(s) = {T^\mathcal{B}_\mathcal{A}}^T M_\mathcal{A}(s) \overline{T^\mathcal{B}_\mathcal{A}}
+\end{equation*}
+\end{theorem}
+
+\begin{definition}
+Sei $s: V \times V \rightarrow K$ eine symmetrische Bilinearform. Die \bt{zu $s$ geh"orige quadratische Form} ist die Abbildung
+\begin{equation*}
+q : V \rightarrow K, v \mapsto s(v, v).
+\end{equation*}
+Es gilt dann $g(\lambda v) = \lambda^2 q(v)$ f"ur  $\forall v \in V, \lambda \in K$.
+Ist $V = K^n$ und $s$ durch die symmetrische Matrix $A = (a_{ij})$ gegeben, gilt:
+\begin{equation*}
+q(x_1, ..., x_n) = \sum\limits_{i, j = 1}^n a_{ij} x_i x_j = \sum\limits_{j = 1}^n a_ii x_i^2 + 2 \cdot \sum\limits_{1 \leq i < j \leq n} a_{ij}x_ix_j,
+\end{equation*}
+was ein homogenes quadratisches Polynom in den Unbestimmten $x_1, ..., x_n$ ist.
+\end{definition}
+
+\begin{theorem} \bt{(Polarisierung von Bilinearformen)}
+Ist $\textrm{char}(K) \neq 2$, so gilt f"ur jede symmetrische Bilinearform $s$ und die zugeh"orige quadratische Form $q$:
+\begin{equation*}
+s(v, w) = \frac{1}{2}(q(v+w)-q(v)-q(w)) \text{ f"ur } \forall v, w \in V.
+\end{equation*}
+$s$ ist also aus $q$ konstruierbar.
+\end{theorem}
+
+\begin{theorem} \bt{(Polarisierung von Sesquilinearformen)}
 Man hat im Komplexen für Sesquilinearformen eine \bt{Polarisierung}
 \begin{equation*}
 s(v, w)=\frac{1}{4}(q(v+w)-q(v-w)+\mathrm{i} q(v+\mathrm{i} w)-\mathrm{i} q(v-\mathrm{i} w)).
 \end{equation*}
-\end{definition}
-
-\begin{definition}
-$s : V \times V \rightarrow K$ heisst ausserdem \bt{hermitesch}, wenn gilt
-\begin{equation*}
-s(v, w) = \overline{s(w, v)}.
-\end{equation*}
-$s$ ist hermetisch also genau dann, wenn f"ur eine Basis $\mathcal{A}$ gilt
-\begin{equation*}
-M_\mathcal{A}(s) = \overline{M_\mathcal{A}(s)}.
-\end{equation*}
-\end{definition}
+\end{theorem}
 
 %richtiges Zeichen ? zwischen UVR und Komplement unterscheiden.
 \begin{definition}
@@ -527,10 +517,7 @@ und Gleichheit genau dann, wenn $v$ und $w$ linear abh"angig sind.
 \begin{definition}
 Definition. Sei \(V\) ein euklidischer bzw. unitärer Vektorraum.
 \begin{enumerate}
-\item Zwei Vektoren \(v, w \in V\) heißen orthogonal ($v \perp w$), wenn
-\begin{equation*}
-\langle v, w\rangle= 0.
-\end{equation*}
+\item Zwei Vektoren \(v, w \in V\) heißen orthogonal ($v \perp w$), wenn$\langle v, w\rangle= 0.$
 \item Zwei Untervektorräume \(U, W \subset V\) heißen orthogonal ($U \perp W$), wenn
 \begin{equation*}
 u \perp w \text { für alle } u \in U \text { und alle } w \in W \text {. }
@@ -541,17 +528,12 @@ U^{\perp}:=\{v \in V: v \perp u \text { für alle } u \in U\}
 \end{equation*}
 Das ist wieder ein Untervektorraum.
 \item Eine Familie \(\left(v_{1}, \ldots, v_{n}\right)\) in \(V\) heißt orthogonal, wenn
-\begin{equation*}
-v_{i} \perp v_{j} \quad \text { für alle } i \neq j.
-\end{equation*}
-Sie heißt orthonormal, falls zusätzlich
-\begin{equation*}
+$v_{i} \perp v_{j}$ für alle $ i \neq j.$
+\\Sie heißt orthonormal, falls zusätzlich $
 \|v_i\| = 1 \text{ f"ur alle } i.
-\end{equation*}
-Sie heisst Orthonormalbasis, falls sie auch eine Basis ist, d.h. eine Basis mit
-\begin{equation*}
-\left\langle v_{i}, v_{j}\right\rangle=\delta_{i j} \ \forall i, j.
-\end{equation*}
+$
+\\Sie heisst Orthonormalbasis, falls sie auch eine Basis ist, d.h. eine Basis mit
+$\left\langle v_{i}, v_{j}\right\rangle=\delta_{i j} \ \forall i, j.$
 %orthogonal zeichen statt oplus
 \item Ist \(V=V_{1} \oplus \ldots \oplus V_{k},\) so heißt die direkte Summe orthogonal ($V=V_{1} \obot \ldots \obot V_{k}$), falls
 \begin{equation*}
@@ -640,7 +622,7 @@ Vol(v_1, ..., v_m) := \sqrt{G\left(v_{1}, \ldots, v_{m}\right)}.
 $$
 \end{definition}
 
-\begin{theorem}\bt{Ungleichung von Hadamard}
+\begin{theorem}\bt{(Ungleichung von Hadamard)}
 Seien $v_1, ..., v_m \in V$ und $V$ ein euklidischer Vektorraum, wobei $m \leq dim V$. Dann gilt
 $$
 Vol(v_1, ..., v_m) \leq \|v_1\| \cdot ... \cdot \|v_m\|.
@@ -650,6 +632,183 @@ Es besteht Gleichheit genau dann, wenn $v_i \perp v_j$ f"ur $\forall i \neq j$.
 
 \end{theorem}
 
+%18032020
+\subsection{Orthogonale und unit"are Endomorphismen}
+\begin{definition}
+Sei V ein euklidischer / unit"arer Vektorraum und $F \in End(V)$. Dann heisst $F$ orthogonal bzw. unit"ar. falls
+$$
+\left\langle F(v), F(w) \right\rangle = \left\langle v, w \right\rangle.
+$$
+\end{definition}
+
+\begin{remark}
+Ein orthogonaler / unit"arer Endomorphismus erf"ullt folgende Bedingungen:
+\begin{enumerate}
+\item $\| F(v) \| = \|v\| \forall v \in W$
+\item $ v \perp w \implies F(v) \perp F(w)$
+\item $F$ ist ein Isomorphismus und $F^{-1}$ orthogonal bzw. unit"ar
+\item Ist $\lambda \in K$ ein Eigenwert von $F$, so gilt $\|\lambda \| = 1$\
+\item Die Komposition orthogonaler / unit"arer Endomorphismus ist orthogonal / unit"ar
+\end{enumerate}
+\end{remark}
+
+\begin{lemma}
+Gilt f"ur $F \in End(V)$ dass $\|F(v)\| = \|v\|$ f"ur alle $v \in V$, so ist $F$ orthogonal bzw. unit"ar.
+\end{lemma}
+
+\begin{definition}
+Eine Matrix $A \in GL(n)$ heisst \bt{orthogonal} bzw. \bt{unit"ar}, falls 
+$$
+\forall x, y \in K^n: A^{-1} = A^T
+\text{ bzw. }
+\forall x, y \in K^n :A^{-1} =\overline{A}^T.
+$$
+$A$ heisst \bt{eigentlich unit"ar}, wenn $\mathrm{det}(A) = 1$.
+\end{definition}
+
+\begin{remark}
+F"ur eine orthogonale bzw. unit"are Matrix $A$ gilt $|\mathrm{det}(A)| = 1$.
+\end{remark}
+
+\begin{definition}
+Es sind folgende Untergruppen von $GL(n)$ definiert:
+\begin{enumerate}
+\item Die orthogonale Gruppe $O(n) = \{ A \in GL(n) | A^{-1} = A^T \}$
+\item Die spezielle orthogonale Gruppe $SO(n):=\{A \in O(n): \mathrm{det} A=1\}$
+\item Die unit"are Gruppe U(n):=$\{A \in GL(n ; \mathbb{C}): A^{-1}= \overline{A}^T\}$
+\item Die spezielle unit"are Gruppe $SU(n):=\{A \in SU(n): \mathrm{det} A=1\}$
+\end{enumerate}
+
+\end{definition}
+
+\begin{remark}
+Für \(A \in \mathrm{M}(n \times n ; K)\) sind folgende Bedingungen gleichwertig:
+\begin{enumerate}
+\item \(A\) ist orthogonal bzw. unitär.
+\item Die Spalten von \(A\) sind eine Orthonormalbasis von \(K^{n}\).
+\item Die Zeilen von \(A\) sind eine Orthonormalbasis von \(K^{n}\).
+\end{enumerate}
+\end{remark}
+
+
+\begin{theorem}
+Satz. Sei \(V\) ein euklidischer bzw. unitärer Vektorraum mit einer Orthonormalbasis \(\mathcal{B}\) und \(F\) ein Endomorphismus von \(V\). Dann gilt:
+$F$ orthogonal bzw. unit"ar $\Leftrightarrow M_{\mathcal{B}}(F)$ orthogonal bzw. unitär.
+\end{theorem}
+
+\begin{lemma}
+Ist \(A \in O(2),\) so gibt es ein \(\alpha \in[0,2 \pi[,\) so dass
+$A=\left(\begin{array}{cc}\cos \alpha  & -\sin \alpha 
+\\ \sin \alpha & \cos \alpha\end{array}\right)$ 
+oder 
+$A=\left(\begin{array}{cc}\cos \alpha & \sin \alpha \\ \sin \alpha & -\cos \alpha\end{array}\right)$.
+\end{lemma}
+
+%20032020
+\begin{theorem}
+Jeder unitäre Endomorphismus \(F\) eines endlich dimensionalen unitären Vektorraumes besitzt
+eine Orthonormalbasis aus Eigenvektoren von \(F .\) Insbesondere ist er diagonali-
+sierbar.
+\end{theorem}
+
+\begin{corollary}
+Zu \(A \in U(n)\) gibt es ein \(S \in U(n)\) mit
+$$
+ \overline{S}^T \cdot A \cdot S = \left(\begin{array}{ccc}\lambda_{1} & & 0 \\ & \ddots & \\ 0 & \lambda_{n}\end{array}\right)
+ $$
+wobei $\lambda_{i} \in \mathbb{C}$ mit $|\lambda_{i}|=1$ f"ur $i=1, ..., n $.
+\end{corollary}
+
+
+\begin{theorem}
+Sei $F$ ein orthogonaler Endomorphismus des endlichdimensionalen euklidischen Vektorraums $V$. Dann gibt es eine Orthonormalbasis $\mathcal{B}$ von $V$, so dass:
+
+$M_\mathcal{B}(F) =
+\left( \begin{array}{ccccccccc}
+{+1} & {} & {} & {} & {} & {} & {} & {} & {} 
+\\ {} & {\ddots} & {} & {} & {} & {} & {} & {0} & {} 
+\\ {} & {} & {+1} & {} & {} & {} & {} & {} & {} 
+\\ {} & {} & {} & {-1} & {} & {} & {} & {} & {} 
+\\ {} & {} & {} & {} & {}\ddots & {} & {} & {} & {} 
+\\ {} & {} & {} & {} & {} & {-1} & {} & {} & {} 
+\\ {} & {} & {} & {} & {} & {} & {A_1} & {} & {} 
+\\ {} & {0} & {} & {} & {} & {} & {} & {\ddots} & {} 
+\\ {} & {} & {} & {} & {} & {} & {} & {} & {A_k} 
+\end{array} 
+\right)$,
+wobei $A_{j}=\left(\begin{array}{cc}\cos \vartheta_{j} & -\sin \vartheta_{j} \\ \sin \vartheta_{j} & \cos \vartheta_{j}\end{array}\right) \in SO(2)$ mit $\vartheta_j \in (0, 2\pi), \ \vartheta_j \neq \pi$.
+
+\end{theorem}
+
+\begin{lemma}
+Zu einem orthogonalen Endomorphismus \(F\) eines endlichdimensionalen euklidischen Vektorraumes \(V\) mit $dim (V) \geq 1\) gibt es immer einen Untervektorraum \(W \subset V\) mit
+$$
+F(W) \subset W \text { und } 1 \leq dim (W) \leq 2 .
+$$
+\end{lemma}
+
+
+
+\subsection{Selbstadjungierte Endomorphismen}
+
+
+\begin{definition}
+Der zu einem Endomorphismus $F$ eines euklidischen / unit"aren Vektorraumes $V$ \bt{adjungierte Endomorphismus} $F^{ad} \in End(V)$ ist definiert durch:
+$$
+\scp{F(v)}{w} = \scp{v}{F^{ad}(w)}
+$$
+f"ur alle $v, w \in V$.
+\end{definition}
+
+\begin{remark}
+Sei $\mathcal{B}$ eine Orthonormalbasis von $V$, $F$ ein Endomorphismus und $A = M\mathcal{B}(F)$. Dann ist der adjungierte Endormorphismus von $F$ eindeutig gegeben durch $M_\mathcal{B}(F^{ad}) = \overline{A}^T$.
+\end{remark}
+
+\begin{definition}
+Ein Endomorphismus $F$ eines euklidischen / unit"aren Vektorraumes $V$ heisst \bt{selbstadjungiert}, wenn $\scp{F(v)}{w} = \scp{v}{F(w)}$ f"ur alle $v, w \in V$.
+\end{definition}
+
+\begin{theorem}
+Sei $F$ ein Endomorphismus von \(V\) und \(\mathcal{B}\) eine Orthonormalbasis. Dann gilt: 
+
+\(F\) selbstadjungiert $\Leftrightarrow M_{\mathcal{B}}(F)$ symmetrisch bzw. hermitesch.
+\end{theorem}
+
+\begin{lemma}
+Die Eigenwerte eines selbstadjungierten Endomorphismus $F \in End(V)$ sind (auch im komplexen Fall) reell. 
+\end{lemma}
+
+\begin{theorem}
+Ist \(F\) ein selbstadjungierter Endomorphismus eines euklidischen bzw. unitären endlichdimensionalen Vektorraumes, so gibt es eine Orthonormalbasis von \(V\), die aus Eigenvektoren von \(F\) besteht. Insbesondere ist $F$ also diagonalisierbar.
+\end{theorem}
+
+\begin{theorem}
+Ist \(A \in \mathbb{M}(n \times n ; K)\) eine symmetrische bzw. hermitesche Matrix, so
+gibt es eine orthogonale bzw. unitäre Matrix $S$, so dass
+$$
+\overline{S}^T A S = 
+\left(\begin{array}{ccc}\lambda_{1} & & 0 
+\\ & \ddots & 
+\\ 0 & & \lambda_{n}\end{array}\right)
+$$
+mit $\lambda_1, ..., \lambda_n \in \mathbb{R}$.
+\end{theorem}
+
+\begin{corollary}
+Sind \(\lambda_{1}, ..., \lambda_{k}\) die verschiedenen Eigenwerte eines selbstadjungierten oder unitären Endomorphismus \(F\) von \(V\), so ist
+$$
+V= Eig (F ; \lambda_{1}) \obot ... \obot Eig(F ; \lambda_{k}).
+$$
+\end{corollary}
+
+\begin{remark} \textit{(Praktische Berechnung einer Orthonormalbasis eines selbstadjungierten Endomorphismus)}
+\begin{enumerate}
+\item Zerlege $P_F(t) = \pm (t- \lambda_1)^{r_1} ... (t- \lambda_k)^{r_k} $ in Linearfaktoren
+\item Bestimme Basen der Eigenr"aume
+\item Orthonormalisiere die gefundenen Basen mit dem Gram-Schmidt-Verfahren unabh"angig voneinander in den verschiedenen Eigenr"aumen
+\end{enumerate}
+
+\end{remark}
 
 \section{N\uee tzliche Formeln und Hinweise}
 
