@@ -333,7 +333,7 @@ Das \bt{kanonische Skalarprodukt im $\mathbb{R}^n$} ist die Abbildung $\langle\q
 \end{definition}
 
 \begin{definition}
-Das \bt{kanonische Skalarprodukt im $\mathbb{C^n}$} ist analog zum kanonischen Skalarprodukt im $\mathbb{R^n}$ definiert. 
+Das \bt{kanonische Skalarprodukt im $\mathbb{C^n}$} ist die Abbildung $\langle\quad, \quad\rangle: \mathbb{C}^{n} \times \mathbb{C}^{n} \rightarrow \mathbb{R}, \quad(x, y) \mapsto\langle x, y\rangle$ mit $\langle x, y\rangle = \overline{x}^T \cdot y$.
 \\Es hat folgende Eigenschaften:
 \begin{enumerate}
 \item \bt{Sesquilinearit\aee t} $\left\langle \alpha x+ \alpha^{\prime} x^{\prime}, y\right\rangle_c=\alpha \langle x, y\rangle+ \alpha^{\prime}\left\langle x^{\prime}, y\right\rangle_c $
@@ -588,7 +588,7 @@ $$
 \begin{enumerate}
 \item Erg"anze $(w_1, ..., w_n)$ zu einer Basis $(w_1, ..., w_m, v_{m+1}, ..., v_n)$ von $V$
 \item Orthogonalisiere die Basis durch $\tilde{v_i} := v_i - \left( \scp{v_i}{w_1}  w_1 +  ...  + \scp{v_i}{w_m} w_m  \right)$ 
-\item Normiere die erhaltenen Vektoren  durch $v_i' = \frac{\tilde{v_i}}{\|\tilde{v_i}\|}.$
+\item Normiere die erhaltenen Vektoren (am Besten f"ur einfachere Rechnung nach jedem Schritt) durch $v_i' = \frac{\tilde{v_i}}{\|\tilde{v_i}\|}.$
 \end{enumerate}
 \end{remark}
 
@@ -597,6 +597,11 @@ Sei $V = K^n$ und $A \in M(n \times n, K)$. Dann existiert eine Orthogonalmatrix
 A = Q \cdot R.$$
 \end{remark}
 
+\begin{definition}
+Sei $V$ ein unit"arer oder euklidischer Vektorraum und $W \subset V$ ein Untervektorraum mit der Orthonormalbasis $(w_1, ..., w_m)$.
+Die \bt{orthogonale Projektion} auf $W$ ist dann der Endomorphismus $P : V \rightarrow W$ gegeben durch 
+$$P(v) = \scp{v}{w_1} \cdot w_1 + ... + \scp{v}{w_m}\cdot w_m.$$
+\end{definition}
 \subsection{Gramsche Determinante und Volumenmessung}
 
 \begin{definition}
@@ -809,6 +814,140 @@ $$
 \end{enumerate}
 
 \end{remark}
+
+%25032020
+\begin{theorem}\bt{(Satz von Courant-Fischer)} Sei $V$ ein endlichdimensionaler euklidischer oder unit"arer Vektorraum und $F \in End(V)$ selbstadjungiert. Seien die Eigenwerte von $F$ 
+$$
+\lambda_1 \leq ... \leq \lambda_n.
+$$
+Dann gilt:
+\begin{enumerate}
+\item $\lambda_k = \min\limits_{U\subset V,\ \mathrm{dim} U = k} \left(   \max\limits_{x\in U\ , \ x \neq 0} \frac{\scp{x}{Fx}}{\scp{x}{x}}\right)$
+\item $\lambda_k = \min\limits_{U\subset V,\ \mathrm{dim} U = n - k + 1} \left(   \max\limits_{x\in U\ , \ x \neq 0} \frac{\scp{x}{Fx}}{\scp{x}{x}}\right)$
+\end{enumerate}
+Die erste Minimierung ist dabei "uber die Untervektorr"aume der angegebenen Dimension.
+\end{theorem}
+ 
+\subsection{Hauptachsentransformation und Kriterien f"ur positive Definitheit}
+
+\begin{theorem} \bt{(Hauptachsentransformation)} Sei $A \in M(n \times n; \mathbb{R})$ symmetrisch und $s$ die zugeh"orige Bilinearform, also $s(u, v) = u^T A v$.
+\\Dann gilt:
+\begin{enumerate}
+\item Ist $\mathcal{B} = (w_1, ... w_n)$ eine Orthonormalbasis des $\mathbb{R}^n$, so ist
+$$
+M_\mathcal{B}(s) = \left(\begin{array}{ccc}\lambda_{1} & & 0 
+\\ & \ddots & 
+\\ 0 & & \lambda_{n}\end{array}\right), 
+$$
+wobei $\lambda_1, ..., \lambda_n$ die Eigenwerte von $A$ sind (dies sind Eigenwerte des Endomorphismus $A$, aber nicht der Bilinearform).
+\item Es gibt eine Basis $\mathcal{A}$ des $\mathbb{R}^n$, so dass
+$$
+M_\mathcal{A}(s) =  \left(\begin{array}{ccc}E_k & & 0 
+\\ & -E_l & 
+\\ 0 & & 0\end{array}\right),
+$$
+wobei $k$ und $l$ Invarianten der Bilinearform sind (siehe unten).
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+Eine symmetrische Matrix $A \in M(n \times n; \mathbb{R})$ ist genau dann positiv definit, wenn ihre Eigenwerte positiv ist.
+\end{corollary}
+
+\begin{corollary}
+Eine symmetrische Matrix $A \in M(n \times n; \mathbb{R})$ mit dem charakteristischen Polynom $P_A(t) = (-1)^n t^n + \alpha_{n-1}t^{n-1} + ... + \alpha_0$ ist genau dann positiv definit, wenn $(-1)^j \alpha_j > 0$ f"ur $j = 0, ..., n-1$.
+\end{corollary}
+
+\begin{lemma}\bt{(Vorzeichenregel)}
+Das reelle Polynom $f(t) = t^n + a_{n-1}t^{n-1} + ... +a_0$ habe die reellen Nullstellen $\lambda_1, ..., \lambda_n$, also $f(t) = (t - \lambda_1) \cdot ... \cdot (t - \lambda_n)$. Dann gilt:
+\begin{enumerate}
+\item $(\lambda_i < 0 \ \forall i) \Leftrightarrow (a_i > 0 \ \forall i)$
+\item $(\lambda_i > 0 \ \forall i) \Leftrightarrow ( (-1)^{n-i}a_i > 0 \ \forall i)$.
+\end{enumerate}
+
+\end{lemma}
+
+%27032020
+\begin{definition} Sei $s : V \times V \rightarrow \mathbb{R}$ eine symmetrische Bilinearform auf dem endlichdimensionalen $\mathbb{R}$-Vektorraum $V$. Dann ist der \bt{Ausartungsraum} von $s$ 
+$$
+V_0 = \{ v \in V | s(v, w) = 0 \ \forall w \in V \}.
+$$
+Der \bt{Rang} von $s$ ist definiert als
+$$
+rang(s) = dim (V) - dim (V_0).
+$$
+\end{definition}
+
+\begin{remark} Ist $V = \mathbb{R}^n$ und $A$ die Matrix von einer Bilinearform $s$ auf $V$, so ist $V_0 = Ker(A)$ und $rang(s) = rang(A)$.
+\end{remark}
+
+\begin{corollary}
+Sei $V$ ein $n$-dimensionaler $\mathbb{R}$-Vektorraum, $s$ eine symmetrische Bilinearform auf $V$ und $r = rang(s)$. Sei $q : V \rightarrow \mathbb{R}$ die zugeh"orige quadratische Form.
+Dann gibt es eine Basis $\mathcal{B} = (v_1, ..., v_n)$ von $V$, so dass f"ur v = $\sum\limits_{i=1}^n a_iv_i \in V$ gilt:
+$$
+q(v) = \sum\limits_{i=1}^k a_i^2 - \sum\limits_{i=k + 11}^r a_i^2.
+$$
+Man hat insbesondere eine Zerlegung
+$$
+V = V_+ \oplus V_- \oplus V_0
+$$
+mit $q(v) > 0 \ \forall v \in V_+ \backslash \{0\}, \ q(v) < 0 \ \forall v \in V_- \backslash \{0\}.$
+\end{corollary}
+
+\begin{theorem} \bt{(Tr"agheitssatz von Sylvester)}
+Hat man f"ur eine quadratische Form $q$ auf dem $\mathbb{R}$-Vektorraum $V$ zwei Zerlegungen 
+$$
+r_+(q) : = V = V_+ \oplus V_- \oplus V_0 =  V_+' \oplus V_-' \oplus V_0 '
+$$
+wie im obigen Korollar so sind $r_+(q) : =  dim V_+ = dim V_+ ', r_-(q) : = \ dim V_- = dim V_-'$. Man nennet $(r_+(q), r_-(q))$ auch die \bt{Signatur} von $q$.
+\end{theorem}
+
+\begin{corollary}
+Sei $A \in M(n \times n, \mathbb{R})$ symmetrisch und $S \in GL(n, \mathbb{R})$. Dann haben $A$ und $S^T A S$ die gleiche Anzahl positiver und negativer Eigenwerte mit Vielfachheit gez"ahlt.
+\end{corollary}
+
+\subsubsection{Bilinearformen "uber allgemeine K"orper}
+\begin{theorem}\bt{(Orthogonalisierungssatz)} 
+Sei $V$ endlichdimensionaler $K$-Vektorraum mit $char K \neq 2$ und $s : V \times V \rightarrow K$ eine symmetrische Bilinearform. Dann gibt es eine Basis $\mathcal{B} = (v_1, ..., v_n)$ von $V$, so dass
+$$
+s(v_i, v_j) = 0 \text{ f"ur } i \neq j.
+$$
+\end{theorem}
+
+\begin{corollary}
+Zu einer symmetrischen Matrix $A \in M(n \times n, K)$ gibt es ein $S \in GL(n, K)$, so dass 
+$$
+S^T A S = \left(\begin{array}{ccc}\alpha_{1} & & 0 
+\\ & \ddots & 
+\\ 0 & & \alpha_{n}\end{array}\right) = D
+$$
+diagonal ist.
+\end{corollary}
+
+\begin{remark} \bt{(Rechenverfahren zur Bestimmung solcher $S$ und $D$)}
+\begin{enumerate}
+\item Schreibe $A | E_n$
+\item F"uhre an $A$ simultane Zeilen- und Spaltenumformungen ($A$ ist ja symmetrisch) und an $E_n$ nur die entsprechenden Spaltenumformungen durch, bis $A$ Diagonalform hat. Dann ist $D = C_1^T \cdot ... \cdot C_k^T A \cdot C_k \cdot ... \cdot C_1$ und $S = C_k \cdot ... \cdot C_1$.
+\\ Dieses Verfahren ist auch effektiv bei der "Uberpr"ufung positiver Definitheit.
+\end{enumerate}
+
+
+\end{remark}
+
+\begin{remark}
+Ist $g : U \rightarrow K$ die zur Bilinearform $s : V \times V \rightarrow K$ hgeh"orige quadratische Form und $B = (v_1, ... , v_n)$ eine Basis wie im Satz, so folgt mit $a_j := q(v_j)$, dass f"ur $v = x_1 v_1 + ... + x_n v_n \in V$ gilt 
+$$
+q(v) = q(v_1) x_1^2 + ... + q(v_n) x_n^2 = a_1 x_1^2 + ... + a_n x_n^2,
+$$
+wobei die Werte der $a_j$ nicht eindeutig durch $s$ festgelegt sind.
+
+\end{remark}
+
+%nicht mehr allgemeine Koerper
+\begin{theorem}
+Sei $A \in M(n \times n; \mathbb{R})$ symmetrisch und $A_k$ der $k\times k$ Block von $A$ oben links (Hauptminor). Dann ist $A$ genau dann positiv definit, wenn $det(A_k) > 0 \ \forall k = \{1, ..., n\}$.
+\end{theorem}
+
 
 \section{N\uee tzliche Formeln und Hinweise}
 
