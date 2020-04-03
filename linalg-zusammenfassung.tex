@@ -929,6 +929,9 @@ diagonal ist.
 \item Schreibe $A | E_n$
 \item F"uhre an $A$ simultane Zeilen- und Spaltenumformungen ($A$ ist ja symmetrisch) und an $E_n$ nur die entsprechenden Spaltenumformungen durch, bis $A$ Diagonalform hat. Dann ist $D = C_1^T \cdot ... \cdot C_k^T A \cdot C_k \cdot ... \cdot C_1$ und $S = C_k \cdot ... \cdot C_1$.
 \\ Dieses Verfahren ist auch effektiv bei der "Uberpr"ufung positiver Definitheit.
+\\
+\\
+Um im Komplexen ein $S \in GL(n, \mathbb{C})$ mit $S^T A \overline{S} = D$ zu finden, suche $T = \overline{S}$ mit $\overline{T}^T A T = D$ und konjugiere bei jeder Zeilenumformung die Koeffizienten.
 \end{enumerate}
 
 
@@ -948,7 +951,202 @@ wobei die Werte der $a_j$ nicht eindeutig durch $s$ festgelegt sind.
 Sei $A \in M(n \times n; \mathbb{R})$ symmetrisch und $A_k$ der $k\times k$ Block von $A$ oben links (Hauptminor). Dann ist $A$ genau dann positiv definit, wenn $det(A_k) > 0 \ \forall k = \{1, ..., n\}$.
 \end{theorem}
 
+%31032020, Version fuer hermitesche Sesquilinearformen, neben reelken Saetzen einordnen?
 
+\begin{theorem}
+Sei $A \in M (n \times n, \mathbb{C} )$ hermitesch. Sei $s$ die entsprechende Sesquilinearform auf $\mathbb{C}^n$. Dann gilt:
+\begin{enumerate}
+\item Es gibt eine Orthonormalbasis des $\mathbb{C}^n$, so dass 
+$$
+M_\mathcal{B}(s) = \left(\begin{array}{ccc}\lambda_{1} & & 0 
+\\ & \ddots & 
+\\ 0 & & \lambda_{n}\end{array}\right), 
+$$
+wobei $\lambda_1, ..., \lambda_n$ die Eigenwerte von $A$ sind.
+\item Es gibt eine Basis $\mathcal{A}$ des $\mathbb{C}^n$, so dass
+$$
+M_\mathcal{A}(s) =  \left(\begin{array}{ccc}E_k & & 0 
+\\ & -E_l & 
+\\ 0 & & 0\end{array}\right). 
+$$
+\item Die Zahlen $k, l$ aus $2.$ sind gerade die Anzahl der positiven und negativen Eigenwerte von $A$. 
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+Sei $A \in M (n \times n, \mathbb{C}$ eine hermitesche Matrix. Dann sind "aquivalent:
+\begin{enumerate}
+\item A ist positiv definit, also $x^TA\overline{x} > 0$ f"ur alle $x \in \mathbb{C}^n, \ x \neq 0$.
+\item Alle Eigenwerte von $A$ sind positiv.
+\item Es gibt ein $S \in GL(n, \mathbb{C})$, so dass $S^TA\overline{S}$ diagonal ist mit positiven Diagonaleintr"agen.
+\item Es gibt eine Matrix $T \in GL(n, \mathbb{C})$, so dass
+$$
+A = \overline{T}^T T
+$$
+\item Sei $P_A(t) = (-t)^n - \alpha_{n-1}t^{n-1} + ... + \alpha_1 t + \alpha_0 \ \in \mathbb{R} [t]$ das charakteristische Polynom von $A$. Dann gilt 
+$$
+(-1)^j\alpha_j > 0 \text{ f"ur } j = 0, ..., n-1
+$$
+\item Sei $A_k  \in M(k \times k, \mathbb{C})$ die $k \ times k$ Untermatrix von $A$ "oben links". Dann gikt
+$$
+\mathrm{det}A_k > 0 \text{ f"ur  } k = 1, ..., n
+$$
+\end{enumerate}
+\end{theorem}
+
+%nacg oben zu Definition positiv definit
+\begin{definition}
+Man nennt eine Bilinearform / Sesquilinearform \bt{positiv semidefinit}, falls 
+$$
+s(v,v) \geq 0 \ \forall v \in V, \ v \neq 0.
+$$
+\\
+Man nennt eine Bilinearform / Sesquilinearform \bt{negativ definit}, falls 
+$$
+s(v,v) < 0 \ \forall  v \in V, \ v \neq 0.
+$$
+Dies ist "aquivalent zu $-s$ positiv definit.
+\\
+Man nennt eine Bilinearform / Sesquilinearform \bt{negativ semidefinit}, falls 
+$$
+s(v,v) \leq 0 \  \forall v \in V, \ v \neq 0.
+$$
+\end{definition}
+
+
+\section{Dualit"at und Tensorprodukte}
+\subsection{Dualr"aume}
+\begin{definition}
+Ist $V$ ein $K$-Vektorraum, so heisst $V^* = \mathrm{Hom}_K(V, K)$ Dualraum von $V$. Elemente von $V^*$ heissen Linearformen auf $V$.
+\end{definition}
+ 
+
+\begin{remark}
+Sei $\mathcal{B} = (v_1, ..., v_n)$ eine Basis von $V$. Definiere $V_i^*: V \rightarrow K$ so, dass 
+$$
+V_i^*(v_j) = \delta_{ij}
+$$
+Dann ist $\mathcal{B}^* = (V^*_1, ..., V^*_n)$ eine Basis von $V^*$, die \bt{duale Basis}.
+\end{remark}
+
+\begin{corollary}
+Sei $v \in V$ mit $v \neq 0$. Dann gibt es $\varphi \in V^*$, si dass $\varphi (v) \neq 0$.
+\end{corollary}
+
+\begin{corollary}
+Zu jeder Basis $\mathcal{B} = (v_1, ..., v_n)$ gibt es einen Isomorphismus
+$$
+\psi_\mathcal{B} :V \rightarrow V^*
+$$ 
+mit $\psi_\mathcal{B}(v_i) = V^*_i$.
+\end{corollary}
+ 
+\begin{definition}
+Sei $U \subseteq V$ ein Untervektorraum. Dann heisst der Untervektorraum
+$$
+U^0 = \{ \varphi \in V^* | \varphi(u) = 0 \ \forall u \in U \} \subset V^*
+$$
+der zu $U$ \bt{orthogonale Raum} oder \bt{Annulator} von $U$/
+\end{definition}
+
+\begin{theorem}
+Ist $(u_1, ... u_k)$ eine Basis eines Untervektorraums $U \subset V$ und $(u_1, ... u_k, v_1, ..., v_k)$ eine Basis von $V$, so bilden die Linearformen $(v_1^*, ..., v_k^*)$ eine Basis von $U_0$ und es ist insbesondere 
+$$
+\mathrm{dim} U_0 = \mathrm{dim} V - \mathrm{dim} U.
+$$
+\end{theorem}
+ 
+
+\begin{definition}
+Seien $V< W$ Vektorr"aume und $F : V \rightarrow W$ ein lineare Abbildung. Dann ist die zu $F$ duale Abbildung
+$$
+F^* : W^* \rightarrow V^*
+$$
+definiert durch
+$$
+\psi \rightarrow \psi \circ F =: F^*(\psi).
+$$
+$F^*$ ist wieder linear.
+\\Ausserdem ist die Abbildung $\mathrm{Hom}(V, W) \rightarrow \mathrm{Hom} (W^*, V^*)$, $F \rightarrow F^*$ wieder linear.
+\end{definition}
+ 
+\begin{theorem}
+ Seien $V, W$ Vektorr"aume mit Basen $\mathcal{A}, \mathcal{B}$ und $F : V \rightarrow W$ gegeben. Dann gilt
+$$
+ M^{B^*}_{A^*}(F^*) = \left(M^{A}_B(F)\right)^T.
+$$
+\end{theorem}
+
+\begin{theorem}
+Sei $F : V \rightarrow W$ linear, dann gilt 
+$$
+\mathrm{Im}F^* = \left( \mathrm{Ker} F \right)^0, \ \mathrm{Ker}F^* = \left( \mathrm{Im} F \right)^0.
+$$
+\end{theorem}
+
+\begin{corollary}
+Es gilt $\mathrm{Rang}F* = \mathrm{Rang}F$.
+\end{corollary}
+
+\begin{definition}
+Zu einem Dualraum $V^*$ nennt man den 
+\bt{Bidualraum}
+$$
+V ^{**} = (V^*)^* = Hom(V^*, K).
+$$
+Man hat eine kanonische Abbildung 
+$$
+\iota : V \rightarrow V^{**}
+v \mapsto \iota_v
+$$
+mit $\iota_v(\varphi) = \varphi (v)$.
+\end{definition}
+
+\begin{theorem}
+F"ur jeden endlich dimensionalen Vektorraum $V$ ist die kanonische Abbildung
+$$
+\iota : V \rightarrow V^{**}
+$$
+ein Isomorphismus.
+\end{theorem}
+
+\begin{corollary}
+F"ur jede lineare Abbildung $F : V \rightarrow W$ gilt $F^{**} = F$, sovern man $V$ und $V^{**}$ und $W$ und $W^{**}$ mittels $\iota$ identifiziert.
+\end{corollary}
+
+\begin{remark}
+F"ur jeden Untervektorraum $W \subset V$ gilt $(W^0)^0$ = W.
+\end{remark}
+
+\subsection{Dualit"at und Skalaprodukte}
+\begin{definition}
+F"ur bilineare Abbildungen $V \times W \rightarrow K$ sind die Abbildungen
+$$
+b_v : W \rightarrow K, w \mapsto b(v, w)
+$$
+$$
+b_w : V \rightarrow K, v \mapsto b(v, w)
+$$
+linear. Die Abbildungen $v \mapsto b_v$ und $w \mapsto b_w$ sind ihrerseits linear, so dass man diese linearen Abbildung enerh"alt:
+$$
+b ' : V \rightarrow W^*, v \mapsto b_v \in W^*
+$$
+$$
+b '' : W \rightarrow V^*, w \mapsto b_w \in V^*.
+$$
+Eine Bilinearform $b$ heisst \bt{nicht ausgeartet}m falls $b'$ und $b''$ injektiv sind.
+\end{definition}
+
+\begin{theorem}
+Seien $V$ und $W$ endlichdimensionale Vektorr"aume und $B : V \times W \rightarrow K$ eine nicht ausgeartete Bilinearform, so sind die Abbildungen 
+$$
+b': V \rightarrow W^*, \ b'':W \rightarrow V^*
+$$
+Isomorphismen.
+\end{theorem}
+
+
+ 
 \section{N\uee tzliche Formeln und Hinweise}
 
 \end{document}
