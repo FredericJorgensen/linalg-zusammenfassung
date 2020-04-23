@@ -766,7 +766,7 @@ f"ur alle $v, w \in V$.
 \end{definition}
 
 \begin{remark}
-Sei $\mathcal{B}$ eine Orthonormalbasis von $V$, $F$ ein Endomorphismus und $A = M\mathcal{B}(F)$. Dann ist der adjungierte Endormorphismus von $F$ eindeutig gegeben durch $M_\mathcal{B}(F^{ad}) = \overline{A}^T$.
+Sei $\mathcal{B}$ eine Orthonormalbasis von $V$, $F$ ein Endomorphismus und $A = M_\mathcal{B}(F)$. Dann ist der adjungierte Endormorphismus von $F$ eindeutig gegeben durch $M_\mathcal{B}(F^{ad}) = \overline{A}^T$.
 \end{remark}
 
 \begin{definition}
@@ -1111,7 +1111,7 @@ ein Isomorphismus.
 \end{theorem}
 
 \begin{corollary}
-F"ur jede lineare Abbildung $F : V \rightarrow W$ gilt $F^{**} = F$, sovern man $V$ und $V^{**}$ und $W$ und $W^{**}$ mittels $\iota$ identifiziert.
+F"ur jede lineare Abbildung $F : V \rightarrow W$ gilt $F^{**} = F$, sofern man $V$ und $V^{**}$ und $W$ und $W^{**}$ mittels $\iota$ identifiziert. Man kann sich das am besten mit den Darstellungsmatrizen vorstellen: $M^{\mathcal{A}^{**}}_{\mathcal{B}^{**}} = M^\mathcal{A}_\mathcal{B}$.
 \end{corollary}
 
 \begin{remark}
@@ -1134,7 +1134,7 @@ $$
 $$
 b '' : W \rightarrow V^*, w \mapsto b_w \in V^*.
 $$
-Eine Bilinearform $b$ heisst \bt{nicht ausgeartet}m falls $b'$ und $b''$ injektiv sind.
+Eine Bilinearform $b$ heisst \bt{nicht ausgeartet} falls $b'$ und $b''$ injektiv sind.
 \end{definition}
 
 \begin{theorem}
@@ -1144,6 +1144,291 @@ b': V \rightarrow W^*, \ b'':W \rightarrow V^*
 $$
 Isomorphismen.
 \end{theorem}
+
+%06042020
+\begin{corollary}
+In einem euklidischen Vektorraum ist die kanonische Abbildung
+$$
+\Psi : V \rightarrow V^*, \ 
+v \mapsto \scp{v}{-}
+$$
+ein Isomorphismus.
+\end{corollary}
+
+\begin{theorem}
+Sei $V$ ein euklidischer Vektorraum, $\Psi : V \rightarrow V^*$ wie oben. Dann gilt:
+\begin{enumerate}
+\item F"ur jeden Untervektorraum $U \subset V$ ist $\Psi(U^\perp) = U_0$
+\item Ist $\mathcal{B} = (v_1, ..., v_n)$ eine Orthonormalbasis von $V$ und $\mathcal{B}^* = (v_1^*, ..., v_n^*)$ eine duale Basis, so ist $\Psi(v_i) = v_i^*$ f"ur $i = 1, ..., n$ also $\Psi = \Psi_\mathcal{B}$.
+\end{enumerate}
+\end{theorem}
+
+\subsubsection{Adjungierte Abbildungen}
+\begin{definition}
+Seien $V, W$ euklidische Vektorr"aume und $F : V \rightarrow W$ eine lineare Abbildung. Dann konstruieren wir die adjungierte Abbildung zu $F$
+$$
+F^{ad} : W \rightarrow V
+$$
+die eindeutig bestimmt ist durch
+$$
+\scp{F(v)}{w} = \scp{v}{F^{ad}(w)}.
+$$
+\end{definition}
+
+\begin{remark}
+Seien $\Phi$ und $\Psi$ die kanonischen Isomorphismen f"ur $V$ und $W$. Dann heisst das, dass $F^{ad} = 
+\Phi^{-1} \circ F^{*} \circ \Psi$.
+Dieses Diagramm kommutiert also:
+\begin{xy}
+  \xymatrix{
+      W \ar[r]^{F^{ad}} \ar[d]_{\Psi}   &   V \ar[d]^\Phi  \\
+      W^* \ar[r]_{F^*}             &   V^*   
+  }
+\end{xy}
+
+\end{remark}
+
+\begin{remark}
+Sind $V, W$ euklidische Vektorr"aume mit Orthonormalbasis $\mathcal{A}$ und $\mathcal{B}$, so gilt f"ur jede lineare Abbildung $F : V \rightarrow W$
+$$
+M_\mathcal{A}^\mathcal{B}(F^{ad}) = \left( M_\mathcal{A}^\mathcal{B}(F)\right)^T.
+$$
+\end{remark}
+
+\begin{theorem}
+Seien $V, W$ euklidische Vektorr"aume und $F : V \rightarrow W$ linear, so gilt
+%durch orthogonales summenzeichen ersetzen
+$$
+\mathrm{Im}(F^{ad}) = (\mathrm{Ker}F)^\perp
+$$
+und
+ $$
+\mathrm{Ker}(F^{ad}) = (\mathrm{Im}F)^\perp.
+$$
+Insbesondere hat man orthogonale Zerlegungen
+$$
+V = \mathrm{Ker} F \obot \mathrm{Im}F^{ad}
+$$
+$$
+W = \mathrm{Ker}F^{ad} \obot \mathrm{Im}
+$$
+Ist $V = W$ und $F$ selbstadjungiert gilt
+$$
+V = \mathrm{Ker}F \obot \mathrm{Im}F.
+$$
+
+\end{theorem}
+
+\subsection{"Ubertragung auf unit"are Vektorr"aume}
+\begin{definition}
+Sei $V$ ein $\mathbb{C}$-Vektorraum und $s : V \times V \rightarrow \mathbb{C}$ sesquilinear.
+Dann hat man eine Abbildung 
+$$
+s'' : V \rightarrow V^*, \ v \mapsto s(-, v).
+$$
+, die semilinear ist.
+
+Ist $s$ ein Skalarprodukt erh"alt man den kanonischen Semi-Ismomorphismus (bijektive, semilineare Abbildung)
+$$
+\Psi : V \rightarrow V^*, v \mapsto \langle - , v \rangle.
+$$
+
+Ist $W$ ein unit"arer Vektorraum und $F : V \rightarrow W$ linear, ist die adjungierte Abbildung definiert als 
+
+$$
+F^{ad} = \Psi^{-1}_V \circ F^* \circ \Psi_W  : W \rightarrow V.
+$$
+linear, da zwei semilineare verkn"upft werden.
+Aber $ F \mapsto F^{ad}$ ist semilinear.
+Es gilt $\langle F(v), w \rangle = \scp{v}{F^{ad}(w)}$.
+
+Der wichtigste Fall ist $V = W$.
+\end{definition}
+
+\begin{theorem}
+Sei $F \in End(V)$, $V$ ein unit"arer Vektorraum und $F^{ad} \in End(V)$ der adjuntierte Endomorphismus. Dann gilt:
+\begin{enumerate}
+\item $\scp{F(v)}{w} = \scp{v}{F^{ad}(w)}$
+\item $\mathrm{Im}F^{ad} = (\mathrm{Ker})^\perp$ und $\mathrm{Ker}F^{ad} = (\mathrm{Im}F)^\perp$
+\item Ist $\mathcal{B}$ eine Orthonormalbasis von $V$ so ist
+$$
+M_{\mathcal{B}}(F^{ad}) = \overline{M_\mathcal{B}(F)}^T
+$$  
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+Sowohl im reellen als auch im komplexen Fall gilt 
+$$
+(F^{ad})^{ad} = F.
+$$
+Insbesondere gilt auch $\scp{v}{F(w)} = \scp{F^{ad}(v)}{w}.$
+\end{remark}
+
+
+\subsection{Spektralsatz f"ur normale Endomorphismen}
+
+\begin{definition}
+Sei $V$ ein unit"arer Vektorraum, $F \in End(V)$. Dann heisst $F$ \bt{normal}, wenn 
+$$
+F^{ad}\circ F = F \circ F^{ad}.
+$$
+Entsprechend heisst $A \in M(n \times n, \mathbb{C})$ normal, falls
+$$
+A \overline{A}^T = \overline{A}^T A.
+$$
+\end{definition}
+
+\begin{theorem}
+Sei $V$ ein unit"arer $\mathbb{C}$-Vektorraum. Dann sind f"ur $F \in End(V)$ "auivalent:
+\begin{enumerate}
+\item Es gibt eine Orthonormalbasis von $V$ aus Eigenvektoren von $F$.
+\item $F$ ist normal.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+Ist $V$ unit"ar und $F \in End(v)$ normal, so gilt
+$$
+\mathrm{Ker}F^{ad} = \mathrm{Ker}F \land \mathrm{Im}F^{ad} = \mathrm{Im}F.
+$$
+Insbesondere ist $V = \mathrm{Ker}F \obot \mathrm{Im}F$.
+\end{theorem}
+
+\begin{corollary}
+Ist $F$ normal, so ist $\mathrm{Eig}(F, \lambda) = \mathrm{Eig}(F^{ad}, \overline{\lambda})$ f"ur jedes $\lambda \in \mathbb{C}$.
+\end{corollary}
+
+\begin{corollary}
+Ein $A \in M (n \times nn, \mathbb{C})$ ist genau dann normal, wenn es ein $S \in U(n)$ gibt, so dass $SAS^{-1}$ diagonal ist.
+\end{corollary}
+
+
+%22042020
+
+\subsection{Tensorprodukte}
+%siehe auch Beweis fuer konkrete Definition
+
+%Diagramm seite 353 hinzufuegen
+\begin{theorem}
+Seien $V, W$ $K$-Vektorr"aume. Dann gibt es einen $K$-Vektorraum $V \otimes_K W$ und eine bilineare Abbildung 
+$$
+\eta: V \times W \rightarrow V \otimes_K W
+$$
+mit folgender universeller Eigenschaft: Sei $U$ ein $K$-Vektorraum zusammen mit einer bilinearen Abbildung $\xi: V \times W \rightarrow U$. Dann gibt es genau eine lineare Abbildung $\xi_\otimes: V \otimes W \rightarrow U$ so dass $\xi = \xi\otimes_K \circ \eta$.
+
+\begin{gather*}
+  \xymatrix{V \times W  \ar[d]|{\eta} \ar[r]|{\xi} & U\\
+    V \otimes W \ar[ur]|{\xi_\otimes} & }
+\end{gather*}
+
+$V \otimes_K W$ nennt man das \bt{Tensorprodukt} von $V$ und $W$ "uber $K$.
+
+Die Elemente heissen \bt{Tensoren}
+
+Ist ferner $\mathrm{dim}V, \mathrm{dim}W M \infty$ gilt
+$$
+\mathrm{dim}V \otimes_K W = \mathrm{dim}V \mathrm{dim}W
+$$
+\end{theorem}
+
+
+\begin{remark}
+Der Vektorraum $V \otimes W$ ist durch die universelle Eigenschaft eindeutig bis auf eindeutigen Isomorphismus bestimmt. 
+\end{remark}
+
+\begin{remark}
+Seien $(v_i)_{i \in I}, (w_j)_{j \in j}$ Basen von $v$ und $W$.
+$V \otimes W$ ist der Vektorraum der endlichen Linearkombinationen formaler Ausdr"ucke der Form $v_i \otimes w_j$:
+$V \otimes W := \{ \tau:  I \times J \rightarrow K : \tau(i, j) \neq 0 \text{ f"ur nur endlich viele } (i, j) \in I \times J \}$.
+Es ist also $\tau \in V \otimes W$ gegeben durch 
+$$
+\tau = \sum\limits_{i, j} ' \tau(i, j) (v_i \otimes w_j),
+$$
+wobei der $'$ bedeutet, dass die Summer nur endlich viele Glieder hat.
+Ein Tensor $v_i \otimes w_j \in V \otimes W$ ist also eine Abbildung die nur f"ur $i, j$ $1$ ist und sonst $0$.
+
+Die bilineare Abbildung $\xi$ ist eindeutig gegeben durch $\xi(v_i, w_j) = v_i \otimes w_j$.
+Die lineare Abbildung aus der universellen Eigenschaft $\xi_\otimes$ ist nun auch eindeutig bestimmt durch 
+$$
+\xi_\otimes(v_i \otimes w_j) = \xi(v_i, v_j).
+$$
+\end{remark}
+
+\begin{remark} (Rechenregeln f"ur Tensoren)
+Sei $\eta: V \times W \rightarrow V \otimes W$ und $v \otimes w = \eta(v,w)$ f"ur $v \in V$, $w \in W$. Dann gilt, dass $v \otimes w$ bilinear ist.
+\end{remark}
+
+%Komplexifizierung reinschreiben?
+\begin{example}
+Sei $s : V \times W \rightarrow K$ eine Bilinearform. Schreibe $Bil(V, W; K)$ f"ur den Vektorraum solcher bilinearer Abbildungen, also $s \in Bil(V, W; K)$.
+Wir erhalten die lineare Abbildung 
+$$
+s_\otimes: V \otimes W \rightarrow K, \ s(v \otimes w) = s(v, w)
+$$
+also $s_\otimes \in (V \otimes W)^*$. 
+
+Die Abbildung 
+$$
+Bil(V, W; K) \rightarrow (V \otimes W)^*
+$$
+$$
+s \mapsto s_\otimes
+$$
+ist wieder linear.
+
+Sei umgekehrt $\varphi \in (V \otimes W)^*$, dann ist $\varphi \circ \eta \in Bil(V, W; K)$, wobei $\eta: V \times W \rightarrow V \otimes W$ die bilineare Abbildung aus obigem Satz ist.
+
+Die Abbildungen $s \mapsto s_\otimes$ und $ \varphi \mapsto \varphi \circ \eta $
+sind zueinander invers.
+\end{example}
+
+\begin{theorem}
+Seien $V$ und $W$ $K$-Vektorr"aume. Dann $(V \otimes W)^* \cong Bil(V, W; K)$
+\end{theorem}
+
+\begin{example}
+Seien $V$ und $W$ Vektorr"aume.
+Seien $\varphi \in V^*$, $\Psi \in W^*$ Linearformen.
+Dann ist 
+$$
+\varphi \cdot \Psi: V \times W \rightarrow K
+$$
+$$
+(v, w) \mapsto \varphi (v) \Psi(w)
+$$
+bilinear.
+
+Wir erhalten eine lineare Abbildung
+$$
+(\varphi \Psi)_\otimes : V \otimes W \rightarrow K
+$$
+$$
+v \otimes w \mapsto \varphi (v) \Psi(w)
+$$
+Die erhaltene Abbildung
+$$
+V^* \times W^* \rightarrow (V \otimes W)^*
+$$
+$$
+(\varphi, Psi) \mapsto (\varphi \Psi)_\otimes
+$$
+ist bilinear.
+Daher erhalten wir eine lineare Abbildung
+$$
+\alpha: V^* \otimes W^* \rightarrow (V \otimes W)^*
+$$
+so dass $\varphi \otimes \Psi \mapsto (\varphi \Psi)_\otimes$.
+
+\end{example}
+
+\begin{theorem}
+Sind $V$, $W$ endlich dimensional, so ist die Abbildung $\alpha$ von oben ein Isomorphimus, also 
+$$
+V^* \otimes W^* \cong (V \otimes W)^*.
+$$
+\end{theorem}
+
 
 
  
