@@ -6,7 +6,7 @@
 
 % Analysis
 
-
+\usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{amsfonts} 
 \usepackage{fancybox}
@@ -1422,12 +1422,182 @@ so dass $\varphi \otimes \Psi \mapsto (\varphi \Psi)_\otimes$.
 
 \end{example}
 
+
 \begin{theorem}
 Sind $V$, $W$ endlich dimensional, so ist die Abbildung $\alpha$ von oben ein Isomorphimus, also 
 $$
 V^* \otimes W^* \cong (V \otimes W)^*.
 $$
 \end{theorem}
+
+\begin{example}
+Wir erhalten eine bilineare Abbildung durch 
+$$
+V^* \times W \rightarrow \mathrm{Hom}(V,W)
+$$
+$$
+(\varphi, w) \mapsto \varphi (-) \cdot w
+$$
+mit  $ (\varphi (-) \cdot w) (v) := \varphi (v) \cdot w$.
+Wir erhalten eine lineare Abbildung 
+$$
+\beta: V^* \otimes W \rightarrow \mathrm{Hom}(V, W)
+$$
+$$
+\varphi \otimes w \mapsto \varphi (-) \cdot w
+$$
+\end{example}
+
+\begin{theorem}
+Sind $V$ und $W$ endlich dimensional, so ist die obige Abbildung $\beta:V^* \otimes W \rightarrow \mathrm{Hom}(V, W)$ vom obigen Beispiel ein Isomorphimus. 
+\end{theorem}
+
+%24042020
+\subsubsection{Tensoren und Matrizen}
+Sei $u \in K^m \otimes K^n$, also $u = \sum\limits_{i, j} u_{ij} e_i \otimes e_j$.
+Die Koordinaten $u_{ij}$ kann man auf 3 Weisen aufschreiben:
+\begin{itemize}
+\item Als Matrix $(u_{ij})_{ij} \in M(m \times n, K)$
+\item Als $m \cdot n$-Vektor, wobei man die Basis von $K^m \otimes K^n$ wie folgt ordnet:
+$\left(\begin{array}{c}
+u_{11} \\
+u_{21} \\
+\vdots \\
+u_{m1} \\
+\vdots \\
+u_{1n} \\
+\vdots \\
+u_{mn}
+\end{array}\right)
+$
+\item Als $m \cdot  n$ Vektor, wobei man die Basis von $K^m \otimes K^n$ wie folgt ordnet: 
+$\left(\begin{array}{c}
+u_{11} \\
+u_{12} \\
+\vdots \\
+u_{1n} \\
+\vdots \\
+u_{m1} \\
+\vdots \\
+u_{mn}
+\end{array}\right)
+$
+\end{itemize}
+
+\subsubsection{Symmetrisches und "ausseres Produkt}
+\begin{definition}
+seien $V, W$ Vektorr"aume.
+Eine bilineare Abbildung 
+$
+\xi : V \times V \rightarrow W
+$
+heisst 
+\begin{itemize}
+\item symmetrisch, falls $\xi( v, v') = \xi (v', v) \forall v, v' \in V$
+\item alternierend, falls $\xi (v, v) = 0 \forall v \in V$. Daraus folgt $\xi(v, v') = - \xi(v' ,v)$. Falls  $\mathrm{char}(K) = 2$ gilt  sogar die Umkehrung.
+\end{itemize}
+\end{definition}
+\begin{lemma}
+Wir betrachten die Untervektorr"aume 
+$$
+S(v) = \mathrm{span} (v \otimes v' - v' \otimes v)_{v, v' \in V} \subset V \otimes V
+$$
+$$
+A(v) =  \mathrm{span} (v \otimes v)_{v \in V} \subset V \otimes V
+$$
+
+
+$\xi : V \times V \rightarrow W$ (bilinear) ist 
+\begin{itemize}
+\item $\xi$ symmetrisch $\Leftrightarrow S(v) \subset \mathrm{Ker}(\xi_\otimes)$
+\item $\xi$ alternierend $\Leftrightarrow A(v) \subset \mathrm{Ker}(\xi_\otimes)$
+\end{itemize}
+\end{lemma}
+
+
+\begin{theorem}
+F"ur jeden $K$-Vektorraum $V$ mit $\mathrm{dim} V \geq 2$ gibt es einen $K$-Vektorraum $V \wedge V$ zusammen mit einer alternierenden bilinearen Abbildung 
+$$\wedge: V \times V \mapsto V \wedge V$$ mit folgender universeller Eigenschaft:
+
+Zu jeder bilinearen alternierenden Abbildung $\xi: V \times V \rightarrow W$ existiert genau eine lineare Abbildung $\xi_\wedge$ so dass
+\begin{gather*}
+  \xymatrix{V \times V  \ar[d]|{\wedge} \ar[r]|{\xi} & W\\
+    V \wedge V \ar[ur]|{\xi_\wedge} & }
+\end{gather*}
+kommutiert.
+Ist $(v_1, ..., v_n)$ eine Basis von $V$, so ist $(v_i \wedge v_j) = \wedge(v_i, v_j)$ mit $q \leq i < j \leq n$ eine Basis von $V \wedge V$. Insbesondere 
+$$
+\mathrm{dim}(V \wedge V) = \left(\begin{array}{c} n\\ 2 
+\end{array} \right) = \frac{n(n-1)}{2}.
+$$
+\end{theorem}
+$V \wedge V = V \otimes V / A(V)$, $\wedge = \rho \circ \eta$ mit der kanonischen Abbildung des Quotientenraums $\rho: V \otimes W \rightarrow V \wedge V$ und der kanonischen Abbildung $\eta: V \times V \rightarrow V \otimes V$.
+
+
+\begin{remark}(Rechenregeln f"ur das "aussere Produkt.
+F"ur $v, v', w, w' \in V$ und $\lambda \in K$ gilt
+\begin{itemize}
+\item $(v + \lambda v') \wedge w = v  \wedge w + \lambda(v'  \wedge w )$
+\item $v  \wedge (w + \lambda w') = v  \wedge w + \lambda(v  \wedge w ')$
+\item $v \wedge v = 0$ und $ v \wedge v' = - v' \wedge v$
+\end{itemize}
+\end{remark}
+
+\begin{theorem}
+Man definiert analog das symmetrische Produkt:
+
+Zu jedem $K$-Vektorraum $V$ gibt es einen $K$-Vektorraum $V \vee V$ und eine symmetrische bilineare Abbildung $\vee: V \times V \rightarrow V \vee V$ mit der universellen Eigenschaft:
+
+Sei $\xi : V \times V \rightarrow W$ symmetrisch (und bilinear), dann gibt es genau eine lineare Abbildung $\xi_V: V \vee V \rightarrow W$, so dass
+\begin{gather*}
+  \xymatrix{V \times V  \ar[d]|{\vee} \ar[r]|{\xi} & W\\
+    V \vee V \ar[ur]|{\xi_\vee} & }
+\end{gather*}
+kommutiert.
+
+Ist $(v_1, ..., v_n)$ eine Basis von $V$, so bilden die Vektoren
+
+$v_i \vee v_j = \vee (v_i, v_j)$ mit $q \leq i \leq j \leq n$ eine Basis von $V \vee V$. Insbesondere
+$$
+\mathrm{dim}(V \vee V) = \left(\begin{array}{c} n+1\\ 2 
+\end{array} \right) = \frac{n(n+1)}{2}.
+$$
+$V \vee V$ heisst 2. symmetrische Potenz / symmetrischer Produktraum von $V$.
+\end{theorem}
+
+Sei nun $\mathrm{Bil}(V; W)$ der Vektorraum der bilinearen Abbildungen $V \times V \rightarrow W$ und $\mathrm{Alt}^2(V, W) \subset \mathrm{Bil}(V; W)$ der Untervektorraum der alternierenden Bilinearformen und $\mathrm{Sym}^2 \subset \mathrm{Bil}(V; W)$ der Untervektorraum der symmetrischen Bilinearformen.
+
+Dann haben wir folgende Abbildungen 
+\\
+\includegraphics[scale=0.4]{Diagramm}
+\\
+%Diagramm noch in Latex erstellen
+%$$
+%\begin{array}{l}\text { Alt }^{2}(V ; K) \subset \operatorname{Bil}(V ; K) \\ \quad \downarrow \\ (V \wedge V)^{*} \quad \subset(V \otimes V)^{*}\end{array}
+%$$
+\begin{enumerate}
+\item Die Abbildungen $(2a)$ und $(2a)$ erhalten wir genau wie $(2)$ aus den universellen Eigenschaften.
+\item Die Abbildung $(1a)$ ist definiert durch 
+$$
+(1a): V^* \wedge V^* \rightarrow \mathrm{Alt}^2(V;K)
+$$
+$$
+(\varphi, \Psi) \mapsto \alpha (\varphi, \Psi) = 
+\alpha(\varphi, \psi)(v, w):=\operatorname{det}\left(\begin{array}{cc}\varphi(v) & \varphi(w) \\ \psi(v) & \psi(w)\end{array}\right)
+$$
+\item Die Abbildung $(1s)$ ist
+$$
+(1s): V^* \vee V^* \rightarrow \mathrm{Sym}^2 (V;K)
+$$
+$$
+(\varphi, \Psi) \mapsto \operatorname{det}\left(\begin{array}{cc}\varphi(v) & - \varphi(w) \\ \psi(v) & \psi(w)\end{array}\right)
+$$
+\end{enumerate}
+
+\begin{theorem}
+Ist $\mathrm{dim}V < \infty$, so ist $(1a)$ ein Isomorphismus und falls zus"atzlich $\mathrm{char}K = 2$, so ist $(1s)$ auch ein Isomorphismus.
+\end{theorem}
+
 
 
 
