@@ -1597,13 +1597,95 @@ $$
 \begin{theorem}
 Ist $\mathrm{dim}V < \infty$, so ist $(1a)$ ein Isomorphismus und falls zus"atzlich $\mathrm{char}K = 2$, so ist $(1s)$ auch ein Isomorphismus.
 \end{theorem}
+
+\subsubsection{Mulitilieare Algebra}
 \begin{theorem}
-Test
+Zu $K$-Verktorräumen $(V_1,...,V_k)$ gibt es genau einen $K$-Vektorraum $(V_1  \otimes ...  \otimes V_k)$ zusammen mit einer universellen mulitliearen Abbildung 
+$$
+\eta : V_1 \times ... \times V_k  \rightarrow V_1\otimes ... \otimes V_k ,   (v_1,...,v_k) \mapsto v_1\otimes...\otimes v_k
+$$
+d.h. zu jeder multiliearen Abblidung
+$$
+\xi: V_1 \times ... \times V_k \rightarrow W
+$$
+gibts es geanu eine linearen Abblidung $\xi_\otimes$ derart, daß das Diagramm 
+\begin{gather*}
+  \xymatrix{(V_1 \times ... \times V_k)  \ar[d]|{\eta} \ar[r]|{\xi} & W\\
+    (V_1 \otimes ... \otimes V_k) \ar[ur]|{\xi_\otimes} & }
+\end{gather*}
+kommutiert. Sind alle $V_j$ endlichdimensional mit Basen 
+$$
+(v_1^{(1)},...,v_{rj}^{(k)}), j = 1,...,k,
+$$
+so ist eine Basis von $(V_1  \otimes ...  \otimes V_k)$ gegeben durch die Produkte
+$$
+(v_{i1}^{(1)} \otimes...\otimes v_{ik}^{(k)}) \textit{ mit }  1 \leq (i_j) \leq (r_j) 
+$$ 
+Insbesondere ist dim$(V_1\otimes...\otimes V_k) =$ dim$(V_1\cdot ... \cdot V_k)$
 \end{theorem}
 
+\begin{definition}
+Sind $V$ Und $W$ Vektorräume über $K$, so heißt eine $k$-fach linerare Abblidung
+$$
+\xi: V^k \rightarrow W
+$$
+\begin{itemize}
+\item  \emph{symmetrisch}, wenn $\xi(v_1,...,v_k) = \xi(v_{\sigma(1)},...v_{\sigma(k)}$ für jede Permutation $\sigma \in S_k$,
+\item \emph{alternierend}, wenn $\xi(v_1,...,v_k) = 0 $, falls $ v_i = v_j$ für ein Paar $(i,j)$ mit $i \neq j$
+\end{itemize}
+\end{definition}
+
+\begin{remark}
+Ist $\xi$ alternieren und $ \sigma  \in S_k$, so ist
+$$ 
+\xi(v_{\sigma(1)},...v_{\sigma(k)} = \textit{sign}(\sigma) \cdot \xi(v_1,...,v_k)
+$$
+\end{remark}
+
+\begin{lemma}
+In $\otimes^k$ betrachten wir Untervektorräume 
+$$ 
+S^k(V) = \mathrm{span} (v_1 \otimes... \otimes v_k  - v_{\sigma(1)},...v_{\sigma(k)})_{v_1 \otimes... \otimes v_k \in  \otimes^k V} \subset \otimes^k V
+$$
+$$ A^k(V) = \mathrm{span} (v_1 \otimes... \otimes v_k) \subset \otimes^k V, \textit{ wobei  } v_i = v_j \textit{ für ein (i,j) mit  } i\neq j 
+$$
+Für jedes $k$-fach lineare $\xi: V^k \rightarrow W$ gilt:
+\begin{itemize}
+\item $\xi$ symmetrisch $\Leftrightarrow S^k(v) \subset \mathrm{Ker}(\xi_\otimes)$
+\item $\xi$ alternierend $\Leftrightarrow A^k(v) \subset \mathrm{Ker}(\xi_\otimes)$
+\end{itemize}
+
+\end{lemma}
+
+\begin{theorem}
+Zu $K$-Verktorräumen und einer natürlichen Zahl $k \leq 1$ gibt es einen $K$-Verktorraum
+$\wedge^k$  zusammen mit einer universellen alternierenden Abbildung 
+$$
+\wedge: V^k \rightarrow \wedge ^k W
+$$
+d.h. zu jeder alternierenden Abblidung 
+$$
+\xi: V^k \rightarrow W
+$$
+gibt es genau eine linerae Abblidung $\xi_{\wedge}$ derart, daß das Diagramm 
 
 
+\begin{gather*}
+  \xymatrix{ (V ^ {k}) \ar[d]|{\wedge} \ar[r]|{\xi} & W\\
+    (\wegde^{k} V )\ar[ur]|{\xi_\wedge} & }
+\end{gather*}
 
+kommutiert. Ist $(v_1,...,v_n)$ eine Basis von $V$, so ist eine Basis $\wegde ^k V$ gegeben durch die Produkte 
+$$
+v_{i1} \wegde ... \wedge v_{ik} \textit{mit} 1 \leq i1 < ... <  ik \leq n
+$$
+Insbesodere ist dim$\wedge^k = \binom{n}{k}$ für $ 1 \leq k \leg n = \mathrm{dim}V$. Für $k>n$ setzt man 
+$$
+\wedge^k = n
+$$
+
+
+\end{theorem}
  
 \section{N\uee tzliche Formeln und Hinweise}
 
