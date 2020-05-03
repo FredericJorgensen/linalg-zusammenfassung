@@ -1598,17 +1598,20 @@ $$
 Ist $\mathrm{dim}V < \infty$, so ist $(1a)$ ein Isomorphismus und falls zus"atzlich $\mathrm{char}K = 2$, so ist $(1s)$ auch ein Isomorphismus.
 \end{theorem}
 
-\subsubsection{Mulitilieare Algebra}
+\subsection{Multilineare Algebra}
+\begin{definition}
+Eine Abbildung zwischen Vektorr"aumen heisst multilinear, wenn sie in jedem Argument linear ist. 
+\end{definition}
 \begin{theorem}
-Zu $K$-Verktorräumen $(V_1,...,V_k)$ gibt es genau einen $K$-Vektorraum $(V_1  \otimes ...  \otimes V_k)$ zusammen mit einer universellen mulitliearen Abbildung 
+Zu $K$-Vektorräumen $(V_1,...,V_k)$ gibt es genau einen $K$-Vektorraum $(V_1  \otimes ...  \otimes V_k)$ zusammen mit einer universellen multilinearen Abbildung 
 $$
 \eta : V_1 \times ... \times V_k  \rightarrow V_1\otimes ... \otimes V_k ,   (v_1,...,v_k) \mapsto v_1\otimes...\otimes v_k
 $$
-d.h. zu jeder multiliearen Abblidung
+d.h. zu jeder multilinearen Abblidung
 $$
 \xi: V_1 \times ... \times V_k \rightarrow W
 $$
-gibts es geanu eine linearen Abblidung $\xi_\otimes$ derart, daß das Diagramm 
+gibt es genau eine lineare Abbildung $\xi_\otimes$ derart, dass das Diagramm 
 \begin{gather*}
   \xymatrix{(V_1 \times ... \times V_k)  \ar[d]|{\eta} \ar[r]|{\xi} & W\\
     (V_1 \otimes ... \otimes V_k) \ar[ur]|{\xi_\otimes} & }
@@ -1617,12 +1620,34 @@ kommutiert. Sind alle $V_j$ endlichdimensional mit Basen
 $$
 (v_1^{(1)},...,v_{rj}^{(k)}), j = 1,...,k,
 $$
-so ist eine Basis von $(V_1  \otimes ...  \otimes V_k)$ gegeben durch die Produkte
+so ist eine Basis von $(V_1  \otimes ...  \otimes V_k)$ gegeben durch
 $$
-(v_{i1}^{(1)} \otimes...\otimes v_{ik}^{(k)}) \textit{ mit }  1 \leq (i_j) \leq (r_j) 
+(v_{i1}^{(1)} \otimes...\otimes v_{ik}^{(k)}) \textit{ mit }  1 \leq i_j \leq r_j)
 $$ 
-Insbesondere ist dim$(V_1\otimes...\otimes V_k) =$ dim$(V_1\cdot ... \cdot V_k)$
+Insbesondere ist $\mathrm{dim}(V_1\otimes...\otimes V_k) = \mathrm{dim} V_1\cdot ... \cdot \mathrm{dim}V_k$
 \end{theorem}
+
+\begin{remark}
+Es gilt $V_1 \otimes ... \otimes V_k $% Isomorphien hinschreiben
+\end{remark}
+
+%Bemerkung Spezialfall Tensoren Physik mit Dualraeumen, Kovarianz / Kontravarianz
+\begin{remark}
+Ein wichtiger Spezialfall in der Physik ist f"ur einen endlich dimensionalen Vektorraum $V$
+$$
+T:= \otimes^p V^* \otimes^q V.
+$$
+Ein Element aus $T$ nennt man $p$-fach kovariant und $q$-fach kontravariant. Man schreibt f"ur eine Basis von $V$ $\mathcal{A} = (v_1, ..., v_n)$ und f"ur die duale Basis $\mathcal{A}^* = (v^1, ..., v^n)$.
+%Reihenfolge Transformationsmatrix korrekt? Steht A oder B unten?
+Die Begriffe kovariant und kovariant berufen sich auf das unterschiedliche Transformationsverhalten unter Basiswechseln. Sei $\mathcal{B} = (w_1, ..., w_n)$ eine weitere Basis von $V$ und $(a_ij)_{i, j} = T^\mathcal{B}$. Dann gilt
+$$
+v_i =\sum\limits_{j = 1}^n a_{ji}w_j.
+$$
+Wegen $T^{\mathcal{A}^*}_{\mathcal{B}^*} = (T^{\mathcal{A}}_{\mathcal{B}})^{-T}$ ist 
+$$
+v_i^* =\sum\limits_{j = 1}^n \tilde{a_{ij}}w_j^*.
+$$
+\end{remark}
 
 \begin{definition}
 Sind $V$ Und $W$ Vektorräume über $K$, so heißt eine $k$-fach linerare Abblidung
@@ -1630,16 +1655,17 @@ $$
 \xi: V^k \rightarrow W
 $$
 \begin{itemize}
-\item  \emph{symmetrisch}, wenn $\xi(v_1,...,v_k) = \xi(v_{\sigma(1)},...v_{\sigma(k)}$ für jede Permutation $\sigma \in S_k$,
+\item  \emph{symmetrisch}, wenn $\xi(v_1,...,v_k) = \xi(v_{\sigma(1)},...v_{\sigma(k)})$ für jede Permutation $\sigma \in S_k$,
 \item \emph{alternierend}, wenn $\xi(v_1,...,v_k) = 0 $, falls $ v_i = v_j$ für ein Paar $(i,j)$ mit $i \neq j$
 \end{itemize}
 \end{definition}
 
 \begin{remark}
-Ist $\xi$ alternieren und $ \sigma  \in S_k$, so ist
+Ist $\xi$ alternierend und $ \sigma  \in S_k$, so ist
 $$ 
-\xi(v_{\sigma(1)},...v_{\sigma(k)} = \textit{sign}(\sigma) \cdot \xi(v_1,...,v_k)
+\xi(v_{\sigma(1)},...v_{\sigma(k)}) = \textit{sign}(\sigma) \cdot \xi(v_1,...,v_k)
 $$
+F"ur $\mathrm{char}K \neq 2$ gilt auch die R"uckrichtung.
 \end{remark}
 
 \begin{lemma}
@@ -1658,34 +1684,75 @@ Für jedes $k$-fach lineare $\xi: V^k \rightarrow W$ gilt:
 \end{lemma}
 
 \begin{theorem}
-Zu $K$-Verktorräumen und einer natürlichen Zahl $k \leq 1$ gibt es einen $K$-Verktorraum
+Zu $K$-Verktorräumen und einer natürlichen Zahl $k \geq 1$ gibt es einen $K$-Vektorraum
 $\wedge^k$  zusammen mit einer universellen alternierenden Abbildung 
 $$
 \wedge: V^k \rightarrow \wedge ^k W
 $$
-d.h. zu jeder alternierenden Abblidung 
+d.h. zu jeder alternierenden Abbildung 
 $$
 \xi: V^k \rightarrow W
 $$
-gibt es genau eine linerae Abblidung $\xi_{\wedge}$ derart, daß das Diagramm 
-
-
+gibt es genau eine lineare Abbildung $\xi_{\wedge}$ derart, daß das Diagramm 
 \begin{gather*}
-  \xymatrix{ (V ^ {k}) \ar[d]|{\wedge} \ar[r]|{\xi} & W\\
-    (\wegde^{k} V )\ar[ur]|{\xi_\wedge} & }
+  \xymatrix{V^k   \ar[d]|{\wedge} \ar[r]|{\xi} & W\\
+    \wedge^k V \ar[ur]|{\xi_\wedge} & }
 \end{gather*}
 
-kommutiert. Ist $(v_1,...,v_n)$ eine Basis von $V$, so ist eine Basis $\wegde ^k V$ gegeben durch die Produkte 
+kommutiert. Ist $(v_1,...,v_n)$ eine Basis von $V$, so ist eine Basis von $\wedge^k V$ gegeben durch die Produkte 
 $$
-v_{i1} \wegde ... \wedge v_{ik} \textit{mit} 1 \leq i1 < ... <  ik \leq n
+v_{i_1} \wedge ... \wedge v_{i_k} \text{ mit } 1 \leq i_1 < ... <  i_k \leq n
 $$
-Insbesodere ist dim$\wedge^k = \binom{n}{k}$ für $ 1 \leq k \leg n = \mathrm{dim}V$. Für $k>n$ setzt man 
+Insbesodere ist $\mathrm{dim}\wedge^k = \binom{n}{k}$ für $ 1 \leq k \leq n = \mathrm{dim}V$. Für $k>n$ setzt man 
 $$
-\wedge^k = n
+\wedge^k = 0.
 $$
 
 
 \end{theorem}
+
+\begin{theorem}
+Zu $K$-Verktorräumen und einer natürlichen Zahl $k \leq 1$ gibt es einen $K$-Vektorraum
+$\wedge^k$  zusammen mit einer symmetrsischen Abbildung 
+$$
+\vee: V^k \rightarrow \wedge ^k W
+$$
+so dass f"ur jede symmetrische Abbildung 
+$$
+\xi: V^k \rightarrow W
+$$
+genau eine lineare Abbildung $\xi_{\vee}$ existiert derart, daß das Diagramm 
+\begin{gather*}
+\xymatrix{V^k   \ar[d]|{\vee} \ar[r]|{\xi} & W\\
+\vee^k V \ar[ur]|{\xi_\vee} & }
+\end{gather*}
+
+kommutiert. Ist $(v_1,...,v_n)$ eine Basis von $V$, so ist eine Basis von $\vee^k V$ gegeben durch die Produkte 
+$$
+v_{i_1} \vee ... \vee v_{i_k} : =  \vee (v_{i_1}, ..., v_{i_k}) \text{ mit } 1 \leq i_1 \leq ... \leq  i_k \leq n
+$$
+Insbesodere ist $\mathrm{dim}\vee^k = \binom{n+k-1}{k}$ für $ 1 \leq k \leq n = \mathrm{dim}V$. 
+\end{theorem}
+
+
+\begin{definition}
+Seien $V, V', W, W'$ Vektorr"aume und $F \in \mathrm{Hom}(V, V')$, $G \in \mathrm{Hom}(W, W')$. Dann definiert man das Tensorprodukt dieser Abbildungen folgendermassen als lineare Abbildung
+$$
+F \otimes G: V \otimes W \rightarrow V' \otimes W',
+$$
+so dass $(F \otimes G)(v \otimes w) = F(v) \otimes G(v)$ f"ur alle $v\in V, w \in W$.
+\end{definition}
+%Isomorphe Eigenschaft hinzufuegen? 
+
+\begin{theorem}
+F"ur endlichdimensionale Vektorr"aume $V, V', W, W'$ ust das Tensorprodukt von Abbildungen 
+$$
+\otimes: \mathrm{Hom}(V, V') \otimes  \mathrm{Hom}(W, W') \rightarrow \mathrm{Hom}(V \otimes W, V' \otimes W')
+$$
+ein Vektorraumisomorphismus.
+\end{theorem}
+
+
  
 \section{N\uee tzliche Formeln und Hinweise}
 
