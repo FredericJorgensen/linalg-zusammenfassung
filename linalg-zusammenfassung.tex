@@ -17,6 +17,7 @@
 \usepackage[english,ngerman]{babel}
 \usepackage{mathabx} 
 
+
 \title{Lineare Algebra II}
 \author{Frederic Jørgensen}
 \date{Erstellt: 01. Februar 2020, Zuletzt ge\aee ndert: \today \\                           % deutsche Ausgabe
@@ -822,8 +823,8 @@ $$
 $$
 Dann gilt:
 \begin{enumerate}
-\item $\lambda_k = \min\limits_{U\subset V,\ \mathrm{dim} U = k} \left(   \max\limits_{x\in U\ , \ x \neq 0} \frac{\scp{x}{Fx}}{\scp{x}{x}}\right)$
-\item $\lambda_k = \min\limits_{U\subset V,\ \mathrm{dim} U = n - k + 1} \left(   \max\limits_{x\in U\ , \ x \neq 0} \frac{\scp{x}{Fx}}{\scp{x}{x}}\right)$
+\item $\lambda_k = \min\limits_{U\subset V \atop \mathrm{dim} U = k} \left(   \max\limits_{x\in U \atop \ x \neq 0} \frac{\scp{x}{Fx}}{\scp{x}{x}}\right)$
+\item $\lambda_k = \min\limits_{U\subset V \atop \mathrm{dim} U = n - k + 1} \left(   \max\limits_{x\in U \atop \ x \neq 0} \frac{\scp{x}{Fx}}{\scp{x}{x}}\right)$
 \end{enumerate}
 Die erste Minimierung ist dabei "uber die Untervektorr"aume der angegebenen Dimension.
 \end{theorem}
@@ -1752,15 +1753,200 @@ so dass $(F \otimes G)(v \otimes w) = F(v) \otimes G(v)$ f"ur alle $v\in V, w \i
 %Isomorphe Eigenschaft hinzufuegen? 
 
 \begin{theorem}
-F"ur endlichdimensionale Vektorr"aume $V, V', W, W'$ ust das Tensorprodukt von Abbildungen 
+F"ur endlichdimensionale Vektorr"aume $V, V', W, W'$ ist das Tensorprodukt von Abbildungen 
 $$
 \otimes: \mathrm{Hom}(V, V') \otimes  \mathrm{Hom}(W, W') \rightarrow \mathrm{Hom}(V \otimes W, V' \otimes W')
 $$
 ein Vektorraumisomorphismus.
 \end{theorem}
 
+%5.5.2020
+%Die konkreten Matrizen von diesem Tensorprodukt von Abbildungen koennte man noch von Seite 1 Zusatz einfuegen
+%Nicht notiert: Basis Tensorprodukt Abzaehlungen, da bereits frueher in Zusammenfassung notiert (Siehe Tensoren und Matrizen)
 
- 
+%Dieses Thema ist eigentlich eher wichtig im 3.-4. Semester laut Willwacher
+\subsubsection{Symmetrisches und "ausseres Produkt und (Ko)invariantenr"aume}
+
+\begin{definition}
+Sei $G$ eine Gruppe und $V$ ein $K$-Vektorraum. Dann ist eine Darstellung von $G$ auf $V$ ein Gruppenhomomorphismus
+$$
+\rho : G \rightarrow GL(V)
+$$
+wobei $GL(V)$ die Gruppe der Vektorraumisomorphismen auf $V$ ist. Man sagt auch $G$ wirkt auf $V$.
+\end{definition}
+
+%rho einfuegen
+\begin{example}
+Zwei ab hier behandelte Spezialf"alle von einer Darstellung der symmetrischen Gruppe $S_n$ sind definiert durch
+$$
+\rho: S_n \rightarrow GL(\otimes^n V)
+$$
+$$
+\rho(\sigma)(v_1 \otimes ... \otimes v_n) = v_{\sigma^{-1}(1)} \otimes --- \otimes v_{\sigma^{-1}(n)}.
+$$
+$$
+\rho_a: S_n \rightarrow GL(\otimes^n V)
+$$
+$$
+\rho(\sigma)(v_1 \otimes ... \otimes v_n) = \mathrm{sign}(\sigma) v_{\sigma^{-1}(1)} \otimes --- \otimes v_{\sigma^{-1}(n)}.
+$$
+\end{example}
+
+\begin{definition}
+Zu einer Darstellung $\rho$ von $G$ auf $V$ kann man folgende zwei Vektorr"aume zuordnen:
+\begin{itemize}
+\item Der Untervektorraum der G-Invarianten:
+$$
+V^G := \{ v \in V | \rho(g)(v) = v \forall g \in G \} \subset V.
+$$
+\item Der Quotientenraum der Koinvarianten:
+$$
+V_G = V/U
+$$
+mit
+$$
+U := \mathrm{span}\{v - \rho(g)(v) | v \in V, g \in G \} \subset V.
+$$
+\end{itemize}
+Wir haben durch die Inklusion und die Quotientenabbildung kanonische Abbildungen gegeben:
+$$
+V^G \rightarrow V \rightarrow V_G.
+$$
+\end{definition}
+
+
+\begin{theorem}
+Sei $G$ eine endliche Gruppe und $\rho : G \rightarrow GL(V) $ eine Darstellung von $G$ auf dem Vektorraum $V$. Angenommen $\mathrm{char}(K) \notdivides |G|$, also $|G| \neq 0$ in $K$. Dann ist die kanonische Abbildung $V^G \rightarrow V_G$ ein Isomorphismus. Die Inverse ist die Symmetrisierung
+$$
+V_G \rightarrow V^G
+$$
+$$
+v + U \mapsto \frac{1}{|G|}\sum\limits_{g \in G} \rho(g)(v).
+$$
+\end{theorem}
+
+%Unterteilung / Gliederung
+\subsubsection{Anwendung auf symmetrisches und "ausseres Produkt}
+Sei $\mathrm{char}(K) = 0$, so dass die Vorraussetzung des oberen Satze erf"ullt sind und alternierende und schiefsymmetrische Multilinearformen identisch sind. 
+\begin{remark}
+Das symmetrische Produkt haben wir als die Koinvarianten definiert
+$$
+\vee^nV = (\otimes^n V)_{S_n} = (\otimes^n V) / U.
+$$
+Bemerke: Man schreibt im Fischer $S^n(V)$ anstatt $U$. $S^n(V)$ ist aber etwas anderes als die symmetrische Gruppe $S_n$.
+Man verwendet hier die Darstellung $\rho$ ohne $\mathrm{sign}$ im Vorzeichen.
+\end{remark}
+
+\begin{remark}
+Das "aussere Produkt kann man identifizieren als 
+$$
+\wedge^n V = (\otimes^nV)_{S_n}
+$$
+wobei man jetzt die Darstellung $\rho_a$ mit $\mathrm{sign}$ im Vorzeichen verwendet.
+\end{remark}
+
+\begin{remark}
+Je nach Kontext wird manchmal das symmetrische bzw "aussere Produkt als der Raum der $S_n$-invarianten Tensoren definiert. Wegen des Satzes gilt aber
+$$
+(\otimes^n V)_{S_n} \cong (\otimes^n V)^{S_n}.
+$$
+\end{remark}
+
+%Diesen Abschnitt muss man in einem anderen Abschnitt, zB bei den euklidischen und unitaeren Vektorrauemen, sinnvoll als subsection eingliedern
+\section{Singul"arwertzerlegung}
+\begin{definition} (Singul"arwertzerlegung) Sei $K = \mathbb{R}$ oder $K = \mathbb{C}$ und $A \in M(N m \times n, K)$. Dann gibt es orthogonale  / unit"are Matrizen $U \in O(m)$ / $U \in U(m)$, $V \in O(n)$ / $V \in U(n)$ und eine diagonale Matrix $D\in M(m \times n, \mathbb{R})$ der Form 
+$$
+D=\left(\begin{array}{cccc}\sigma_{1} & 0 & \dots & 0 \\ 0 & \sigma_{2} & \dots & 0 \\ \vdots & & \ddots & \vdots\end{array}\right)
+$$
+mit nichtnegativen Diagonaleintr"agen $\sigma_j$, so dass
+$$
+A = U D \overline{V}^T.
+$$
+Diese Zerlegung heisst Singul"arwertzerlegung und die Diagonaleintr"age von $D$ $\sigma_1 \geq \sigma_2 \geq ... \geq \sigma_{\mathrm{min}(m,n)}$ heissen Singul"arwerte von $A$.
+
+\end{definition}
+
+\begin{remark}
+Der Rang von $A$ entspricht dem Rang von $D$.
+\end{remark}
+
+
+\begin{corollary}
+Zu $A \in M(m \times n, K)$ vom Rang $r$ gibt es gibt es orthogonale  / unit"are Matrizen $\tilde{U} \in M(m \times r, K)$, $\tilde{V} \in M(n \times r, K)$ mit orthonormalen Spalten und eine eine invertierbare Diagonalmatrix $\tilde{D} \in M(r \times r, \mathbb{R})$ mit Singul"arwerten auf der Diagonale, so dass 
+$$
+A = U D \overline{V}^T.
+$$
+\end{corollary}
+
+\begin{remark}
+Man schreibt als Notation$\overline{V}^T = \tilde{V}^{\dagger}$.
+\\
+Um die Zerlegung aus obigem Korollar aus obigem Theorem zu erhalten, ordnet man die Singul"arwerte und definiert $\tilde{U}$ als die ersten $r$ Spalten von $U$ und $\tilde{V}$ als die ersten $r$ Spalten von $V$.
+
+Umgekehrt erh"alt $U$ aus $\tilde{U}$ bzw. $V$ aus $\tilde{V}$ indem man die durch die Spalten gegebene orthonormale Familie zu einer ONB erweitert und die entstehenden Vektoren als zus"atzliche Spalten schreibt.
+\end{remark}
+
+
+\begin{definition}
+Die ersten $\mathrm{min}(m, n)$ Spalten von $U$ bzw. $V$ sind linke bzw. rechte Singul"arwerte von $A$. Man nennt Einheitsvektoren $u \in K^m$, $v \in K^n$ linke bzw. rechte Singul"arvektoren zum Singul"arwert $\sigma \in \mathbb{R}_{\geq 0}$, falls gilt
+$$
+Av = \sigma u \text{ oder } A^\dagger u = \sigma v
+$$
+\end{definition}
+
+\begin{corollary}
+Sei $F \in \mathrm{Hom}(V, W)$ mit $V, W$ endlich dimensional und unit"ar / euklidisch. Dann gibt es Orthonormalbasen $\mathcal{A}$ und $\mathcal{B}$, so dass 
+$$
+M^\mathcal{A}_\mathcal{B} = D
+$$
+Diagonalform mit nichtnegativen Diagonaleintr"agen hat.
+\end{corollary}
+
+\begin{lemma}
+Sei $A \in M (m \times n, K)$ eine beliebige Matrix vom Rang $r$. Dann sind die hermiteschen / symmetrischen Matrizen $\overline{A}^T A$, $A\overline{A}^T$ positiv semidefinit und haben Rang $r$. Es gilt
+$$
+\mathrm{Ker} \overline{A}^T A = \mathrm{Ker} A
+$$
+und
+$$
+\mathrm{Im} A \overline{A}^T = \mathrm{Im} A.
+$$
+\end{lemma}
+
+\begin{remark}
+Die Singul"arwerte von $A$ sind durch $A$ eindeutig bestimmt und sind die Wurzeln der gr"ossten $\mathrm{min}(m, n)$ Eigenwerte von $AA^\dagger$.. Die Matrizen $U$ und $V$ sind aber nicht ganz eindeutig bestimmt.
+\end{remark}
+
+%Analogon Satz Courant Fischer
+\begin{corollary}
+Sei $A \in M(m \times n, K)$ eine Matrix und die Singul"arwerte von $A$ gegeben durch
+$$
+\sigma_1 \geq ... \geq \sigma_p \geq 0.
+$$
+Dann gilt:
+$$
+\sigma_j = \min\limits_{U \subset K^n \atop \mathrm{dim}U = n-j+1} \left(   \max\limits_{u \in U \atop u \neq 0} \frac{\|Au\|}{\|u\|}\right) = \min\limits_{U \subset K^m \atop \mathrm{dim} U = m - j + 1} \left(   \max\limits_{ u \in U \atop u \neq 0 } \frac{ \|A^\dagger u\| }{ \|u\| } \right).
+$$
+\end{corollary}
+
+
+\begin{definition}
+Die Spektralnorm (2-Norm) einer Matrix $A \in M(m \times n, K($ ist der maximale Singul"arwert von $A$.
+$$
+\|A\|_{2}:=\sigma_{1}(A)=\max _{u \in K^n \atop u \neq 0} \frac{\|A u\|}{\|u\|}=\max _{u \in K^n \atop \|u\|=1}\|A u\|
+$$
+\end{definition}
+
+\begin{remark}
+Allgemeiner kann man f"ur $F \in \mathrm{Hom}(V, w)$, $V, W$ endlich dimensionale normierte Vektorr"aume, so eine Operatornorm definieren:
+$$
+\|F\|_{V, W} = \max\limits_{ v \in V \atop v \neq 0} \frac{\|F(v)\|_W}{\|v\|_V}.
+$$
+\end{remark}
+
+%Es gab einen zusaetzlichen Abschnitt ueber die Anwendung der SVD in Regression und Pseudoinverse, der mir aber als irrelevant fuer die Klausur erschien und eher in den Bereichn Numerik faellt
+
+
 \section{N\uee tzliche Formeln und Hinweise}
 
 \end{document}
