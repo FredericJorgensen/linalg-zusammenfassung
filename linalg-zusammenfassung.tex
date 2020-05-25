@@ -1946,7 +1946,309 @@ $$
 
 %Es gab einen zusaetzlichen Abschnitt ueber die Anwendung der SVD in Regression und Pseudoinverse, der mir aber als irrelevant fuer die Klausur erschien und eher in den Bereichn Numerik faellt
 
+%13052020
 
+\subsection{Approximation von Matrizen durch Matrizen kleinen Ranges}
+\begin{definition}
+Sei $A = (a_{ij}) \in M( m \times n, K)$. Dann definieren wir die Frobeniusnorm von $A$ als
+$$
+\|A\|_F := \sqrt{\sum\limits_{i = 1}^m \sum\limits_{j = 1}^n |a_{ij}^2|} = \sqrt{\mathrm{tr}(A^\dagger A)}.
+$$
+(Euklidische Norm von Matrix aufgefasst als $m \cdot n$-Vektor). Also
+$$
+\scp{A}{B} = \mathrm{tr}(B^\dagger A).
+$$
+\end{definition}
+
+\paragraph{Spur}
+\begin{remark}
+Wichtige Eigenschaften der Spur:
+\begin{itemize}
+\item $\mathrm{tr}(B^\dagger) = \mathrm{tr}(\overline{B}) = \overline{\mathrm{tr}({B})}$
+\item $\mathrm{tr}(AB) = \mathrm{tr}(BA)$
+\item $\mathrm{tr}(\lambda A + \mu B) = \lambda \mathrm{tr}(A )+ \mu \mathrm{tr}(B)$
+\item $\mathrm{tr}(S A S^{-1}) = \mathrm{tr}(A)$
+\end{itemize}
+
+\end{remark}
+
+\begin{lemma}
+Sei $A \in M( m \times n, K)$ und $U \in M(m \times m, K)$, $v \in M(n \times n, K)$ unit"ar bzw. orthogonal. Dann gilt:
+$$
+\| A \|_F = \|UAV\|_F.
+$$
+Insbesondere ist also 
+$$
+\|A\|_F =  \sqrt{\sigma_1^2 + ... + \sigma_p^2}.
+$$
+\end{lemma}
+
+\begin{theorem} (Eckart-Young-Mirsky) Sei $A = UDV^\dagger$ die Singul"arwerte von $A$ und seien die Singul"arwerte $\sigma_1 \geq  \sigma_2 \geq...$. Seien $u_1, ..., u_m \in K^m$ die Spalten von $U$ und $v_1, ..., v_n \in K^n$ die Spalten von $V$. Seien $U_k$ und $V_k$ die Matrizen bestehend aus den ersten $k$ Spalten von $U$ bzw. $V$. Sei $D_k$ die Matrix mit den ersten $k$ gr"ossten Singul"arwerten auf der Diagonalen. Sei 
+$$
+A_k = U_k D_k V_k^\dagger = \sum\limits_{j = 1}^k \sigma_j u_j v_j^\dagger.
+$$
+Dann gilt f"ur jede Matrix $B \in M( m \times n, K)$ vom Range $\leq k$, dass
+$$
+\|A - B\|_F \geq \|A - A_k \|_F = \sqrt{\sum\limits_{j = k+1}^r \sigma_j^2}.
+$$
+\end{theorem}
+
+\begin{remark}
+Man kann die Frobeniusnorm in obigen Theorem durch die Spektralnorm ersetzen. Also gilt f"ur jede Matrix $B \in M( m \times n, K)$ vom Range $\leq k$, dass
+$$
+\|A - B\|_2 \geq \|A - A_k \|_2 = \sigma_{k+1}.
+$$
+\end{remark}
+
+\begin{corollary}
+Sei $A, B \in M(m \times n, K)$ und $i, j = 1, 2, ...$ beliebig. Dann gilt
+$$
+\sigma_{i+j-1} (A+B) \leq \sigma_i(A) + \sigma_j(B), 
+$$
+wobei $ \sigma_i(A)$ der $i$-te Singul"arwert von $A$ ist. Ist ein Index gr"osser als $\min(m, n),$ definiert man den entsprechenden Singul"arwert als $0$.
+\end{corollary}
+
+\begin{remark}
+Die Singul"arwerte von $A - A_k$ sind $\sigma_{k+1}, \sigma_{k+2}, ... .$
+\end{remark}
+
+\subsection{Approximation durch orthogonale Matrizen}
+\begin{theorem}
+Sei $A \in M(n \times n, \mathbb{C})$ und $A = UDV^\dagger$ die Singul"arwertzerlegung. Dann minimiert $R_0 = UV^\dagger$ den Abstand 
+$$
+\|A - R\|_F
+$$
+unter allen unit"aren Matrizen $R \in U(n)$.
+\end{theorem}
+
+%Zu Jordansche Normalform packen 
+%Urspruengliche Theoreme kompakter machen mit zusammengefasster Version von Willwacher
+
+%15052020
+\section{Verallgemeinerte Jordansche Normalform}
+%Notationen von Willwacher notieren
+\subsection{Relle Jordansche Normalform}
+%aus LA I
+\begin{theorem}
+Sei $f \in \mathbb{R}[t]$ ein reelles Polynom vom Grad $n \geq 1$. Dann hat $f$ eine Zerlegung
+$$
+f = a(t - \lambda-1)...(t- \lambda_k)g_1...g_m,
+$$
+wobei $a \in \mathbb{R}$ und $\lambda_j \in \mathbb{R}$ die reellen Nullstellen sind und die $g_j \in \mathbb{R}[t]$ normierte quadratische Polynome ohne reelle Nullstellen sind. Insbesondere ist hier $n = k + 2m$, und falls $n$ ungerade ist muss $f$ mindestens eine reelle Nullstelle haben.
+\end{theorem}
+
+%Ausfuehrugen / Vorbereitung aus Skript uebernehmen?
+
+\begin{theorem}
+Sei $F$ ein Endomorphismus des $n$-dimensionalen $\mathbb{R}$-Vektorraums $V$. Seien $\lambda_1, ..., \lambda_k$, $g_1, ..., g_m, q_q, ..., q_m$ wie vorher. Sei
+$$
+V_j = \mathrm{Ker}(F- \lambda_j id_v)^{r_j}
+$$
+f"ur $j = 1, ..., k$ und 
+$$
+V_j' = \mathrm{Ker}(g_j(F))^{q_j}
+$$
+f"ur $j = 1, ..., m$.
+Sei 
+$$
+d_{j r}= \operatorname{dim} \operatorname{Ker}\left(F-\lambda_{j} i d_{V}\right)^{r}
+$$
+$$
+d_{j r}^{\prime}=\operatorname{dim} \operatorname{Ker}\left(g_{j}(F)^{r}\right)^{r}
+$$
+f"ur $r = 1, 2, ...$, und setze $d_{jr} = d_{jr}' = 0$ f"ur $r \leq 0$. Dann gilt:
+\begin{enumerate}
+\item Es gilt \(\operatorname{dim} V_{j}=r_{j}\) und \(\operatorname{dim} V_{j}^{\prime}=2 q_{j}\) und \(V\) zerf"allt in $F$ -invariante Untervektorräume:
+$$
+V=V_{1} \oplus \cdots \oplus V_{k} \oplus V_{1}^{\prime} \oplus \cdots \oplus V_{m}^{\prime}
+$$
+\item Es gibt eine Basis $\mathcal{B}$ von $V$ so dass:
+%Matrix korrigieren
+$$
+M_\mathcal{B}(F)=
+\left(\begin{array}{cccc}J_{1}\left(\lambda_{1}\right)^{\oplus s_{11}} & & & \\ 
+& \ddots & \\ & J_{r_{k}}\left(\lambda_{k}\right)^{\oplus s_{k r_{k}}} & \\ 
+& J_{1}\left(A_{1}\right)^{\oplus s_{11}^{\prime}} & J_{2}\left(A_{1}\right)^{\oplus s_{12}} & \\ 
+& \ddots & J_{q_{1}}\left(A_{1}\right)^{\oplus s_{i q_{1}}} & J_{1}\left(A_{2}\right)^{\oplus s_{2 q_{1}}} \\ 
+& & \ddots & J_{q_{m}}\left(A_{m}\right)^{\oplus s_{m, n}}
+\end{array}\right)
+$$
+mit $A_j = \left(\begin{array}{cc}a_{j} & b_{j} \\ -b_{j} & a_{j}\end{array}\right)$, $\mu_j = a_j + i b_j$ wie vorher, und 
+$$
+s_{jr}=2 d_{j r}-d_{j(r+1)}-d_{j(r-1)}
+$$
+für $j=1, ..., k$ und alle $r$ und
+$$
+2 s_{j r}^{\prime}=2 d_{j r}^{\prime}-d_{j(r+1)}^{\prime}-d_{j(r-1)}^{\prime}
+$$
+für $j=1, ..., m$ und alle $r$.
+
+\item Das Minimalpolynom ist 
+$$
+M_F(t) = (t - \lambda_1)^{l_1} ... (t - \lambda_k)^{l_k} g_1^{l'_1} ... g_m^{l'_m}
+$$
+mit $l_j$ bzw. $l_j'$ den gr"ossten Indizes mit $s_{jl_j}\neq 0$ bzw. $s_{jl_j'}' \neq 0$.
+
+\end{enumerate}
+\end{theorem}
+
+
+\begin{corollary}
+Zwei reelle Matrizen sind $"ahnlich$ "uber $\mathbb{R}$ ($A = S B S^{-1}$ mit $S \in GL(n, \mathbb{R})$) genau dann, wenn ihre charakteristischen Polynome und alle Zahlen $d_{jr}, d_{jr}'$ (wie im Theorem) "ubereinstimmen.
+\end{corollary}
+
+\begin{corollary}
+Alle reellen Matrizen sind "uber $\mathbb{R}$ "ahnlich genau dann, wenn sie "ahnlich "uber $\mathbb{C}$ sind.
+\end{corollary}
+ 
+ %20052020
+ 
+ \begin{corollary}
+ Jede relle Matrix ist "ahnlich zu ihrer Transponierten. 
+ \end{corollary}
+ 
+ %Teile von Algebra Vorlesung nicht pruefungsrelevant
+ \subsection{Jordansche Normalform f"ur allgemeine K"orper}
+ 
+ \begin{definition}
+ Sei $f = t^n + a_{n-1}t^{n-1} + ... + a_0 \in K[t]$ ein Polynom vom Grad $n$. Dann ist die Begleitmatrix von $f$ die Matrix 
+ $$
+ B_{f}:=\left(\begin{array}{ccccc}-a_{n-1} & 1 & 0 & \cdots & 0 \\ -a_{n-2} & 0 & 1 & \cdots & 0 \\ \vdots & \ddots & \ddots & \ddots & \vdots \\ -a_{1} & 0 & \cdots & \cdots & 1 \\ -a_{0} & 0 & \cdots & \cdots & 0\end{array}\right)
+ $$
+ \end{definition}
+ 
+ \begin{theorem}
+ Das charakteristische Polynom und das Minimalpolynom von $B_f$ sind bis auf ein Vorzeichen gleich $f$, also:
+ $$
+ (-1)^n P_{B_f} = M_{B_f} = f.
+ $$
+ \end{theorem}
+ 
+ \subsubsection{Teilbarkeitstheorie von Polynomen}
+ \paragraph{Zusammenfassung Aussagen "uber Polynomringe K[t] aus LA1}
+ \begin{itemize}
+ \item Sei $R$ ein kommutativer Ring und $f, g \in R, f, g \neq 0$. Dann heisst $f|g$, dass ein $h \in R$ existiert mit $g = fh$
+ \item Ein Ideal $\mathcal{I} \subset R$ des kommutativen Ringes ist ein Unterring mit $\mathcal{I}R \subset \mathcal{I}$. Explizit: f"ur $f, g \in \mathcal{I}$ gilt $f-g \in \mathcal{I}$ und f"ur $f \in \mathcal{I}, g \in R$ gilt $fg \in \mathcal{I}$. 
+ \\
+ Sind $\mathcal{I}_1, \mathcal{I}_2$ Ideale, ist $\mathcal{I}_1 \cap \mathcal{I}_2$ und $\mathcal{I}_1 + \mathcal{I}_2$ (kleinstes Ideal das beide enth"alt) wieder Ideale
+ \item F"ur jeden K"orper $K$ ist der Polynomring $K[T]$ ein Hauptidealring, d.h. zu jedem Ideal $\mathcal{I} \subset R$, $\mathcal{I} \neq \{0\}$ gibt es ein eindeutiges Polynom $M)\mathcal{I} \in \mathcal{I}$, so dass $\mathcal{I} = \{ M_\mathcal{I}f| f\in K[T]\}$. $M_\mathcal{I}$ ist das normierte Polynom kleinsten Grades in $\mathcal{I}$ und heisst Minimalpolynom von $\mathcal{I}$.
+ \item F"ur jeden K"orper ist $K[t]$ ein faktorieller Ring, hat also keinen Nullteiler
+ \end{itemize}
+ 
+ 
+ \begin{definition}
+ F"ur Polynome $f, g \in K[t], f, g \neq 0$ definieren wir den gr"ossten gemeinsamen Teiler (ggT) als das normierte Polynom vom gr"ossten Grad, das $f$ und $g$ teilt. Dies ist auch das Minimalpolynom vom Ideal von $f K[t] + g K[t]$, also $ggT(f, g) = M_{ K[t] + g K[t]}.$
+ Also existieren $a, b \in K[t]$, so dass $ggT(f, g) = af + bg$.
+ \\
+ Allgemeiner ist $ggT(f_1, ..., f_n)$ das Polynom gr"ossten Grades, das alle $f_j$ teilt. Wiederum gibt es dann $a_1, ..., a_n \in K[t]$, so dass 
+ $$
+ ggT(f_1, ..., f_n) = a_1 f_1 + ... + a_n f_n
+ $$
+ 
+ Ebenso definiert man $kgV(f_1, ..., f_n)$ als das normierte Polynom kleinsten Grades, dass durch alle $f_j$ teilbar ist. 
+ $$
+ kgV(f_1, ..., f_n) = M_{f_1K[t] \cap ... \cap f_n K[t]}.$$
+ \end{definition}
+ 
+ \begin{lemma}
+ F"ur ein Polynom $f \in K[t]$ positiven Grades sind "aquivalent:
+\begin{itemize}
+\item Aus $f = gh$ folgt, dass eis ein $0 \neq c \in K$ existiert, so dass $f = cg$ oder $f = ch$. (Also hat $f$ keine nichttrivialen Teiler, also nur die Teiler $c \in K$ und $cf$, ist also irreduzibel.)
+\item Aus $f|gh$ f"ur $g, h \in K[t], g, h \neq 0$ folgt, dass $f|g$ oder $f|h$. (Man sagt dann auch, dass $f$ ein Primelement ist).
+\end{itemize}
+ \end{lemma}
+ 
+ 
+ 
+ \begin{theorem} (Primfaktorzerlegung f"ur Polynome)
+ Sei $0 \neq f \in K[t]$ ein Polynom. Dann gibt es irreduzible normierte Polynome $p_1, ..., p_n \in K[t]$ positiven Grades und $c \in K$ $c\neq 0$, so dass
+ $$
+ f = cp_1 ... p_n.
+ $$
+ Diese Faktorisierung ist eindeutig bis auf die Anordnung der $p_j$.
+ Man sagt auch $K[t]$ ist ein faktorieller Ring.
+ \end{theorem}
+ 
+ 
+ 
+ \begin{definition}
+ Ein Ideal $\mathcal{I} \subset R$ des kommutativen Ringes $R$ heisst \bt{maximal}, falls $\mathcal{I} \neq R$ und es kein Ideal $\mathcal{J}$ gibt, so dass 
+ $$
+\mathcal{I} \varsubsetneqq \mathcal{J} \varsubsetneqq R.
+ $$
+ $\mathcal{I}$ heisst Prim, falls $\mathcal{I} \neq R$ und f"ur alle $f, g \in R$ gilt $fg \in \mathcal{I} \implies
+  f \in \mathcal{I} \vee g \in \mathcal{I}$.
+ \end{definition}
+ 
+ \begin{remark}
+ Im Fall $R = K[t]$ folgt direkt aus der Definition, dass $\mathcal{I}$ ein Primideal ist genau dann, wenn $M_\mathcal{I}$ prim. Ebenso ist $\mathcal{I}$ maximal, genau dann wenn $M_\mathcal{I}$ irreduzibel ist.
+ \end{remark}
+ 
+ \begin{lemma}
+ Sei $\mathcal{I} \varsubsetneqq R$ ein Ideal im kommutativen Ring $R$ mit Eins. Dann gilt \begin{itemize}
+ \item $\mathcal{I}$ ist maximal genau dann, wenn $R / \mathcal{I}$ mit der von $R$ geerbten Addition und Multiplikation ein K"orper ist.
+ \item $\mathcal{I}$ ist prim genau dann, wenn $R/ \mathcal{I}$ nullteilerfrei ist.
+ \end{itemize}
+ Hierbei ist $R / \mathcal{I} = R / \sim$ mit $f \sim g \Leftrightarrow f - g \in \mathcal{I}$ definiert. Man schreibt $f + \mathcal{I} \in R / \mathcal{I}$ f"ur die "Auivalenzklasse von $f \in R$. 
+ \end{lemma}
+ 
+ 
+ %nicht pruefungsrelevantes Kapitel
+ \subsection{Jordan'sche Normalform}
+ 
+ \begin{definition}
+ Wir definieren die Matrix
+ $$
+ \tilde{E}_n =
+\left(\begin{array}{cccc}0 & 0 & \cdots & 0 \\ \vdots & \ddots & \ddots & \vdots \\ 0 & 0 & \cdots & 0 \\ 1 & 0 & \cdots & 0\end{array}\right) \in M(n \times n, K)
+ $$
+ und 
+ $$
+ \tilde{J_r}(A)
+=\left(\begin{array}{ccccc}A & \tilde{E}_{n} & & & \\ & A & \tilde{E}_{n} & & \\ & & \ddots & \ddots & \\ & & & \ddots & \tilde{E}_{n} \\ & & & & A\end{array}\right) \in M(n r \times n r, K).
+ $$
+ \end{definition}
+ 
+ 
+ \begin{theorem}
+ Sei $V$ ein endlich dimensionaler $k$-Vektorraum und $F \in End(V)$. Sei
+ $$
+ P_F = \pm p_1^{r_1} .... p_k^{r_k}
+ $$
+ die Faktorisierung in irreduzible normierte Polynome $p_1, ..., p_k$, die paarweise verschieden sind. Dann gibt es eine Basis $\mathcal{B}$ von $V$, si dass $M_\mathcal{B}(F)$ blockdiagonal ist mit Diagonalbl"ocken der Form $\tilde{J_r}(B_{p_f})$ mit $j = 1, ..., k$ und $r = 1, ..., r_j$.
+ \\ Sei dabei $s_{jr}$ die Anzahl Jordanbl"ocke der Gr"osse $\tilde{J_r}(B_{p_j})$. 
+ Dann gilt f"ur alle $J$
+ $$
+ \sum\limits_{r = 1}^{r_j} s_{jr} = r_j \mathrm{deg} p_j
+ $$
+ und 
+ $$
+ s_{jr} = \frac{1}{\mathrm{deg}  p_j}(2 \mathrm{dim} \mathrm{Ker} (p_j(F)^r) -\mathrm{dim} \mathrm{Ker}(p_j(F)^{r+1}) - \mathrm{dim} \mathrm{Ker}(p_j(F)^{r-1}).
+ $$
+ Insbesondere ist die Jordan'sche Normalform bis auf eine Permutation der Diagonalbl"ocke eindeutig.
+  
+ \end{theorem}
+ 
+ %27052020
+ \begin{theorem}
+ Sei $V$ ein endlich dimensionaler $K$-Vektorraum und $F \in \mathrm{End}(V)$ mit $P_f = \pm p_1^{r_1} ... p_r^{r_k}$ als irreduzible Faktorisierung. Sei 
+ $$
+ V_k = \mathrm{Ker}(p_j(F)^{r_j}).
+ $$
+ Dann sind alle $V_k$ $F$-invariant und
+ $$
+ V = V_1 \oplus ... \oplus V_k.
+ $$
+ Das charakterische Polynom der Einschr"ankung $F|V_j$ ist
+ $$
+ P_{F|V_j} = \pm p_j^{r_j}.
+ $$
+ Insbesondere als $\mathrm{dim}_K(V_j) = r_j \mathrm{deg}(p_j)$.
+ \end{theorem}
+ 
+ 
+ 
+ 
 \section{N\uee tzliche Formeln und Hinweise}
 
 \end{document}
