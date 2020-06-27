@@ -1,10 +1,18 @@
 %%% DOCUMENT TYPE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Um Platz zu sparen kann man noch No Break auf false setzen in formatting.tex
-\documentclass[9pt, a4paper, twocolumn, landscape]{article}
+\documentclass[8pt, a4paper, twocolumn, landscape]{article}
+
+%UM PLATZ ZU SPAREN: 1. fuer grosse Matrizen $\begin{psmallmatrix}
+%a & b \\
+%c & d
+%\end{psmallmatrix}$.
+%2. nutze \vspace{-20pt} \begin{multicols}{2}  ... \end{multicols} fuer Listen
+
+%Besseres Design: Setze NoBreak auf True in formatting.tex
 
 %%% SETUP %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Analysis
+
 
 \usepackage{graphicx}
 \usepackage{mathtools}
@@ -16,6 +24,10 @@
 \usepackage{titlesec}
 \usepackage[english,ngerman]{babel}
 \usepackage{mathabx} 
+\usepackage{multicol}
+
+\usepackage{amsmath} 
+\usepackage[usestackEOL]{stackengine}
 %\usepackage{tikz-cd}
 
 %Abstaende Listen
@@ -65,9 +77,10 @@
 \newpage
 \begin{abstract}
 	%enterlater
-	\centerline{\bt{Stand zum zweiten Semester}}
+	\centerline{\bt{Stand zum \today}}
 \end{abstract}
 
+\newpage \ \\
 \newpage
 \section{Grundlagen der Linearen Algebra I}
 \subsection{Grundbegriffe}
@@ -76,9 +89,8 @@
 Eine Menge $X$ zusammen mit einer Verknüpfung $* : X \times X \to X $ heißt \textbf{Gruppe}, wenn folgende Axiome für die Verknüpfung gelten:
 \begin{enumerate}
 \item Assoziativität. $ (a*b)*c = a*(b*c) $ $ \forall a,b,c \in X$
-\item neutrales und inverses Element
-\\  a. $\exists e \in X,$ sodass $e*a = a $ $\forall a \in X$
-\\  b. $\forall a \in X, \exists $ $ a' \in X$ , sodass $ a'*a = e$
+\item neutrales und inverses Element: a. $\exists e \in X,$ sodass $e*a = a $ $\forall a \in X$, \\
+b. $\forall a \in X, \exists $ $ a' \in X$ , sodass $ a'*a = e$
 \end{enumerate}
 Eine Gruppe heißt \textbf{abelsch}, wenn weiterhin gilt: $ a*b = b*a $ $\forall a,b \in X$ 
 \end{definition}
@@ -92,7 +104,7 @@ heißt \textbf{Ring}, wenn Folgendes gilt:
 \item R bildet zusammen mit der Addition eine abelsche Gruppe
 \item Die Multiplikation ist assoziativ.
 \item Es gelten Distributivgesetze:
-$ (a+b)\cdot c = ac + bc $ und $ c\cdot(a+b) = ca + bc$, $\forall a,b,c \in R$
+$ (a+b)\cdot c = ac + bc $ und $ c\cdot(a+b) = ca + cb$, $\forall a,b,c \in R$
 \end{enumerate}
 Ein Ring heißt \textbf{kommutativ}, wenn die Multiplikation kommutativ ist.
 Wir nennen einen Ring \textbf{nullteilerfrei}, wenn $\forall a,r\in R$, wenn $a\cdot b = 0 \Rightarrow a=0 \lor b=0$ 
@@ -117,10 +129,12 @@ heißt K-Vektorraum, wenn
 \begin{enumerate}
 \item $V$ bildet zusammen mit der Addition eine abelsche Gruppe
 \item Für die Multiplikation von Skalaren gelten folgende Regeln:
-\ \\$(\lambda + \mu) \cdot v = \lambda\cdot v + \mu\cdot v$
-\ \\$\lambda \cdot (v+w) = \lambda \cdot v + \lambda \cdot w$
-\ \\$\mu \cdot (\lambda\cdot v) = (\mu\cdot\lambda)\cdot v$
-\ \\$1\cdot v = v$
+\begin{gather*}
+(\lambda + \mu) \cdot v = \lambda\cdot v + \mu\cdot v, \qquad
+\lambda \cdot (v+w) = \lambda \cdot v + \lambda \cdot w \\
+\mu \cdot (\lambda\cdot v) = (\mu\cdot\lambda)\cdot v, \qquad
+1\cdot v = v
+\end{gather*}
 \end{enumerate}
 \end{definition}
 
@@ -131,6 +145,11 @@ $W \subseteq V$ heißt \textbf{Untervektorraum} von $V$, falls:
 \item $v, w \in W \implies v+w \in W$ 
 \item $v \in W, \lambda \in K \implies \lambda\cdot v \in W$(
 \end{enumerate}
+\end{definition}
+
+\begin{definition}
+Sei $V$ ein $K$-Vektorraum mit  Basis $\mathcal{B} = (v_1, ..., v_n)$.
+Dann ist der eindeutige Isomorphismus $\Phi_\mathcal{B} \in \mathrm{Hom}(K^n, V)$ mit $ \Phi_B (e_j) = v_j $ das durch $\mathcal{B}$ bestimmte Koordinatensystem $(x_1, .., x_n) = \Phi^{-1}(v)$ sind die Koordinaten von $v \in V$ bzgl. $\mathcal{B}$.
 \end{definition}
 
 \begin{definition}
@@ -161,11 +180,7 @@ $$
 die "aussere direkte Summe dieser Familie, wobei das Produktzeichen f"ur das direkte Produkt steht. Im endlich dimensionalen Fall gilt $\bigoplus_{ i \in I} V_i =  \prod_{i \in I} V_i  = V_1 \times ... \times V_n$. Addition und skalare Multiplikation dieses Vektorraums sind wie auch f"ur das direkte Produkt definiert.
 \end{definition}
 
-\begin{definition}
-Sei $V$ ein $K$-Vektorraum mit einer Basis $\mathcal{B} = (v_1, ..., v_n)$. Dann gibt es genau einen Isomorphismus $\Phi_\mathcal{B} : K^n \to V$ mit $ \Phi_B (e_j) = v_j $ für $j = 1, ..., n$. Es gilt:
-$ \Phi_B (x_1, ..., x_n) = x_1 v_1 + ... + x_n v_n$. Man nennt dies das durch $\mathcal{B}$ bestimmte Koordinatensystem.
 
-\end{definition}
 
 \begin{definition}
 Es gibt folgende Typen von \bt{Elementarmatrizen}:
@@ -201,6 +216,15 @@ Zu jedem Untervektorraum $W \subset V$  mit $\mathrm{dim}(V) < \infty $ gibt es 
 \end{theorem}
 
 \begin{theorem}
+Jede invertierbare Matrix ist ein endliches Produkt von Elementarmatrizen.
+\end{theorem}
+
+
+
+
+
+
+\begin{theorem}
 Sei $V$ ein $K$-Vektorraum und $U \subset V$ ein Untervektorraum. Dann kann man auf der Menge $U/V$ auf genau eine Weise eine Addition und skalare Multiplikation definieren, so dass die kanonische Abbildung 
 $$ \varrho : V \to V/U, \thickspace v \mapsto v + U$$
 linear wird. Diese sind gegeben durch 
@@ -215,47 +239,35 @@ Es gilt ausserdem:
 \item Der Quotientenvektorraum $V/U$ hat die folgende universelle Eigenschaft: Ist $F: V\to W$ eine lineare Abbildung mit $U \subset Ker \thinspace F$, so gibt es genau eine lineare Abbildung $\overline{F}: V/U \to W$ mit $F = \overline{F}\circ \varrho$ 
 \end{enumerate}
 \end{theorem}
-
 \begin{lemma}
-Seien $A, B \in M( m \times n, K)$. Dann
-\begin{enumerate}
-\item $\mathrm{Rang}(A + B) \leq \mathrm{Rang}(A) + \mathrm{Rang}(B)$
-\item $\mathrm{Rang}(AB^T) \leq \min( \mathrm{Rang}(A), \mathrm{Rang}(B))$.
-\end{enumerate}
+Seien $A, B \in M( m \times n, K)$. Dann: 1.
+$\mathrm{Rang}(A + B) \leq \mathrm{Rang}(A) + \mathrm{Rang}(B)$  \\
+2. $\mathrm{Rang}(AB^T) \leq \min( \mathrm{Rang}(A), \mathrm{Rang}(B))$.
 \end{lemma}
+\begin{lemma}
+F"ur die \textbf{Spur} gelten folgende Rechenregeln:
+\begin{gather*}
+\mathrm{tr}(B^\dagger) = \mathrm{tr}(\overline{B}) = \overline{\mathrm{tr}({B})}, \qquad
+\mathrm{tr}(AB) = \mathrm{tr}(BA) \\
+\mathrm{tr}(\lambda A + \mu B) = \lambda \mathrm{tr}(A )+ \mu \mathrm{tr}(B), \qquad
+\mathrm{tr}(S A S^{-1}) = \mathrm{tr}(A)
+\end{gather*}
 
-\begin{theorem}
-Jede invertierbare Matrix ist ein endliches Produkt von Elementarmatrizen.
-\end{theorem}
 
+
+\end{lemma}
 \begin{theorem}
 F"ur die \textbf{Determinante} gelten folgende Rechenregeln:
 \begin{enumerate}
-\item Linearit"at in Zeilen und Spalten
-\item $\mathrm{Rang}(A) < n \Leftrightarrow \det (A) = 0 $
-\item Bei Zeilen-/Spaltenvertauschung "andert die Determinante ihr Vorzeichen. Bei der Addition von Zeilen/ Spalten zueinander bleibt die Determinante gleich
+\item Linearit"at in Zeilen und Spalten, $\mathrm{Rang}(A) < n \Leftrightarrow \det (A) = 0 $
+\item Bei Zeilen-/Spaltenvertauschung "andert die Determinante ihr Vorzeichen. Bei Addition von Zeilen/ Spalten bleibt die Determinante gleich
 \item $\det (A) = \det (A^T)$
 \item Sei $A$ eine obere Dreiecksmatrix. Dann $\det(A) = \mathrm{tr}(A)$.
 \item $\det (A^{-1}) = \det (A)^{-1}$
-\item $\det(AB) = \det (A) \det(B)$
-\item $\det \left( \begin{array}{cc} A_1 & C \\ 0 & A_2 \end{array} \right) = \det (A_1) \det (A_2)$
+\item $\det(AB) = \det (A) \det(B), \qquad \det \left( \begin{array}{cc} A_1 & C \\ 0 & A_2 \end{array} \right) = \det (A_1) \det (A_2)$
 \item $\det (A) = \sum_{j = 1}^n (-1)^{i + j} \cdot a_{ij} \det (A'_{ij})$.
 \end{enumerate}
 \end{theorem}
-
-
-
-\begin{lemma}
-F"ur die \textbf{Spur} gelten folgende Rechenregeln:
-\begin{itemize}
-\item $\mathrm{tr}(B^\dagger) = \mathrm{tr}(\overline{B}) = \overline{\mathrm{tr}({B})}$
-\item $\mathrm{tr}(AB) = \mathrm{tr}(BA)$
-\item $\mathrm{tr}(\lambda A + \mu B) = \lambda \mathrm{tr}(A )+ \mu \mathrm{tr}(B)$
-\item $\mathrm{tr}(S A S^{-1}) = \mathrm{tr}(A)$
-\end{itemize}
-
-\end{lemma}
-
 
 
 
@@ -270,10 +282,9 @@ Sei $F : V\ \rightarrow V$ ein Endomorphismus und $W \subset V$ ein Untervektorr
 Ist $W \subset V$ ein $F$-invarianter Unterraum, so ist $P_{F|W}$ ein Teiler von $P_F$.
 \end{remark}
 \begin{definition}
-Eine \bt{Fahne} $(V_r)$ in einem $n$-dimensionalem $V$ ist eine Kette 
-\\ \centerline{ $\{0\} = V_0 \subset V_1 \subset ... \subset V_n = V$}
-von Untervektorr\aee umen mit $dim V_r = r$. Ist $F \in End(V)$, so heisst die Fahne $F$-invariant, wenn 
-\\ \centerline{$F(V_r) \subset V_r$ f\uee r alle $r \in \{0, ... n\}$.}
+Eine \bt{Fahne} $(V_r)$ eines VR $V$ ist eine Kette von UVR $V_r$ mit $dim V_r = r$ und
+$$\{0\} = V_0 \subset V_1 \subset ... \subset V_n = V.$$
+Ist $F \in End(V)$, so heisst die Fahne $F$-invariant, wenn alle $V_r$ $F$-invariant sind.
 \end{definition}
 
 %kann man weglassen
@@ -288,11 +299,7 @@ F\uee r $F \in End(V)$ sind folgende Bedingungen \aee quivalent:
 }
 
 
-\begin{theorem} \textbf{(Trigonalisierungssatz)} F\uee r einen Endomorphismus $F$ eines $n$-dimensionalen $K$-Vektorraumes sind folgende Bedingungen \aee quivalent:
-\begin{enumerate}
-\item[(i)] $F$ ist trigonalisierbar.
-\item[(ii)] Das charakteristische Polynom $P_F$ zerf\aee llt in Linearfaktoren.
-\end{enumerate}
+\begin{theorem} \textbf{(Trigonalisierungssatz)} Sei $F$ ein Endomorphismus eines $n$-dimensionalen $K$-Vektorraumes. Dann ist $F$ genau dann trigonalisierbar, wenn $P_F$ in Linearfaktoren zerf"allt.
 \end{theorem}
 
 %kann man weglassen
@@ -329,8 +336,7 @@ $\left(\begin{array}{ccccc}{
 }
 \subsection{Potenzen eines Endomorphismus}
 \begin{theorem}
-\bt{Satz von Caley-Hamilton} Sei $V$ endlichdimensional und $F \in End(V)$. Dann ist
-\\ \centerline{$P_F(F) = 0 \in End(V)$.}
+\bt{Satz von Caley-Hamilton} Sei $V$ endlichdimensional und $F \in End(V)$. Dann ist $P_F(F) = 0 \in End(V)$.
 \end{theorem}
 \begin{definition}
 Eine Teilmenge $\mathcal{I} \subset R$ eines kommutativen Ringes $R$ heisst \bt{Ideal}, wenn gilt:
@@ -343,8 +349,7 @@ Eine Teilmenge $\mathcal{I} \subset R$ eines kommutativen Ringes $R$ heisst \bt{
 \end{definition}
 
 \begin{definition}
-Sei F ein Endomorphismus. Das \bt{Ideal von F} ist definiert als
-\\ \centerline{$\mathcal{I}_F := \{ P(t) \in K[t] : P(F) = 0  \} \subset K[t]$.}
+Das \bt{Ideal eines Endomorph.} $F$ ist $\mathcal{I}_F := \{ P(t) \in K[t] : P(F) = 0  \} \subset K[t]$.
 \end{definition}
 
 \begin{lemma}
@@ -356,20 +361,14 @@ Jeder Endormorphismus $F$ eines reellen Vektorraums $V$ mit $\mathrm{dim}(V) \ge
 
 
 \begin{theorem}
-Zu jedem Ideal $\mathcal{I} \subset K[t]$ mit $\mathcal{I} \neq \{0\}$ gibt es ein eindeutiges \bt{Minimalpolynom} $M$ mit:
-\begin{enumerate}
-\item $M$ ist normiert
-\item F\uee r jedes $P \in \mathcal{I}$ gibt es ein $Q \in K[t]$ mit $P = Q \cdot M$.
-\end{enumerate}
-Man nennt $M$ das Minimalpolynom von $\mathcal{I}$.
+Zu jedem Ideal $\mathcal{I} \subset K[t]$ mit $\mathcal{I} \neq \{0\}$ gibt es ein eindeutiges \bt{Minimalpolynom} $M$ von $\mathcal{I}$ mit: 1.
+ $M$ ist normiert \\
+2. F\uee r jedes $P \in \mathcal{I}$ gibt es ein $Q \in K[t]$ mit $P = Q \cdot M$.
 \end{theorem}
 
 \begin{theorem}
 Sei $n = dim (V)$ und $F \in End(V)$. Dann gilt:
-\begin{enumerate}
-\item $M_F | P_F$
-\item $P_F | M_F^n$
-\end{enumerate}
+1. $M_F | P_F$ $\qquad$ 2.$P_F | M_F^n$.
 \end{theorem}
 %Anderes aus Linalg I ergaenzen?
 \begin{definition}
@@ -397,22 +396,21 @@ Sei $F \in End(V)$, so dass $P_F$ in Linearfaktoren zerf\aee llt. Wenn $dim(Eig(
 \\ \centerline{$Eig(F; \lambda_i) \subset Ker(F - \lambda_i id_v)^{r_i} = Hau(F; \lambda_i)$. }
 $Hau(F; \lambda_i)$ nennt man den \bt{Hauptraum} von $F$ zum Eigenwert $\lambda_i$.
 \end{definition}
-\begin{theorem} \bt{(Satz \uee ber die Hauptraumzerlegung)}
-Sei $F \in End_K(V)$, so dass $P_F$ in Linearfaktoren zerf\aee llt. Es sei $V_i := Hau(F, \lambda_i)$ f\uee r alle paarweise verschiedenen Eigenwerte $\lambda_1, ... , \lambda_n \in K$ von $F$. Sei $k := Rg(F)$. Dann gilt:
+
+\begin{theorem} \bt{(Satz \uee ber die Hauptraumzerlegung)} 
+Sei $F \in End_K(V)$ mit $P_F = \pm (t- \lambda_1)^{r_1}... (t- \lambda_k)^{r_k}$. Es sei $V_i := Hau(F, \lambda_i)$ f\uee r alle paarweise verschiedenen Eigenwerte $\lambda_1, ... , \lambda_k \in K$ von $F$. Dann:
 \begin{enumerate}
-\item $F(V_i) \subset V_i$ und $dim(V_i) = \mu (P_F, \lambda_i)$ f\uee r $i = 1, ..., k$. 
-\item $V =\bigoplus\limits_{i \in I} V_i$ mit $I=1, ..., k$.
+\item $F(V_i) \subset V_i$, $dim(V_i) = r_i$ und $V =\bigoplus\limits_{i \in I} V_i$ mit $I= \{1, ..., k\}$.
 \item $F$ hat eine Zerlegung $F = F_D + F_N$ mit
 \begin{enumerate}
-\item $F_D$ ist diagonalisierbar
-\item$ F_N$ ist nilpotent
-\item $F_N$ und $F_D$ kommutieren
-\item $F_N$ und $F_D$ lassen sich als Polynome von $F$ schreiben und kommutieren insbesondere mit $F$
-\item Wenn man (a), (b) und (c) verlangt, ist diese Zerlegung eindeutig
+\item $F_D$ ist diagonalisierbar, $F_N$ ist nilpotent und $F_N$ und $F_D$ kommutieren
+%\item $F_N$ und $F_D$ lassen sich als Polynome von $F$ schreiben und kommutieren insbesondere mit $F$
+\item Wenn man (a) verlangt, ist diese Zerlegung eindeutig
 \end{enumerate}
 \end{enumerate}
 \end{theorem}
 
+\comment{
 \begin{corollary}
 Sei $A \in M(n \times n; K)$, so dass $P_A$ in Linearfaktoren zerf\aee llt. Dann $\exists S \in GL(n)$: 
 $$
@@ -432,6 +430,7 @@ wobei f\uee r $i = 1, ... k$
 mit nilpotenten $N_i$. Insbesondere ist $\tilde{A} = D + N$, wobei $D$ eine Diagonalmatrix und $N$ nilpotent ist und $N$ und $D$ kommutieren.
 %%%
 \end{corollary}
+}
 
 \begin{lemma}
 \bt{(Lemma von Fitting)} Zu einem $G \in End_K(V) $ betrachte
@@ -468,14 +467,15 @@ $$
 
 
 \begin{definition}
-Sei $F \in \mathrm{End}(V)$ nilpotent und $v \in V$ beliebig mit $l \in \mathbb{N}$ minimal, so dass $F^l(v) = 0$. Dann nennt man
-$$
+Sei $F \in \mathrm{End}(V)$ nilpotent und $v \in V$ beliebig mit $l = \min \{k \in \mathbb{N} |F^l(v) = 0\}$. Dann nennt man
+$
 (v, F(v), ..., F^{l-1}(v))
-$$
-Jordan-Strang. Dieser ist linear unabh"angig. Im folgenden Theorem wird die Existenz einer Basis aus Jordan-Str"angen verschiedener L"angen gezeigt.
+$
+Jordan-Strang. Dieser ist linear unabh"angig. Im n"achsten Theorem wird Existenz einer Basis aus Jordan-Str"angen gezeigt.
 \end{definition}
 
-
+%Ist durch Jordansche Normalform impliziert
+\comment{
 \begin{theorem}
 Sei $G$ ein nilpotenter Endomorphismus eines K-Vektorraums $V$ und $d$ minimal, so dass $G^d = 0$. Dann gibt es eindeutig bestimmte Zahlen $s_1, ..., s_d \in \mathbb{N}$ mit 
 $$d \cdot s_d +(d - 1)s_{d-1} + ... + s_l = \mathrm{dim} V$$
@@ -504,7 +504,7 @@ $$
 }
 
 \end{theorem}
-
+}
 
 
 \begin{theorem}
@@ -564,6 +564,8 @@ $F \in End(V)$ ist genau dann diagonalisierbar, wenn $M_F$ folgende Form hat:
 wobei $\lambda_1, ... , \lambda_k$ die Eigenwerte von $F$ sind.
 \end{corollary}
 
+
+\comment{
 \begin{remark}
 \bt{Rechenverfahren zur Bestimmung einer Jordan-Normalform} 
 \begin{enumerate}
@@ -580,9 +582,49 @@ Die Anzahl der Jordanbl\oee cke der Gr\oee sse $j$ zum Eigenwert $\lambda_i$ ist
 \item Eine jordansche Normalform l\aee sst sich anhand dieser Parameter aufstellen.
 \end{enumerate}
 \end{remark}
+}
+%---------------------------------------
+
 
 \begin{remark}
-\bt{Rechenverfahren zur Bestimmung der Basiswechselmatrix einer Jordan-Normalform}
+\bt{Rechenverfahren: Bestimmung einer Jordan-Normalform} 
+\begin{enumerate}
+\item Bestimme die Eigenwerte $\lambda_1, ... \lambda_k$ der Matrix $A \in M(n \times n; K)$. Sei $\lambda$ einer Eigenwerte. F"uhre den folgenden Schritt f"ur jeden Eigenwert $\lambda_i$ aus
+\item  Bestimme die Anzahl und Gr\oee sse der Jordanbl\oee cke:
+\begin{itemize}
+\item Setze $B_i = A - \lambda_i E_n$.
+\item Berechne $d_{ir} = \mathrm{dim}(\mathrm{Ker}\left(B_i)^r\right)$ und schreibe die Zahlen "ubersichtlich auf (zB Tabelle)
+\item Nun gilt nun gem"ass des Theorems f"ur die Gr"ossen der Jordanbl"ocke $s_{jr} = 2 d_{jr} - d_{j(r+1)} - d_{j(r-1)}$
+\end{itemize}
+\item Eine jordansche Normalform l\aee sst sich jetzt wie im Theorem aufstellen.
+\end{enumerate}
+\end{remark}
+
+
+
+\begin{remark}
+\bt{Rechenverfahren: Basiswechselmatrix einer Jordan-Normalform}
+\begin{enumerate}
+\item Bestimme die Eigenwerte $\lambda_1, ... \lambda_k$ der Matrix $A \in M(n \times n; K)$. 
+\item Das folgende Verfahren muss f\uee r jeden Eigenwert $\lambda_i$ durchgef\uee hrt werden
+\begin{enumerate}
+\item Sei $B = A - \lambda_i E_n$. Sei $q= min\{l \ | \ Ker(B^l) = Ker(B^{l+1})\}$. Wir bezeichnen von jetzt an mit $M$ die Menge der bereits gefundenen Basisvektoren.
+\item Suche $v_1^{(r)}, v_2^{(r)}, ... \in \mathrm{Ker}(B^r) \backslash \mathrm{span}(\mathrm{Ker}(B^{r-1}) \cup M)$ f"ur alle $1 \leq r \leq q$. Beginne  mit $r = q$  und gehe dann in absteigender Reihenfolge vor.
+\item Die so gefundenen Jordanketten $B^{r-1} v_i^{(r)}, ..., B v_i^{(r)}, v_i^{(r)}$(Reihenfolge wichtig!) zu Jordanbl"ocken der Gr"osse $r$ werden nebeneinander in die Liste der Basisvektoren geschrieben, also 
+$$
+\mathcal{B} = ( ... , B^{r-1} v_i^{(r)}, ..., B v_i^{(r)}, v_i^{(r)}, ...).
+$$
+\item F"uhre $(b)$ mit $r-1$ durch, es sei denn $r = 1$. 
+\end{enumerate}
+\end{enumerate}
+\end{remark}
+
+%----------------------------
+
+\comment{
+
+\begin{remark}
+\bt{Rechenverfahren: Basiswechselmatrix einer Jordan-Normalform}
 \begin{enumerate}
 \item Bestimme die Eigenwerte $\lambda_1, ... \lambda_k$ der Matrix $A \in M(n \times n; K)$. Das folgende Verfahren muss f\uee r jeden Eigenwert durchgef\uee hrt werdemn
 \item Sei $U = A - \lambda_i E_n$.
@@ -594,9 +636,7 @@ Bestimme $Ker(U), ..., Ker(U^q)$ wobei $q= min\{l \ | \ Ker(U^l) = Ker(U^{l+1})\
 
 \end{enumerate}
 \end{remark}
-
-
-
+}
 
 %15052020
 \subsubsection{Die Relle Jordansche Normalform}
@@ -703,8 +743,35 @@ mit $l_j$ bzw. $l_j'$ den gr"ossten Indizes mit $s_{jl_j}\neq 0$ bzw. $s_{jl_j'}
 \end{enumerate}
 \end{theorem}
 
+
+
+\begin{remark} \bt{Rechenverfahren zur Bestimmung reeller Jordan-Normalform}
+\begin{enumerate}
+\item Gehe genauso vor, wie bei der allgemeinen Jordan'schen Normalform, bis darauf, dass nun f"ur die Gr"osse der $2\times 2$ Blockdiagonalmatrizen laut Theorem gilt
+$$
+2s_{j r}^{\prime}=2 d_{j r}^{\prime}-d_{j(r+1)}^{\prime}-d_{j(r-1)}^{\prime}
+$$
+\end{enumerate}
+\end{remark}
+
+\begin{remark}  \bt{Rechenverfahren zur Bestimmung der Basiswechselmatrix reeller Jordan-Normalform}
+\begin{enumerate}
+\item Bestimme die Basisvektoren f"ur die komplexe Jordan'sche Normalform und betrachte im Folgenden nur noch die Basisvektoren f"ur die H"auptr"aume zu komplexen Eigenwerten.
+\item In der Basis gibt es f"ur jeden Jordanstrang $v_1, ..., v_m$ zum Eigenwert $\lambda \in \mathbb{C} \backslash \mathbb{R}$ einen Jordanstrang $\overline{v_1}, ..., \overline{v_m}$ zum Eigenwert $\overline{\lambda}$. Ersetze deswegen diese beiden Jordanstr"ange in der Basis durch $\mathrm{Re}(v_1), \mathrm{Im}(v_1),..., \mathrm{Re}(v_m), \mathrm{Im}(v_m)$. 
+\item Tu dies f"ur alle solche Paare von Jordanstr"angen.
+\end{enumerate}
+\end{remark}
+
+
+
+
+
+
+
+
+
 \begin{lemma}
-Sei $A \in M(n \times n, \mathbb{R})$. Dann gilt
+Sei $A \in M(n \times n, \mathbb{R})$. Dann gilt:
 \begin{enumerate}
 \item $\mathrm{Rang}_\mathbb{R}(A) = \mathrm{Rang}_\mathbb{C}(A)$
 \item F"ur das Minimalpolynom von $A$ gilt $M_A = M_{A_\mathbb{C}}$, wobei man bei $A_\mathbb{C}$ die reelle Matrix $A$ als komplexe Matrix auffasst.
@@ -728,6 +795,39 @@ Sei $A \in M(n \times n, \mathbb{R})$. Dann gilt
  
  \end{remark}
  }
+
+
+\subsubsection{Matrixexponentiale}
+\begin{lemma}
+Seien $A, B \in M(n \times n, K)$ mit $AB = BA$. Dann gilt
+\begin{itemize}
+\item $
+(A+B)^m = \sum\limits_{k = 0}^m \left( \begin{array}{c}m \\ k
+\end{array}\right) A^k B^{m-k} .
+$
+\item $
+\exp (A + B) = \exp (A) \exp (B)
+$
+\end{itemize}
+\end{lemma}
+
+\begin{lemma}
+\textbf{(Matrixexponential der Jordan'schen Normalform)}
+F"ur jeden Jordanblock k"onnen wir $\exp (J) = \exp (D + N) = \exp (D) \exp (N)$ mit obiger Formel berechnen.
+
+Matrixexponentiale von Matrizen der Form $\left( \begin{array}{cc}
+a & b \\ -b & a
+\end{array} \right)$ (wir nennen diesen Untervektorraum $U \subseteq M(2 \times 2, \mathbb{R})$) k"onnen wir mit dem Isomorphismus $$\Phi: \mathbb{C}_\mathbb{R} \rightarrow U , \quad z = a + ib \mapsto \left( \begin{array}{cc}
+a & b \\ -b & a
+\end{array} \right)$$ berechnen. Denn es gilt $\exp \left( \begin{array}{cc}
+a & b \\ -b & a
+\end{array} \right) = \exp(\Phi(a + ib) ) = \Phi (\exp (a + ib))$.
+\end{lemma}
+
+
+
+
+
 
 %Jordansche Normalform fur allgemeine Koerper und Teilbarkeitstheorie vermutlich irrelevant.
  \comment{
@@ -1063,7 +1163,7 @@ unter allen unit"aren Matrizen $R \in U(n)$.
 \subsection{Das kanonische Skalarprodukt}
 \begin{definition}
 Das \bt{kanonische Skalarprodukt im $\mathbb{R}^n$} ist die Abbildung $$\langle\quad, \quad\rangle: \mathbb{R}^{n} \times \mathbb{R}^{n} \rightarrow \mathbb{R}, \quad(x, y) \mapsto\langle x, y\rangle  =  x^T \cdot y.$$
-\\Es hat die folgenden Eigenschaften:
+\\Mit diesen Eigenschaften (definieren allg. Skalarprodukt auf reellem VR):
 \begin{enumerate}
 %Bilinearitaet noch nicht komplett abgeschrieben
 \item \bt{Bilinearit\aee t} $\left\langle \alpha x+ \alpha^{\prime} x^{\prime}, y\right\rangle=\alpha \langle x, y\rangle+ \alpha^{\prime}\left\langle x^{\prime}, y\right\rangle $
@@ -1074,8 +1174,8 @@ Das \bt{kanonische Skalarprodukt im $\mathbb{R}^n$} ist die Abbildung $$\langle\
 \end{definition}
 
 \begin{definition}
-Das \bt{kanonische Skalarprodukt im $\mathbb{C^n}$} ist die Abbildung $$\langle\quad, \quad\rangle: \mathbb{C}^{n} \times \mathbb{C}^{n} \rightarrow \mathbb{R}, \quad(x, y) \mapsto\langle x, y\rangle  = \overline{y}^T \cdot x.$$
-\\Es hat folgende Eigenschaften:
+Das \bt{kanonische Skalarprodukt im $\mathbb{C^n}$} ist die Abbildung $$\langle\quad, \quad\rangle: \mathbb{C}^{n} \times \mathbb{C}^{n} \rightarrow \mathbb{R}, \quad(x, y) \mapsto\langle x, y\rangle  = y^T \cdot \overline{x}.$$
+\\Mit diesen Eigenschaften (definieren allg. Skalarprodukt auf komplexem VR):
 \begin{enumerate}
 \item \bt{Sesquilinearit\aee t} $\left\langle \alpha x+ \alpha^{\prime} x^{\prime}, y\right\rangle_c=\alpha \langle x, y\rangle+ \alpha^{\prime}\left\langle x^{\prime}, y\right\rangle_c $
 \\$\left\langle x, \beta y+ \beta^{\prime} y^{\prime}\right\rangle_c=\overline{\beta} \langle x, y\rangle+ \overline{\beta}^{\prime}\left\langle x, y^{\prime}\right\rangle_c $
@@ -1116,6 +1216,7 @@ heisst \bt{bilinear} falls
 \end{enumerate}
 \end{definition}
 
+\comment{
 \begin{definition}
 Eine \bt{Multilinearform} 
 \begin{equation*}
@@ -1127,23 +1228,24 @@ ist analog zur Bilinearform definiert, die Bilinearform also ein Spezialfall der
 \item[\bt{M1}] $s(v_1, ...,  \alpha v_k + \alpha^\prime v_k^\prime, ...,  v_n) = \alpha s(v_1, ..., v_k, ..., v_n) + \alpha^\prime s(v_1, ..., v_k^\prime, ..., v_n)$.
 \end{enumerate}
 \end{definition}
+}
 
 
 
 \begin{remark} Sei $V$ ein endlich dimensionaler Vektorraum, $s : V \times V \rightarrow K$ eine Bilinearform auf $V$ und $\mathcal{B} = (v_1, ..., v_n)$ eine geordnete Basis von $V$ mit dem Koordinatensystem  $\phi_\mathcal{B} : K^n \rightarrow V$.
 Die darstellende Matrix von $s$ bez"uglich $\mathcal{B}$ ist $M_\mathcal{B}(s) = \left(s(v_i, v_j) \right)_{ij} \in M(n \times n, \mathbb{K})$.
 Seien $v, w \in V$  mit den Koordinaten $x = \phi^{-1}_\mathcal{B}(v)$, $y = \phi^{-1}_\mathcal{B}(y)$. Dann ist
-$$
+$
 s(v, w)= x^T M_\mathcal{B}(s) y.
-$$
+$
 \comment{\left(x_{1}, \ldots, x_{n}\right)\left(\begin{array}{ccc}a_{11} & \cdots & a_{1 n} \\ \vdots & & \vdots \\ a_{n 1} & \cdots & a_{n n}\end{array}\right)\left(\begin{array}{c}y_{1} \\ \vdots \\ y_{n}\end{array}\right).}
 \end{remark}
 
 \begin{theorem}
 Sei $V$ ein $n$-dimensionaler endlicher Vektorraum und $\mathcal{B}$ eine Basis von $V$. Dann ist  die Abbildung
-\begin{equation*}
+$
 s \mapsto M_{\mathcal{B}}(s)
-\end{equation*}
+$
 von den Bilinearformen auf $M(n \times n; K)$ bijektiv und $s$ genau dann symmetrisch, wenn $M_{\mathcal{B}}(s)$ symmetrisch ist. 
 \end{theorem}
 
@@ -1173,13 +1275,13 @@ Achtung: Der Unterschied zur Transformationsformel von Endomorphismen ist $( T^\
 
 \begin{definition}
 Sei $s: V \times V \rightarrow K$ eine symmetrische Bilinearform. Die \bt{zu $s$ geh"orige quadratische Form} ist die Abbildung
-\begin{equation*}
+$
 q : V \rightarrow K, v \mapsto s(v, v).
-\end{equation*}
+$
 Es gilt dann $g(\lambda v) = \lambda^2 q(v)$ f"ur  $\forall v \in V, \lambda \in K$.
 Ist $V = K^n$ und $s$ durch die symmetrische Matrix $A = (a_{ij})$ gegeben, gilt:
 \begin{equation*}
-q(x_1, ..., x_n) = \sum\limits_{i, j = 1}^n a_{ij} x_i x_j = \sum\limits_{j = 1}^n a_ii x_i^2 + 2 \cdot \sum\limits_{1 \leq i < j \leq n} a_{ij}x_ix_j,
+q(x_1, ..., x_n) = \sum\limits_{i, j = 1}^n a_{ij} x_i x_j = \sum\limits_{j = 1}^n a_{ii} x_i^2 + 2 \cdot \sum\limits_{1 \leq i < j \leq n} a_{ij}x_ix_j,
 \end{equation*}
 was ein homogenes quadratisches Polynom in den Unbestimmten $x_1, ..., x_n$ ist.
 \end{definition}
@@ -1210,10 +1312,9 @@ $s : V \times V \rightarrow \mathcal{C}$ heisst ausserdem \bt{hermitesch}, wenn 
 \begin{remark}
 Ist $\mathcal{A}$ eine Basis von $V$, so ist die Matrix der Sesquilinearform $s : V \times V \rightarrow \mathbb{C}$ gegeben durch $M_\mathcal{A}(s) = (s(v_i, v_j)).$
 Seien $v = \phi_\mathcal{A}(x), w = \phi_\mathcal{A} (y)$ so ist 
-\begin{equation*}
-s(v, w) = x^T M_\mathcal{A}(s) \overline{y},
-\end{equation*}
-wobei $\overline{y}$ die komponentenweise Konjugation ist.
+$
+s(v, w) = x^T M_\mathcal{A}(s) \overline{y}.
+$
 $s$ ist hermetisch genau dann, wenn 
 $A^T = \overline{A}$.
 \end{remark}
@@ -1221,9 +1322,9 @@ $A^T = \overline{A}$.
 
 \begin{theorem} \bt{(Transformationsformel f"ur Sesquilinearformen)}
 Sei $s : V \times V \rightarrow \mathbb{C}$ eine Sesquilinearform und $\mathcal{A}$ und  $\mathcal{B}$ Basen von $V$. Dann ist
-\begin{equation*}
-M_\mathcal{B}(s) = {T^\mathcal{B}_\mathcal{A}}^T M_\mathcal{A}(s) \overline{T^\mathcal{B}_\mathcal{A}}
-\end{equation*}
+$
+M_\mathcal{B}(s) = {T^\mathcal{B}_\mathcal{A}}^T M_\mathcal{A}(s) \overline{T^\mathcal{B}_\mathcal{A}}.
+$
 \end{theorem}
 
 
@@ -1232,16 +1333,16 @@ M_\mathcal{B}(s) = {T^\mathcal{B}_\mathcal{A}}^T M_\mathcal{A}(s) \overline{T^\m
 
 \begin{theorem} \bt{(Polarisierung von Sesquilinearformen)}
 Man hat im Komplexen für Sesquilinearformen eine \bt{Polarisierung}
-\begin{equation*}
+$
 s(v, w)=\frac{1}{4}(q(v+w)-q(v-w)+\mathrm{i} q(v+\mathrm{i} w)-\mathrm{i} q(v-\mathrm{i} w)).
-\end{equation*}
+$
 \end{theorem}
 
 
 %richtiges Zeichen ? zwischen UVR und Komplement unterscheiden.
 
 
-\subsubsection{Grundbegriffen zu euklidische  und unit"aren Vektorr"aume}
+\subsubsection{Grundbegriffe zu euklidischen  und unit"aren Vektorr"aume}
 \begin{definition}
 Sei $K = \mathbb{R}, \mathbb{C}$ und $V$ eine K-Vektorraum mit einer symmetrischen Bilinearform / hermiteschen Sesquilinearform $s : V \times V \rightarrow K$. 
 \\ Dann heisst $s$ \bt{positiv definit}, falls $s(v, v) > 0 \ \forall v \in V/\{0\}$.
@@ -1251,15 +1352,18 @@ Eine solche Bilinearform / Sesquilinearform nennt man auch \bt{Skalarprodukt auf
 
 \begin{definition}
 Die \bt{Norm} auf einem euklidischen / unit"aren Vektorraum ist eine Abbildung gegeben durch
-\begin{equation*}
- \|\cdot\|: K^{n} \rightarrow \mathbb{R}_{+}, \quad x \mapsto\|x\|:=\sqrt{\langle x, x\rangle}
-\end{equation*}
+$
+ \|\cdot\|: K^{n} \rightarrow \mathbb{R}_{+}, \quad x \mapsto\|x\|:=\sqrt{\langle x, x\rangle}.
+$
 Sie erf"ullt folgende Eigenschaften
+\vspace{-20pt}
+\begin{multicols}{2}
 \begin{enumerate}
 \item $\|x\| \geq 0$ und $\|x\| = 0 \Leftrightarrow x= 0$
 \item $ \| \alpha \cdot x \| = \mid\alpha \mid \cdot \|x \| $ 
 \item $\|x+y\| \leq\|x\|+\|y\|$
 \end{enumerate}
+\end{multicols}
 \end{definition}
 
 \begin{remark}
@@ -1278,12 +1382,10 @@ und Gleichheit genau dann, wenn $v$ und $w$ linear abh"angig sind.
 Definition. Sei \(V\) ein euklidischer bzw. unitärer Vektorraum.
 \begin{enumerate}
 \item Zwei Vektoren \(v, w \in V\) heißen orthogonal ($v \perp w$), wenn $\langle v, w\rangle= 0.$
-\item Zwei Untervektorräume \(U, W \subset V\) heißen orthogonal ($U \perp W$), wenn
-\begin{equation*}
-u \perp w \text { für alle } u \in U \text { und alle } w \in W \text {. }
-\end{equation*}
-\item Sei \(U \subset V\) ein Untervektorraum. Sein orthogonales Komplement ist \\
-$U^{\perp}:=\{v \in V: v \perp u \text { für alle } u \in U\}$ und wieder ein Untervektorraum.
+\item UVR \(U, W \subset V\) orthogonal ($U \perp W$), $\Leftrightarrow
+u \perp w \forall \ u \in U \text { und alle } w \in W \text {. }$
+\item \textbf{Orthogonales Komplement}:
+$U^{\perp}:=\{v \in V: v \perp u \ \forall \  u \in U\}$ (ist UVR).
 \item Eine Familie \(\left(v_{1}, \ldots, v_{n}\right)\) in \(V\) heißt orthogonal, wenn
 $v_{i} \perp v_{j} \forall i \neq j.$
 Sie heißt \bt{orthonormal}, falls zusätzlich $
@@ -1297,11 +1399,7 @@ $V_{i} \perp V_{j} \quad \forall i \neq j.$
 \end{definition}
 
 \begin{remark}
-Sei $(v_1, ..., v_n)$ eine orthogonale Familie in $V$ mit $v_i \neq 0$ $\forall i$. Dann gilt:
-\begin{enumerate}
-\item $(a_1 v_1, ..., a_n v_n)$ mit $a_i = \frac{1}{\|v_i\|}$ ist orthonormal.
-\item $(v_1, ..., v_n)$ ist linear unabh"angig.
-\end{enumerate}
+Sei $(v_1, ..., v_n)$ eine orthogonale Familie in $V$ mit $v_i \neq 0$ $\forall i$. Dann ist diese Familie linear unabh"angig und $(a_1 v_1, ..., a_n v_n)$ mit $a_i = \frac{1}{\|v_i\|}$ orthonormal.
 \end{remark}
 
 \begin{remark}
@@ -1314,7 +1412,7 @@ $
 \begin{remark}
 Sei $(v_1, ..., v_n)$ eine Orthonormalbasis von einem unit"aren / euklidschen Vektorraum $V$ und $v = \lambda_1 v_1 + ... + \lambda_n v_n, \ w =  \mu v_1 + ... + \mu v_n \  \in V$. Dann gilt:
 $$
-\left\langle v, w \right\rangle = \left\langle \lambda_1 v_1 + ... + \lambda_n v_n, \mu_1 v_1 + ... + \mu_n v_n \right\rangle = \sum\limits_{i = 1}^n \lambda_i \overline{\mu_j} = \left(\begin{array}{ccc}\lambda_1 & \hdots & \lambda_n \end{array} \right) \overline{\left(\begin{array}{c}\mu_1  \\ \vdots \\ \mu_n \end{array} \right)}.
+\left\langle v, w \right\rangle = \sum\limits_{i = 1}^n \lambda_i \overline{\mu_j} = \underbrace{\left(\begin{array}{ccc}\lambda_1 & \hdots & \lambda_n \end{array} \right)}_{\phi_\mathcal{B}^{-1}(v)} \left. \overline{\left(\begin{array}{c}\mu_1  \\ \vdots \\ \mu_n \end{array} \right)} \right\} \phi_\mathcal{B}^{-1}(w)
 $$
 \end{remark}
 
@@ -1341,12 +1439,12 @@ Orthonormiere $v_i$ mit $\tilde{v_i} := v_i - \left( \scp{v_i}{w_1}  w_1 +  ... 
 \end{remark}
 
 \begin{remark} \bt{(QR-Zerlegung)}
-Sei $V = K^n$ und $A \in M(n \times n, K)$ invertierbar. Dann existiert eine orthogonale / unit"are Matrix  $Q$ und eine obere Dreiecksmatrix $R$, so dass $$
-A = Q \cdot R.$$
+Sei $V = K^n$ und $A \in M(n \times n, K)$ invertierbar. Dann existiert eine orthogonale / unit"are Matrix  $Q$ und eine obere Dreiecksmatrix $R$, so dass $
+A = Q \cdot R.$
 
 Diese berechnet man folgendermassen. Sei $A = (a_1 | ... |a_n)$.
 \begin{enumerate}
-\item Konstruiere aus den Spalten $a_i$ von $A$ eine Orthonormalbasis $(q_1, ..., q_n)$ und setze $Q = (q_1| ...|q_n)$
+\item Konstruiere aus den $a_i$ eine ONB $(q_1, ..., q_n)$ und setze $Q = (q_1| ...|q_n)$
 \item Setze $R = Q^T A$.
 \end{enumerate}
 \end{remark}
@@ -1403,14 +1501,17 @@ $ f"ur alle $v, w \in V$. Man nennt orthogonale / unit"are Abbildungen auch \bt{
 
 \begin{remark}
 Ein orthogonaler / unit"arer Endomorphismus erf"ullt folgende Bedingungen:
+\vspace{-20pt}
+\begin{multicols}{2}
 \begin{enumerate}
 \item $\| F(v) \| = \|v\| \forall v \in W$
 \item $ v \perp w \implies F(v) \perp F(w)$
 \item $F$ ist ein Isomorphismus und $F^{-1}$ orthogonal bzw. unit"ar
-\item Ist $\lambda \in K$ ein Eigenwert von $F$, so gilt $\|\lambda \| = 1$\
+\item $\lambda \in K$ EW von $F \implies \ \|\lambda \| = 1$
 \item $F$ erh"alt Winkel
-\item Die Komposition orthogonaler / unit"arer Endomorphismus ist orthogonal / unit"ar
+\item Komposition orthog. / unit. Endomorphismus ist orthog. / unit.
 \end{enumerate}
+\end{multicols}
 \end{remark}
 
 \begin{lemma}
@@ -1488,8 +1589,13 @@ wobei $\lambda_{i} \in \mathbb{C}$ mit $|\lambda_{i}|=1$ f"ur $i=1, ..., n $.
 
 \begin{theorem}
 Sei $F$ ein orthogonaler Endomorphismus des endlichdimensionalen euklidischen Vektorraums $V$. Dann gibt es eine Orthonormalbasis $\mathcal{B}$ von $V$, so dass:
-$$M_\mathcal{B}(F) =
-\left( \begin{array}{ccccccccc}
+\vspace{-20pt}
+\begin{multicols}{2}
+\begin{itemize}
+\item[] $M_\mathcal{B}(F) =$
+%\left( \begin{array}{ccccccccc}
+$
+\begin{psmallmatrix}
 {+1} & {} & {} & {} & {} & {} & {} & {} & {} 
 \\ {} & {\ddots} & {} & {} & {} & {} & {} & {0} & {} 
 \\ {} & {} & {+1} & {} & {} & {} & {} & {} & {} 
@@ -1499,10 +1605,15 @@ $$M_\mathcal{B}(F) =
 \\ {} & {} & {} & {} & {} & {} & {A_1} & {} & {} 
 \\ {} & {0} & {} & {} & {} & {} & {} & {\ddots} & {} 
 \\ {} & {} & {} & {} & {} & {} & {} & {} & {A_k} 
-\end{array} 
-\right),$$
-wobei $A_{j}=\left(\begin{array}{cc}\cos \vartheta_{j} & -\sin \vartheta_{j} \\ \sin \vartheta_{j} & \cos \vartheta_{j}\end{array}\right) \in SO(2)$ mit $\vartheta_j \in (0, 2\pi), \ \vartheta_j \neq \pi$.
-
+\end{psmallmatrix}\\
+$
+%\end{array} 
+%\right),$
+\item[] $A_{j}=\left(\begin{array}{cc}\cos \vartheta_{j} & -\sin \vartheta_{j} \\ \sin \vartheta_{j} & \cos \vartheta_{j}\end{array}\right) \in SO(2)$ 
+\item[] \ \\
+\item[] mit $\vartheta_j \in (0, 2\pi), \ \vartheta_j \neq \pi$.
+\end{itemize}
+\end{multicols}
 \end{theorem}
 
 %Haben wir oben schon ohne die Vorraussetzung der Orthogonalit"at / Unitarit"at gezeigt.
@@ -1680,7 +1791,7 @@ M_\mathcal{A}(s) =  \left(\begin{array}{ccc}E_k & & 0
 \\ & -E_l & 
 \\ 0 & & 0\end{array}\right) =: D' 
 $$
-Alternativ: Es gibt ein $S \in GL(n, \mathbb{R})$ / $S \in GL(n, \mathbb{C})$ mit $S^T A \overline{S} = D'$.
+Alternativ: Es gibt ein $S \in GL(n, \mathbb{R})$ / $S \in GL(n, \mathbb{C})$ mit $S^{-1} A S = D'$.
 \item Die Zahlen $k, l$ aus $2.$ sind gerade die Anzahl der positiven und negativen Eigenwerte von $A$ und Invarianten der Bilinearform / Sesquilinearform (Tr"agheitssatz von Sylvester).
 \end{enumerate}
 \end{theorem}
@@ -2007,21 +2118,21 @@ Sei $W = \mathrm{span}(w_1, ..., w_l) \subseteq K^n$ ein Untervektorraum. Um ein
 F"ur bilineare Abbildungen $V \times W \rightarrow K$ sind die Abbildungen
 \begin{gather*}
 b_v : W \rightarrow K, w \mapsto b(v, w)\\
-b_w : V \rightarrow K, v \mapsto b(v, w)\\
+b_w : V \rightarrow K, v \mapsto b(v, w)
 \end{gather*}
 linear. Die Abbildungen $v \mapsto b_v$ und $w \mapsto b_w$ sind ihrerseits linear, so dass man diese linearen Abbildungen erh"alt:
 \begin{gather*}
 b ' : V \rightarrow W^*, v \mapsto b_v \in W^* \\
-b '' : W \rightarrow V^*, w \mapsto b_w \in V^*. \\
+b '' : W \rightarrow V^*, w \mapsto b_w \in V^*. 
 \end{gather*}
 Eine Bilinearform $b$ heisst \bt{nicht ausgeartet} falls $b'$ und $b''$ injektiv sind.
 \end{definition}
 
 \begin{theorem}
 Seien $V$ und $W$ endlichdimensionale Vektorr"aume und $B : V \times W \rightarrow K$ eine nicht ausgeartete Bilinearform, so sind die Abbildungen 
-$$
+$
 b': V \rightarrow W^*, \ b'':W \rightarrow V^*
-$$
+$
 Isomorphismen.
 \end{theorem}
 
@@ -2077,10 +2188,10 @@ Dieses Diagramm kommutiert also:
 
 %Decken sich die beiden Bemerkungen?
 \begin{remark}
-Sind $V, W$ euklidische Vektorr"aume mit Orthonormalbasis $\mathcal{A}$ und $\mathcal{B}$, so gilt f"ur jede lineare Abbildung $F : V \rightarrow W$
-$$
+Sind $V, W$ euklidische Vektorr"aume mit Orthonormalbasis $\mathcal{A}$ und $\mathcal{B}$, so gilt f"ur jede lineare Abbildung $F : V \rightarrow W$:
+$
 M_\mathcal{A}^\mathcal{B}(F^{ad}) = \left( M_\mathcal{A}^\mathcal{B}(F)\right)^T.
-$$
+$
 \end{remark}
 
 %Gleiches wie unten
@@ -2452,7 +2563,7 @@ Seien $V$ und $W$ Vektorr"aume mit Basen $(v_i)_{i \in I}$, $(w_j)_{j \in J}$. D
 \end{remark}
 
 \begin{definition}
-Eine Abbildung zwischen Vektorr"aumen heisst multilinear, wenn sie in jedem Argument linear ist. 
+Eine Abbildung zwischen $K$-Vektorr"aumen heisst multilinear, wenn sie in jedem Argument linear ist. Sie heisst Multilinearform, wenn sie nach $K$ geht.
 \end{definition}
 
 \begin{theorem}
@@ -2525,10 +2636,10 @@ Sind $V$ Und $W$ Vektorräume über $K$, so heißt eine $k$-fach linerare Abblid
 $$
 \xi: V^k \rightarrow W
 $$
-\begin{itemize}
+\begin{enumerate}
 \item  \emph{symmetrisch}, wenn $\xi(v_1,...,v_k) = \xi(v_{\sigma(1)},...v_{\sigma(k)})\quad \forall \sigma \in S_k$,
 \item \emph{alternierend}, wenn $\xi(v_1,...,v_k) = 0 $, falls $ v_i = v_j$ für ein Paar $(i,j)$ mit $i \neq j$
-\end{itemize}
+\end{enumerate}
 \end{definition}
 
 \begin{remark}
@@ -2547,11 +2658,13 @@ $$
 $$ A^k(V) = \mathrm{span} (v_1 \otimes... \otimes v_k) \subset \otimes^k V, \textit{ wobei  } v_i = v_j \textit{ für ein (i,j) mit  } i\neq j 
 $$
 Für jedes $k$-fach lineare $\xi: V^k \rightarrow W$ gilt:
-\begin{itemize}
+\vspace{-20pt}
+\begin{multicols}{2}
+\begin{enumerate}
 \item $\xi$ symmetrisch $\Leftrightarrow S^k(v) \subset \mathrm{Ker}(\xi_\otimes)$
 \item $\xi$ alternierend $\Leftrightarrow A^k(v) \subset \mathrm{Ker}(\xi_\otimes)$
-\end{itemize}
-
+\end{enumerate}
+\end{multicols}
 \end{lemma}
 
 \begin{theorem}
@@ -2626,7 +2739,7 @@ Man erkl"art \\ $\vee^k V = \otimes^k V / S^k(V)$.
 F"ur $v_1, ..., v_k \in V$ und $\lambda \in K$ gilt
 \begin{itemize}
 \item $v_1 \vee ... \vee (v_j + \lambda v_j') \vee ... \vee v_k = v_1 \vee ... \vee v_j \vee ... \vee v_k + \lambda v_1 \vee ... \vee v_j' \vee ... \vee v_k$
-\item $v_{\sigma(1)} \wedge ... \wedge v_{\sigma(k)} = v_1 \wedge ... \wedge v_k$
+\item $v_{\sigma(1)} \vee ... \vee v_{\sigma(k)} = v_1 \vee ... \vee v_k$
 \end{itemize}
 \end{remark}
 
